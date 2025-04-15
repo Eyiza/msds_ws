@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_cpp_examples/include/**",
+        "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_msgs/include/**",
+        "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_localization/include/**",
+        "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_controller/include/**",
+        "/home/eyiza/Desktop/ROS/ros_ws/install/custom_interfaces/include/**",
+        "/opt/ros/jazzy/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

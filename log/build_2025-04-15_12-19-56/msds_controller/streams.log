@@ -1,0 +1,20 @@
+[0.968s] Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_controller': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_controller -- -j8 -l8
+[2.929s] Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_controller' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_controller -- -j8 -l8
+[3.273s] Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_controller': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_controller
+[3.678s] -- Install configuration: ""
+[3.680s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/ament_index/resource_index/package_run_dependencies/msds_controller
+[3.680s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/ament_index/resource_index/parent_prefix_path/msds_controller
+[3.681s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/environment/ament_prefix_path.sh
+[3.681s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/environment/ament_prefix_path.dsv
+[3.681s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/environment/path.sh
+[3.682s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/environment/path.dsv
+[3.682s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/local_setup.bash
+[3.683s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/local_setup.sh
+[3.683s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/local_setup.zsh
+[3.684s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/local_setup.dsv
+[3.684s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/package.dsv
+[3.685s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/ament_index/resource_index/packages/msds_controller
+[3.685s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/cmake/msds_controllerConfig.cmake
+[3.686s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/cmake/msds_controllerConfig-version.cmake
+[3.686s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/package.xml
+[3.832s] Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_controller' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_controller

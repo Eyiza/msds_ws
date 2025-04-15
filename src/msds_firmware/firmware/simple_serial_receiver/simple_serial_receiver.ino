@@ -11,6 +11,7 @@ void setup() {
 void loop() {
   if (Serial.available())
   {
+    // x is the message received from the serial port
     int x = Serial.readString().toInt();
     if(x == 0)
     {

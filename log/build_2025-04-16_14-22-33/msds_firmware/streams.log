@@ -1,0 +1,50 @@
+[0.446s] Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_firmware': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_firmware -- -j8 -l8
+[1.252s] Built target ament_cmake_python_copy_msds_firmware
+[1.510s] running egg_info
+[1.536s] writing msds_firmware.egg-info/PKG-INFO
+[1.536s] writing dependency_links to msds_firmware.egg-info/dependency_links.txt
+[1.537s] writing top-level names to msds_firmware.egg-info/top_level.txt
+[1.615s] reading manifest file 'msds_firmware.egg-info/SOURCES.txt'
+[1.616s] writing manifest file 'msds_firmware.egg-info/SOURCES.txt'
+[1.652s] Built target ament_cmake_python_build_msds_firmware_egg
+[1.667s] Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_firmware' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_firmware -- -j8 -l8
+[1.669s] Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_firmware': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_firmware
+[1.680s] -- Install configuration: ""
+[1.680s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/environment/pythonpath.sh
+[1.681s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/environment/pythonpath.dsv
+[1.681s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware-0.0.0-py3.12.egg-info
+[1.681s] -- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware-0.0.0-py3.12.egg-info/top_level.txt
+[1.681s] -- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware-0.0.0-py3.12.egg-info/dependency_links.txt
+[1.681s] -- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware-0.0.0-py3.12.egg-info/SOURCES.txt
+[1.681s] -- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware-0.0.0-py3.12.egg-info/PKG-INFO
+[1.682s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware
+[1.682s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/__init__.py
+[1.682s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/mpu6050_driver.py
+[1.682s] -- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/simple_serial_transmitter.py
+[1.682s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/simple_serial_receiver.py
+[1.732s] Listing '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware'...
+[1.732s] Compiling '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/simple_serial_transmitter.py'...
+[1.742s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/msds_interface.xml
+[1.743s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/launch
+[1.743s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/launch/hardware_interface.launch.py
+[1.743s] -- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/msds_firmware/simple_serial_transmitter.py
+[1.743s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/msds_firmware/simple_serial_receiver.py
+[1.744s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/msds_firmware/mpu6050_driver.py
+[1.744s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/ament_index/resource_index/package_run_dependencies/msds_firmware
+[1.744s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/ament_index/resource_index/parent_prefix_path/msds_firmware
+[1.744s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/environment/ament_prefix_path.sh
+[1.744s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/environment/ament_prefix_path.dsv
+[1.745s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/environment/path.sh
+[1.745s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/environment/path.dsv
+[1.745s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/local_setup.bash
+[1.745s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/local_setup.sh
+[1.745s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/local_setup.zsh
+[1.745s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/local_setup.dsv
+[1.746s] -- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.dsv
+[1.746s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/ament_index/resource_index/packages/msds_firmware
+[1.746s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/ament_index/resource_index/hardware_interface__pluginlib__plugin/msds_firmware
+[1.746s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/cmake/ament_cmake_export_dependencies-extras.cmake
+[1.747s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/cmake/msds_firmwareConfig.cmake
+[1.747s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/cmake/msds_firmwareConfig-version.cmake
+[1.747s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.xml
+[1.748s] Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_firmware' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_firmware

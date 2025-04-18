@@ -1,0 +1,44 @@
+[1.974s] Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_localization': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_localization -- -j8 -l8
+[13.280s] Built target ament_cmake_python_copy_msds_localization
+[15.614s] running egg_info
+[15.720s] writing msds_localization.egg-info/PKG-INFO
+[15.791s] writing dependency_links to msds_localization.egg-info/dependency_links.txt
+[15.793s] writing top-level names to msds_localization.egg-info/top_level.txt
+[16.499s] reading manifest file 'msds_localization.egg-info/SOURCES.txt'
+[16.698s] writing manifest file 'msds_localization.egg-info/SOURCES.txt'
+[16.944s] Built target ament_cmake_python_build_msds_localization_egg
+[18.063s] Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_localization' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_localization -- -j8 -l8
+[18.151s] Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_localization': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_localization
+[18.193s] -- Install configuration: ""
+[18.194s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/environment/pythonpath.sh
+[18.194s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/environment/pythonpath.dsv
+[18.195s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/lib/python3.12/site-packages/msds_localization-0.0.0-py3.12.egg-info
+[18.195s] -- Installing: /home/eyiza/Desktop/msds_ws/install/msds_localization/lib/python3.12/site-packages/msds_localization-0.0.0-py3.12.egg-info/top_level.txt
+[18.196s] -- Installing: /home/eyiza/Desktop/msds_ws/install/msds_localization/lib/python3.12/site-packages/msds_localization-0.0.0-py3.12.egg-info/dependency_links.txt
+[18.197s] -- Installing: /home/eyiza/Desktop/msds_ws/install/msds_localization/lib/python3.12/site-packages/msds_localization-0.0.0-py3.12.egg-info/SOURCES.txt
+[18.198s] -- Installing: /home/eyiza/Desktop/msds_ws/install/msds_localization/lib/python3.12/site-packages/msds_localization-0.0.0-py3.12.egg-info/PKG-INFO
+[18.199s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/lib/python3.12/site-packages/msds_localization
+[18.199s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/lib/python3.12/site-packages/msds_localization/__init__.py
+[18.200s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/lib/python3.12/site-packages/msds_localization/imu_republisher.py
+[18.774s] Listing '/home/eyiza/Desktop/msds_ws/install/msds_localization/lib/python3.12/site-packages/msds_localization'...
+[18.812s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/launch
+[18.813s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/launch/local_localization.launch.py
+[18.814s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/config
+[18.815s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/config/ekf.yaml
+[18.816s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/lib/msds_localization/imu_republisher.py
+[18.817s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/ament_index/resource_index/package_run_dependencies/msds_localization
+[18.818s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/ament_index/resource_index/parent_prefix_path/msds_localization
+[18.818s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/environment/ament_prefix_path.sh
+[18.819s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/environment/ament_prefix_path.dsv
+[18.819s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/environment/path.sh
+[18.820s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/environment/path.dsv
+[18.821s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/local_setup.bash
+[18.821s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/local_setup.sh
+[18.822s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/local_setup.zsh
+[18.822s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/local_setup.dsv
+[18.823s] -- Installing: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/package.dsv
+[18.930s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/ament_index/resource_index/packages/msds_localization
+[18.931s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/cmake/msds_localizationConfig.cmake
+[18.931s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/cmake/msds_localizationConfig-version.cmake
+[18.932s] -- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/package.xml
+[18.939s] Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_localization' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_localization

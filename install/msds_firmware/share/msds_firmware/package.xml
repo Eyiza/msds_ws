@@ -3,11 +3,22 @@
 <package format="3">
   <name>msds_firmware</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>MSDS Firmware Package</description>
   <maintainer email="precious.michael2002@gmail.com">eyiza</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Apache 2.0</license>
+  <author email="precious.michael2002@gmail.com">eyiza</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
+  <depend>rclcpp</depend>
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>hardware_interface</depend>
+  <depend>rclcpp_lifecycle</depend>
+  <depend>pluginlib</depend>
+  <depend>libserial-dev</depend>
+
+  <exec_depend>python3-serial</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

@@ -1,0 +1,357 @@
+[6.858s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[6.858s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x74d567a14da0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x74d567a8f980>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x74d567a8f980>>, mixin_verb=('build',))
+[8.720s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[8.721s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[8.721s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[8.721s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[8.721s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[8.721s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[8.722s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/eyiza/Desktop/msds_ws'
+[8.722s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[8.722s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[8.722s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[8.723s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[8.723s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[8.723s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[8.723s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[8.723s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[8.723s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[9.482s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[9.482s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[9.482s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[9.482s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[9.482s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[9.483s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[9.483s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[9.483s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[9.484s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[9.484s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[9.484s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[9.485s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[9.485s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[9.485s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[9.485s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[9.486s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[9.486s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[9.486s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[9.486s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[9.486s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[9.486s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[9.487s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[9.487s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[9.487s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[9.487s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[9.487s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[9.488s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[9.488s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[9.488s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_bringup) by extensions ['ignore', 'ignore_ament_install']
+[9.488s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_bringup) by extension 'ignore'
+[9.489s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_bringup) by extension 'ignore_ament_install'
+[9.489s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_bringup) by extensions ['colcon_pkg']
+[9.489s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_bringup) by extension 'colcon_pkg'
+[9.489s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_bringup) by extensions ['colcon_meta']
+[9.489s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_bringup) by extension 'colcon_meta'
+[9.489s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_bringup) by extensions ['ros']
+[9.489s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_bringup) by extension 'ros'
+[9.714s] DEBUG:colcon.colcon_core.package_identification:Package 'src/msds_bringup' with type 'ros.ament_cmake' and name 'msds_bringup'
+[9.715s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_controller) by extensions ['ignore', 'ignore_ament_install']
+[9.715s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_controller) by extension 'ignore'
+[9.715s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_controller) by extension 'ignore_ament_install'
+[9.716s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_controller) by extensions ['colcon_pkg']
+[9.716s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_controller) by extension 'colcon_pkg'
+[9.716s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_controller) by extensions ['colcon_meta']
+[9.716s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_controller) by extension 'colcon_meta'
+[9.716s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_controller) by extensions ['ros']
+[9.716s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_controller) by extension 'ros'
+[9.721s] DEBUG:colcon.colcon_core.package_identification:Package 'src/msds_controller' with type 'ros.ament_cmake' and name 'msds_controller'
+[9.721s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_firmware) by extensions ['ignore', 'ignore_ament_install']
+[9.721s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_firmware) by extension 'ignore'
+[9.722s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_firmware) by extension 'ignore_ament_install'
+[9.722s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_firmware) by extensions ['colcon_pkg']
+[9.722s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_firmware) by extension 'colcon_pkg'
+[9.722s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_firmware) by extensions ['colcon_meta']
+[9.723s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_firmware) by extension 'colcon_meta'
+[9.723s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_firmware) by extensions ['ros']
+[9.723s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_firmware) by extension 'ros'
+[9.760s] DEBUG:colcon.colcon_core.package_identification:Package 'src/msds_firmware' with type 'ros.ament_cmake' and name 'msds_firmware'
+[9.761s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_localization) by extensions ['ignore', 'ignore_ament_install']
+[9.761s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_localization) by extension 'ignore'
+[9.762s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_localization) by extension 'ignore_ament_install'
+[9.762s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_localization) by extensions ['colcon_pkg']
+[9.762s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_localization) by extension 'colcon_pkg'
+[9.762s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_localization) by extensions ['colcon_meta']
+[9.762s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_localization) by extension 'colcon_meta'
+[9.763s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_localization) by extensions ['ros']
+[9.763s] Level 1:colcon.colcon_core.package_identification:_identify(src/msds_localization) by extension 'ros'
+[9.766s] DEBUG:colcon.colcon_core.package_identification:Package 'src/msds_localization' with type 'ros.ament_cmake' and name 'msds_localization'
+[9.767s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[9.767s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[9.767s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[9.767s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[9.767s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[10.615s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[10.615s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[11.923s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 8 installed packages in /home/eyiza/Desktop/SelfDriving/bumperbot_ws/install
+[11.988s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/eyiza/Desktop/ROS/urdf_ws/install
+[12.180s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 5 installed packages in /home/eyiza/Desktop/ROS/ros_ws/install
+[12.271s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 386 installed packages in /opt/ros/jazzy
+[12.274s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[36.263s] Level 5:colcon.colcon_core.verb:set package 'msds_bringup' build argument 'cmake_args' from command line to 'None'
+[36.264s] Level 5:colcon.colcon_core.verb:set package 'msds_bringup' build argument 'cmake_target' from command line to 'None'
+[36.264s] Level 5:colcon.colcon_core.verb:set package 'msds_bringup' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[36.264s] Level 5:colcon.colcon_core.verb:set package 'msds_bringup' build argument 'cmake_clean_cache' from command line to 'False'
+[36.264s] Level 5:colcon.colcon_core.verb:set package 'msds_bringup' build argument 'cmake_clean_first' from command line to 'False'
+[36.264s] Level 5:colcon.colcon_core.verb:set package 'msds_bringup' build argument 'cmake_force_configure' from command line to 'False'
+[36.264s] Level 5:colcon.colcon_core.verb:set package 'msds_bringup' build argument 'ament_cmake_args' from command line to 'None'
+[36.264s] Level 5:colcon.colcon_core.verb:set package 'msds_bringup' build argument 'catkin_cmake_args' from command line to 'None'
+[36.264s] Level 5:colcon.colcon_core.verb:set package 'msds_bringup' build argument 'catkin_skip_building_tests' from command line to 'False'
+[36.264s] DEBUG:colcon.colcon_core.verb:Building package 'msds_bringup' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/eyiza/Desktop/msds_ws/build/msds_bringup', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/eyiza/Desktop/msds_ws/install/msds_bringup', 'merge_install': False, 'path': '/home/eyiza/Desktop/msds_ws/src/msds_bringup', 'symlink_install': False, 'test_result_base': None}
+[36.265s] Level 5:colcon.colcon_core.verb:set package 'msds_controller' build argument 'cmake_args' from command line to 'None'
+[36.265s] Level 5:colcon.colcon_core.verb:set package 'msds_controller' build argument 'cmake_target' from command line to 'None'
+[36.265s] Level 5:colcon.colcon_core.verb:set package 'msds_controller' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[36.266s] Level 5:colcon.colcon_core.verb:set package 'msds_controller' build argument 'cmake_clean_cache' from command line to 'False'
+[36.266s] Level 5:colcon.colcon_core.verb:set package 'msds_controller' build argument 'cmake_clean_first' from command line to 'False'
+[36.266s] Level 5:colcon.colcon_core.verb:set package 'msds_controller' build argument 'cmake_force_configure' from command line to 'False'
+[36.266s] Level 5:colcon.colcon_core.verb:set package 'msds_controller' build argument 'ament_cmake_args' from command line to 'None'
+[36.266s] Level 5:colcon.colcon_core.verb:set package 'msds_controller' build argument 'catkin_cmake_args' from command line to 'None'
+[36.266s] Level 5:colcon.colcon_core.verb:set package 'msds_controller' build argument 'catkin_skip_building_tests' from command line to 'False'
+[36.266s] DEBUG:colcon.colcon_core.verb:Building package 'msds_controller' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/eyiza/Desktop/msds_ws/build/msds_controller', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/eyiza/Desktop/msds_ws/install/msds_controller', 'merge_install': False, 'path': '/home/eyiza/Desktop/msds_ws/src/msds_controller', 'symlink_install': False, 'test_result_base': None}
+[36.267s] Level 5:colcon.colcon_core.verb:set package 'msds_firmware' build argument 'cmake_args' from command line to 'None'
+[36.267s] Level 5:colcon.colcon_core.verb:set package 'msds_firmware' build argument 'cmake_target' from command line to 'None'
+[36.267s] Level 5:colcon.colcon_core.verb:set package 'msds_firmware' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[36.267s] Level 5:colcon.colcon_core.verb:set package 'msds_firmware' build argument 'cmake_clean_cache' from command line to 'False'
+[36.267s] Level 5:colcon.colcon_core.verb:set package 'msds_firmware' build argument 'cmake_clean_first' from command line to 'False'
+[36.267s] Level 5:colcon.colcon_core.verb:set package 'msds_firmware' build argument 'cmake_force_configure' from command line to 'False'
+[36.267s] Level 5:colcon.colcon_core.verb:set package 'msds_firmware' build argument 'ament_cmake_args' from command line to 'None'
+[36.267s] Level 5:colcon.colcon_core.verb:set package 'msds_firmware' build argument 'catkin_cmake_args' from command line to 'None'
+[36.268s] Level 5:colcon.colcon_core.verb:set package 'msds_firmware' build argument 'catkin_skip_building_tests' from command line to 'False'
+[36.268s] DEBUG:colcon.colcon_core.verb:Building package 'msds_firmware' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/eyiza/Desktop/msds_ws/build/msds_firmware', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/eyiza/Desktop/msds_ws/install/msds_firmware', 'merge_install': False, 'path': '/home/eyiza/Desktop/msds_ws/src/msds_firmware', 'symlink_install': False, 'test_result_base': None}
+[36.268s] Level 5:colcon.colcon_core.verb:set package 'msds_localization' build argument 'cmake_args' from command line to 'None'
+[36.268s] Level 5:colcon.colcon_core.verb:set package 'msds_localization' build argument 'cmake_target' from command line to 'None'
+[36.269s] Level 5:colcon.colcon_core.verb:set package 'msds_localization' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[36.269s] Level 5:colcon.colcon_core.verb:set package 'msds_localization' build argument 'cmake_clean_cache' from command line to 'False'
+[36.269s] Level 5:colcon.colcon_core.verb:set package 'msds_localization' build argument 'cmake_clean_first' from command line to 'False'
+[36.269s] Level 5:colcon.colcon_core.verb:set package 'msds_localization' build argument 'cmake_force_configure' from command line to 'False'
+[36.269s] Level 5:colcon.colcon_core.verb:set package 'msds_localization' build argument 'ament_cmake_args' from command line to 'None'
+[36.269s] Level 5:colcon.colcon_core.verb:set package 'msds_localization' build argument 'catkin_cmake_args' from command line to 'None'
+[36.269s] Level 5:colcon.colcon_core.verb:set package 'msds_localization' build argument 'catkin_skip_building_tests' from command line to 'False'
+[36.269s] DEBUG:colcon.colcon_core.verb:Building package 'msds_localization' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/eyiza/Desktop/msds_ws/build/msds_localization', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/eyiza/Desktop/msds_ws/install/msds_localization', 'merge_install': False, 'path': '/home/eyiza/Desktop/msds_ws/src/msds_localization', 'symlink_install': False, 'test_result_base': None}
+[36.269s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[36.461s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[36.462s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/eyiza/Desktop/msds_ws/src/msds_bringup' with build type 'ament_cmake'
+[36.462s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/eyiza/Desktop/msds_ws/src/msds_bringup'
+[39.550s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[39.551s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[39.551s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[40.214s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/eyiza/Desktop/msds_ws/src/msds_controller' with build type 'ament_cmake'
+[40.215s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/eyiza/Desktop/msds_ws/src/msds_controller'
+[40.216s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[40.217s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[40.305s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/eyiza/Desktop/msds_ws/src/msds_firmware' with build type 'ament_cmake'
+[40.306s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/eyiza/Desktop/msds_ws/src/msds_firmware'
+[40.308s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[40.309s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[40.443s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/eyiza/Desktop/msds_ws/src/msds_localization' with build type 'ament_cmake'
+[40.444s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/eyiza/Desktop/msds_ws/src/msds_localization'
+[40.445s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[40.445s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[40.764s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_bringup': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_bringup -- -j8 -l8
+[42.293s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_controller': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_controller -- -j8 -l8
+[42.420s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_localization': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_localization -- -j8 -l8
+[42.463s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_firmware': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_firmware -- -j8 -l8
+[53.035s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_bringup' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_bringup -- -j8 -l8
+[53.449s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_bringup': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_bringup
+[54.249s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(msds_bringup)
+[54.251s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_bringup' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_bringup
+[55.824s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_bringup' for CMake module files
+[55.825s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_bringup' for CMake config files
+[55.826s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_bringup', 'cmake_prefix_path')
+[55.827s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/hook/cmake_prefix_path.ps1'
+[56.631s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/hook/cmake_prefix_path.dsv'
+[56.812s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/hook/cmake_prefix_path.sh'
+[56.830s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_bringup/bin'
+[56.831s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_bringup/lib/pkgconfig/msds_bringup.pc'
+[56.831s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_bringup/lib/python3.12/site-packages'
+[56.832s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_bringup/bin'
+[56.833s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/package.ps1'
+[57.119s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/package.dsv'
+[57.227s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/package.sh'
+[57.350s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/package.bash'
+[57.697s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/package.zsh'
+[58.433s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/colcon-core/packages/msds_bringup)
+[58.436s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(msds_bringup)
+[58.436s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_bringup' for CMake module files
+[58.438s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_bringup' for CMake config files
+[58.438s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_bringup', 'cmake_prefix_path')
+[58.439s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/hook/cmake_prefix_path.ps1'
+[58.441s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/hook/cmake_prefix_path.dsv'
+[58.443s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/hook/cmake_prefix_path.sh'
+[58.446s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_bringup/bin'
+[58.446s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_bringup/lib/pkgconfig/msds_bringup.pc'
+[58.447s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_bringup/lib/python3.12/site-packages'
+[58.449s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_bringup/bin'
+[58.451s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/package.ps1'
+[58.486s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/package.dsv'
+[58.493s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/package.sh'
+[58.497s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/package.bash'
+[58.500s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/msds_bringup/package.zsh'
+[58.502s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/eyiza/Desktop/msds_ws/install/msds_bringup/share/colcon-core/packages/msds_bringup)
+[58.510s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_localization' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_localization -- -j8 -l8
+[58.597s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_localization': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_localization
+[59.384s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(msds_localization)
+[59.386s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_localization' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_localization
+[59.387s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization' for CMake module files
+[59.390s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization' for CMake config files
+[59.406s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_localization', 'cmake_prefix_path')
+[59.407s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/hook/cmake_prefix_path.ps1'
+[59.409s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/hook/cmake_prefix_path.dsv'
+[59.410s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/hook/cmake_prefix_path.sh'
+[59.413s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization/lib'
+[59.414s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization/bin'
+[59.414s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization/lib/pkgconfig/msds_localization.pc'
+[59.415s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization/lib/python3.12/site-packages'
+[59.416s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_localization', 'pythonpath')
+[59.416s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/hook/pythonpath.ps1'
+[59.418s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/hook/pythonpath.dsv'
+[59.419s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/hook/pythonpath.sh'
+[59.422s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization/bin'
+[59.423s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/package.ps1'
+[59.425s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/package.dsv'
+[59.427s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/package.sh'
+[59.429s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/package.bash'
+[59.430s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/package.zsh'
+[59.431s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/eyiza/Desktop/msds_ws/install/msds_localization/share/colcon-core/packages/msds_localization)
+[59.434s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(msds_localization)
+[59.434s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization' for CMake module files
+[59.437s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization' for CMake config files
+[59.439s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_localization', 'cmake_prefix_path')
+[59.439s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/hook/cmake_prefix_path.ps1'
+[59.441s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/hook/cmake_prefix_path.dsv'
+[59.443s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/hook/cmake_prefix_path.sh'
+[59.445s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization/lib'
+[59.445s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization/bin'
+[59.446s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization/lib/pkgconfig/msds_localization.pc'
+[59.447s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization/lib/python3.12/site-packages'
+[59.447s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_localization', 'pythonpath')
+[59.448s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/hook/pythonpath.ps1'
+[59.449s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/hook/pythonpath.dsv'
+[59.451s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/hook/pythonpath.sh'
+[59.453s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_localization/bin'
+[59.454s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/package.ps1'
+[59.458s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/package.dsv'
+[59.461s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/package.sh'
+[59.464s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/package.bash'
+[59.467s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_localization/share/msds_localization/package.zsh'
+[59.469s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/eyiza/Desktop/msds_ws/install/msds_localization/share/colcon-core/packages/msds_localization)
+[85.696s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_controller' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_controller -- -j8 -l8
+[85.703s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_controller': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_controller
+[85.730s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_firmware' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/eyiza/Desktop/msds_ws/build/msds_firmware -- -j8 -l8
+[85.739s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/eyiza/Desktop/msds_ws/build/msds_firmware': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_firmware
+[86.104s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(msds_controller)
+[86.105s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller' for CMake module files
+[86.115s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller' for CMake config files
+[86.120s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_controller' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_controller
+[86.121s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_controller', 'cmake_prefix_path')
+[86.122s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/hook/cmake_prefix_path.ps1'
+[86.125s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/hook/cmake_prefix_path.dsv'
+[86.126s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/hook/cmake_prefix_path.sh'
+[86.130s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller/lib'
+[86.131s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller/bin'
+[86.131s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller/lib/pkgconfig/msds_controller.pc'
+[86.133s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller/lib/python3.12/site-packages'
+[86.135s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_controller', 'pythonpath')
+[86.136s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/hook/pythonpath.ps1'
+[86.138s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/hook/pythonpath.dsv'
+[86.139s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/hook/pythonpath.sh'
+[86.142s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller/bin'
+[86.143s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/package.ps1'
+[86.146s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/package.dsv'
+[86.149s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/package.sh'
+[86.151s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/package.bash'
+[86.153s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/package.zsh'
+[86.154s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/eyiza/Desktop/msds_ws/install/msds_controller/share/colcon-core/packages/msds_controller)
+[86.157s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(msds_controller)
+[86.157s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller' for CMake module files
+[86.160s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller' for CMake config files
+[86.161s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_controller', 'cmake_prefix_path')
+[86.162s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/hook/cmake_prefix_path.ps1'
+[86.165s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/hook/cmake_prefix_path.dsv'
+[86.168s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/hook/cmake_prefix_path.sh'
+[86.172s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller/lib'
+[86.172s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller/bin'
+[86.173s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller/lib/pkgconfig/msds_controller.pc'
+[86.174s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller/lib/python3.12/site-packages'
+[86.175s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_controller', 'pythonpath')
+[86.175s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/hook/pythonpath.ps1'
+[86.177s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/hook/pythonpath.dsv'
+[86.180s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/hook/pythonpath.sh'
+[86.187s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_controller/bin'
+[86.190s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/package.ps1'
+[86.202s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/package.dsv'
+[86.210s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/package.sh'
+[86.215s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/package.bash'
+[86.218s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_controller/share/msds_controller/package.zsh'
+[86.221s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/eyiza/Desktop/msds_ws/install/msds_controller/share/colcon-core/packages/msds_controller)
+[86.227s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(msds_firmware)
+[86.228s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware' for CMake module files
+[86.231s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/eyiza/Desktop/msds_ws/build/msds_firmware' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples:/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py:/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/eyiza/Desktop/msds_ws/build/msds_firmware
+[86.235s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware' for CMake config files
+[86.238s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_firmware', 'cmake_prefix_path')
+[86.240s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/hook/cmake_prefix_path.ps1'
+[86.242s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/hook/cmake_prefix_path.dsv'
+[86.244s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/hook/cmake_prefix_path.sh'
+[86.250s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib'
+[86.251s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware/bin'
+[86.251s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/pkgconfig/msds_firmware.pc'
+[86.253s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages'
+[86.254s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_firmware', 'pythonpath')
+[86.256s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/hook/pythonpath.ps1'
+[86.258s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/hook/pythonpath.dsv'
+[86.260s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/hook/pythonpath.sh'
+[86.264s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware/bin'
+[86.266s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.ps1'
+[86.270s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.dsv'
+[86.274s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.sh'
+[86.277s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.bash'
+[86.279s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.zsh'
+[86.281s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/colcon-core/packages/msds_firmware)
+[86.285s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(msds_firmware)
+[86.286s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware' for CMake module files
+[86.291s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware' for CMake config files
+[86.294s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_firmware', 'cmake_prefix_path')
+[86.295s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/hook/cmake_prefix_path.ps1'
+[86.389s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/hook/cmake_prefix_path.dsv'
+[86.391s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/hook/cmake_prefix_path.sh'
+[86.393s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib'
+[86.394s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware/bin'
+[86.394s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/pkgconfig/msds_firmware.pc'
+[86.395s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages'
+[86.396s] Level 1:colcon.colcon_core.shell:create_environment_hook('msds_firmware', 'pythonpath')
+[86.397s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/hook/pythonpath.ps1'
+[86.400s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/hook/pythonpath.dsv'
+[86.402s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/hook/pythonpath.sh'
+[86.406s] Level 1:colcon.colcon_core.environment:checking '/home/eyiza/Desktop/msds_ws/install/msds_firmware/bin'
+[86.407s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.ps1'
+[86.410s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.dsv'
+[86.414s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.sh'
+[86.417s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.bash'
+[86.420s] INFO:colcon.colcon_core.shell:Creating package script '/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.zsh'
+[86.423s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/eyiza/Desktop/msds_ws/install/msds_firmware/share/colcon-core/packages/msds_firmware)
+[86.424s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[86.427s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[86.427s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[86.428s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[86.887s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[86.887s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[86.888s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[87.002s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[87.003s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/eyiza/Desktop/msds_ws/install/local_setup.ps1'
+[87.144s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/eyiza/Desktop/msds_ws/install/_local_setup_util_ps1.py'
+[87.193s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/eyiza/Desktop/msds_ws/install/setup.ps1'
+[87.211s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/eyiza/Desktop/msds_ws/install/local_setup.sh'
+[87.237s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/eyiza/Desktop/msds_ws/install/_local_setup_util_sh.py'
+[87.247s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/eyiza/Desktop/msds_ws/install/setup.sh'
+[87.279s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/eyiza/Desktop/msds_ws/install/local_setup.bash'
+[87.343s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/eyiza/Desktop/msds_ws/install/setup.bash'
+[87.357s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/eyiza/Desktop/msds_ws/install/local_setup.zsh'
+[87.429s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/eyiza/Desktop/msds_ws/install/setup.zsh'

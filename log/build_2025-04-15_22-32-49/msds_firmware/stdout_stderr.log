@@ -1,0 +1,66 @@
+-- Found ament_cmake: 2.5.3 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Found rclcpp: 28.1.8 (/opt/ros/jazzy/share/rclcpp/cmake)
+-- Found rosidl_generator_c: 4.6.5 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+-- Found rosidl_generator_cpp: 4.6.5 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 7.3.2 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 8.4.2 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found rclpy: 7.1.4 (/opt/ros/jazzy/share/rclpy/cmake)
+-- Found std_msgs: 5.3.6 (/opt/ros/jazzy/share/std_msgs/cmake)
+-- Found hardware_interface: 4.27.0 (/opt/ros/jazzy/share/hardware_interface/cmake)
+-- Configuring done (30.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/eyiza/Desktop/msds_ws/build/msds_firmware
+Built target ament_cmake_python_copy_msds_firmware
+running egg_info
+creating msds_firmware.egg-info
+writing msds_firmware.egg-info/PKG-INFO
+writing dependency_links to msds_firmware.egg-info/dependency_links.txt
+writing top-level names to msds_firmware.egg-info/top_level.txt
+writing manifest file 'msds_firmware.egg-info/SOURCES.txt'
+reading manifest file 'msds_firmware.egg-info/SOURCES.txt'
+writing manifest file 'msds_firmware.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_msds_firmware_egg
+-- Install configuration: ""
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/environment/pythonpath.sh
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/environment/pythonpath.dsv
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware-0.0.0-py3.12.egg-info
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware-0.0.0-py3.12.egg-info/top_level.txt
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware-0.0.0-py3.12.egg-info/dependency_links.txt
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware-0.0.0-py3.12.egg-info/SOURCES.txt
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware-0.0.0-py3.12.egg-info/PKG-INFO
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/__init__.py
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/mpu6050_driver.py
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/simple_serial_transmitter.py
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/simple_serial_receiver.py
+Listing '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware'...
+Compiling '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/__init__.py'...
+Compiling '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/mpu6050_driver.py'...
+Compiling '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/simple_serial_receiver.py'...
+Compiling '/home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/python3.12/site-packages/msds_firmware/simple_serial_transmitter.py'...
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/msds_interface.xml
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/launch
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/launch/hardware_interface.launch.py
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/msds_firmware/simple_serial_transmitter.py
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/msds_firmware/simple_serial_receiver.py
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/lib/msds_firmware/mpu6050_driver.py
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/ament_index/resource_index/package_run_dependencies/msds_firmware
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/ament_index/resource_index/parent_prefix_path/msds_firmware
+-- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/environment/ament_prefix_path.sh
+-- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/environment/path.sh
+-- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/environment/path.dsv
+-- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/local_setup.bash
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/local_setup.sh
+-- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/local_setup.zsh
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/local_setup.dsv
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.dsv
+-- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/ament_index/resource_index/packages/msds_firmware
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/ament_index/resource_index/hardware_interface__pluginlib__plugin/msds_firmware
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/cmake/msds_firmwareConfig.cmake
+-- Up-to-date: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/cmake/msds_firmwareConfig-version.cmake
+-- Installing: /home/eyiza/Desktop/msds_ws/install/msds_firmware/share/msds_firmware/package.xml

@@ -1,6 +1,6 @@
 Serial Communication:
-  ros2 run bumperbot_firmware simple_serial_transmitter.py 
-  ros2 run bumperbot_firmware simple_serial_transmitter.py --ros-args -p port:=/dev/ttyACM1
+  ros2 run msds_firmware simple_serial_transmitter.py 
+  ros2 run msds_firmware simple_serial_transmitter.py --ros-args -p port:=/dev/ttyACM1
   If port error:
       - Close Serial Monitor or Conflicting Apps
   To turn LED Light 13 On:
@@ -8,5 +8,5 @@ Serial Communication:
   To turn LED Light 13 Off:
       ros2 topic pub /serial_transmitter std_msgs/msg/String "data: '0'"
 
-  ros2 run bumperbot_firmware simple_serial_receiver.py --ros-args -p port:=/dev/ttyACM1
+  ros2 run msds_firmware simple_serial_receiver.py --ros-args -p port:=/dev/ttyACM1
   ros2 topic echo /serial_receiver

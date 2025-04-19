@@ -1,13 +1,5 @@
 {
     "python.analysis.extraPaths": [
-        "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_firmware/lib/python3.12/site-packages",
-        "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_py_examples/lib/python3.12/site-packages",
-        "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_msgs/lib/python3.12/site-packages",
-        "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_localization/lib/python3.12/site-packages",
-        "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_controller/lib/python3.12/site-packages",
-        "/home/eyiza/Desktop/ROS/ros_ws/install/turtlesim_py/lib/python3.12/site-packages",
-        "/home/eyiza/Desktop/ROS/ros_ws/install/my_py_pkg/lib/python3.12/site-packages",
-        "/home/eyiza/Desktop/ROS/ros_ws/install/custom_interfaces/lib/python3.12/site-packages",
         "/opt/ros/jazzy/lib/python3.12/site-packages"
     ],
     "python.autoComplete.extraPaths": [

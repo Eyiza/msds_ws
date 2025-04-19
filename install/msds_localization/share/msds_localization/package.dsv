@@ -1,4 +1,0 @@
-source;share/msds_localization/local_setup.bash
-source;share/msds_localization/local_setup.dsv
-source;share/msds_localization/local_setup.sh
-source;share/msds_localization/local_setup.zsh

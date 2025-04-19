@@ -6,14 +6,10 @@
                 "limitSymbolsToIncludedHeaders": false
             },
             "includePath": [
-                "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_cpp_examples/include/**",
-                "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_msgs/include/**",
-                "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_localization/include/**",
-                "/home/eyiza/Desktop/SelfDriving/bumperbot_ws/install/bumperbot_controller/include/**",
-                "/home/eyiza/Desktop/ROS/ros_ws/install/custom_interfaces/include/**",
                 "/opt/ros/jazzy/include/**",
                 "/usr/include/**",
-                "${workspaceFolder}/src/msds_firmware/include"
+                "${workspaceFolder}/src/msds_firmware/include",
+                "${workspaceFolder}/**"
             ],
             "name": "ROS",
             "intelliSenseMode": "gcc-x64",

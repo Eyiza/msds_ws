@@ -19,7 +19,33 @@ pkg_check_modules(SERIAL libserial)
 
 ament_python_install_package(${PROJECT_NAME})
 
+add_library(${PROJECT_NAME} SHARED 
+  src/msds_interface.cpp
+)
+target_include_directories(${PROJECT_NAME} PRIVATE 
+  include
+  "${SERIAL_INCLUDE_DIRS}"
+)
+target_link_libraries(${PROJECT_NAME}
+ "${SERIAL_LDFLAGS}")
+ament_target_dependencies(${PROJECT_NAME}
+  hardware_interface
+  pluginlib
+  rclcpp
+  rclcpp_lifecycle
+)
+
 pluginlib_export_plugin_description_file(hardware_interface msds_interface.xml)
+
+install(
+  TARGETS ${PROJECT_NAME}
+  DESTINATION lib
+)
+
+install(
+  DIRECTORY include
+  DESTINATION include
+)
 
 install(
   DIRECTORY launch
@@ -31,6 +57,14 @@ install(PROGRAMS
   ${PROJECT_NAME}/simple_serial_receiver.py
   ${PROJECT_NAME}/mpu6050_driver.py
   DESTINATION lib/${PROJECT_NAME}
+)
+
+ament_export_include_directories(
+  include
+)
+
+ament_export_libraries(
+  ${PROJECT_NAME}
 )
 
 ament_export_dependencies(

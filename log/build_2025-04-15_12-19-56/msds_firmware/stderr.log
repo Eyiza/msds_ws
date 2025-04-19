@@ -1,9 +1,0 @@
-[31mCMake Error at /opt/ros/jazzy/share/pluginlib/cmake/pluginlib_export_plugin_description_file.cmake:84 (message):
-  Given plugin description file
-  '/home/eyiza/Desktop/msds_ws/src/msds_firmware/bumperbot_interface.xml'
-  does not exist
-Call Stack (most recent call first):
-  CMakeLists.txt:22 (pluginlib_export_plugin_description_file)
-
-[0m
-gmake: *** [Makefile:226: cmake_check_build_system] Error 1

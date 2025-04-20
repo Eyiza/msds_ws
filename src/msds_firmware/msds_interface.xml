@@ -1,3 +1,10 @@
+<!--
+  ROS2 Plugin XML file for MSDS Firmware.
+  ROS2 Plugins are used to define the interfaces and classes that can be loaded dynamically at runtime.
+  Instead of hardcoding what hardware to use, we define them here and load them using the pluginlib library.
+  This allows for more flexibility and modularity in the code.
+  It will be used by the controller manager to load the hardware interface.
+-->
 <library path="msds_firmware">
     <class name="msds_firmware/msdsInterface"
       type="msds_firmware::msdsInterface"

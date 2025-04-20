@@ -10,3 +10,6 @@ Serial Communication:
 
   ros2 run msds_firmware simple_serial_receiver.py --ros-args -p port:=/dev/ttyACM1
   ros2 topic echo /serial_receiver
+
+ros2 launch msds_description display.launch.py
+ros2 launch msds_description gazebo.launch.py

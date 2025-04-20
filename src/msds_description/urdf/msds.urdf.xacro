@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+
+<robot name="msds" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Properties -->
+  <xacro:include filename="properties.xacro" />
+  <!-- Start GZ or Ignition depending on ROS 2 Version -->
+  <xacro:arg name="is_ignition" default="true"/>
+  <!-- Load Simulated or Real Hardware Interfaces -->
+  <xacro:arg name="is_sim" default="true"/>
+  <!-- Include Gazebo Parameters -->
+  <xacro:include filename="msds_gazebo.xacro" />
+  <!-- Include ros2_control Plugins -->
+  <xacro:include filename="msds_ros2_control.xacro" />
+
+  <!-- Base Footprint -->
+  <link name="base_footprint"/>
+  
+  <!-- Chassis -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+      </geometry>
+      <origin xyz="0 0 ${chassis_height / 2}" rpy="0 0 0"/>
+      <material name="brown">
+        <color rgba="0.6 0.4 0.2 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+      </geometry>
+      <origin xyz="0 0 ${chassis_height / 2}" rpy="0 0 0"/>
+    </collision>
+    <xacro:box_inertia m="5.0" l="${2*chassis_length}" w="${2*chassis_width}" h="${2*chassis_height}" 
+                           xyz="0 0 ${chassis_height / 2.0}" rpy="0 0 0"/>
+  </link>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Wheels -->
+  <xacro:wheel name="front_left"  x="${chassis_length / 3.0}"  y="${(chassis_width + wheel_width) / 2.0}"/>
+  <xacro:wheel name="front_right" x="${chassis_length / 3.0}"  y="-${(chassis_width + wheel_width) / 2.0}"/>
+  <xacro:wheel name="rear_left"   x="-${chassis_length / 3.0}" y="${(chassis_width + wheel_width) / 2.0}"/>
+  <xacro:wheel name="rear_right"  x="-${chassis_length / 3.0}" y="-${(chassis_width + wheel_width) / 2.0}"/>
+
+  <!-- LIDAR -->
+  <link name="lidar_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.03" length="0.05"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <material name="black">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.03" length="0.05"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </collision>
+    <xacro:cylinder_inertia m="0.007" r="${0.03}" h="${0.05}" 
+                                    xyz="0 0 0" rpy="0 0 0"/>
+  </link>
+
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+    <origin xyz="0 0 ${chassis_height + 0.005}" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- IMU -->
+  <link name="imu_link">
+    <inertial>
+      <origin xyz="-0.00552433659106688 0.000168210391520346 0.000514000497342681" rpy="0 0 0" />
+      <mass value="0.000528415362211671" />
+      <inertia ixx="1.46176048428261E-08" ixy="1.40015117949421E-10" ixz="-1.99633872937403E-12"
+               iyy="8.59662482954888E-09" iyz="7.52375112767959E-12"
+               izz="2.30279421279312E-08" />
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.03 0.03 0.01"/>
+      </geometry>
+      <origin xyz="0.05 -0.05 0" rpy="0 0 0"/>
+      <material name="blue">
+        <color rgba="0.2 0.2 1.0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.05 -0.05 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.03 0.03 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.05 0 ${chassis_height}" rpy="0 0 0"/>
+  </joint>
+
+</robot>

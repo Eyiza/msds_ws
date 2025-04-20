@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="msds">
+
+    <ros2_control name="RobotSystem" type="system">
+
+        <!-- ros2_control Gazebo - Simulation -->
+        <xacro:if value="$(arg is_sim)">
+            <!-- ROS 2 Humble -->
+            <xacro:if value="$(arg is_ignition)">
+                <hardware>
+                    <plugin>ign_ros2_control/IgnitionSystem</plugin>
+                </hardware>
+            </xacro:if>
+
+            <!-- ROS 2 Iron or above like ROS2 Jazzy-->
+            <xacro:unless value="$(arg is_ignition)">
+                <hardware>
+                    <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+                    <param name="robot_description">$(find msds_description)/urdf/msds.urdf.xacro</param>
+                </hardware>
+            </xacro:unless>
+        </xacro:if>
+
+        <!-- ros2_control Real Hardware -->
+        <xacro:unless value="$(arg is_sim)">
+            <hardware>
+                <plugin>msds_firmware/MSDSInterface</plugin>
+                <param name="port">/dev/ttyUSB0</param>
+            </hardware>
+        </xacro:unless>
+
+        <!--
+            Define joints that needs to be conrolled. 
+            Remember that the name of the joint must be the same as the name of the joint in the urdf file.
+            Also recall, to connect ros2 control to the hardware, we need to define the command and state interfaces for each joint.
+            The command_interface defines how we want to write messages to the hardware.
+            The state_interface defines how we want to read/recieve messages or feedback from the hardware like motors.
+            In this case, we are using position control.
+        -->
+        
+        <!-- ros2_control Common Interfaces -->
+        <joint name="front_left_wheel_joint">
+        <!-- 
+            The name="velocity" for the command_interface indicates that we want to control the joint using velocity commands.
+            The min and max values define the range of velocity that can be commanded to the joint.
+            They are expressed in radians per second.
+            The state_interface name="position" indicates that we want to read the position of the joint.
+            The state_interface name="velocity" indicates that we want to read the velocity of the joint.
+        -->
+            <command_interface name="velocity">
+              <param name="min">-1</param>
+              <param name="max">1</param>
+            </command_interface>
+            <state_interface name="position" />
+            <state_interface name="velocity" />
+        </joint>
+
+        <joint name="front_right_wheel_joint">
+            <command_interface name="velocity">
+              <param name="min">-1</param>
+              <param name="max">1</param>
+            </command_interface>
+            <state_interface name="position" />
+            <state_interface name="velocity" />
+        </joint>
+        
+        <joint name="rear_left_wheel_joint">
+            <command_interface name="velocity">
+              <param name="min">-1</param>
+              <param name="max">1</param>
+            </command_interface>
+            <state_interface name="position" />
+            <state_interface name="velocity" />
+        </joint>
+
+        <joint name="rear_right_wheel_joint">
+            <command_interface name="velocity">
+              <param name="min">-1</param>
+              <param name="max">1</param>
+            </command_interface>
+            <state_interface name="position" />
+            <state_interface name="velocity" />
+        </joint>
+
+    </ros2_control>
+
+</robot>

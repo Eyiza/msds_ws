@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+
+<robot name="msds" xmlns:xacro="http://ros.org/wiki/xacro">
+    <!-- Robot properties -->
+    <xacro:property name="chassis_length" value="0.3"/>
+    <xacro:property name="chassis_width" value="0.4"/>
+    <xacro:property name="chassis_height" value="0.07"/>
+    <xacro:property name="wheel_radius" value="0.0485"/>
+    <xacro:property name="wheel_width" value="0.0465"/>
+    <xacro:property name="lidar_height" value="0.12"/>
+    <xacro:property name="imu_height" value="0.08"/>
+
+    <!-- Materials -->
+    <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+    </material>
+
+    <xacro:macro name="cylinder_inertia" params="m r h xyz rpy">
+        <inertial>
+            <origin xyz="${xyz}" rpy="${rpy}"/>
+            <mass value="${m}"/>
+            <inertia ixx="${(m/12) * (3 * r**2 + h**2)}" ixy="0" ixz="0" 
+                     iyy="${(m/12) * (3 * r**2 + h**2)}" iyz="0" 
+                     izz="${(m/2) * r**2}"/>
+        </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="box_inertia" params="m l w h xyz rpy">
+        <inertial>
+            <origin xyz="${xyz}" rpy="${rpy}"/>
+            <mass value="${m}"/>
+            <inertia ixx="${m * (l**2 + h**2) / 12.0}" ixy="0" ixz="0" 
+                     iyy="${m * (w**2 + l**2) / 12.0}" iyz="0" 
+                     izz="${m * (h**2 + w**2) / 12.0}"/>
+        </inertial>
+    </xacro:macro>
+
+    <!-- Wheel macro -->
+    <xacro:macro name="wheel" params="name x y">
+        <link name="${name}_wheel_link">
+            <visual>
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+                </geometry>
+                <origin xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
+                <!-- <material name="black">
+                    <color rgba="0.2 0.2 0.2 1"/>
+                </material> -->
+                <material name="blue"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+                </geometry>
+                <origin xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
+            </collision>
+            <xacro:cylinder_inertia m="0.152" r="${wheel_radius}" h="${wheel_width}" 
+                                    xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
+        </link>
+
+        <joint name="${name}_wheel_joint" type="continuous">
+            <parent link="base_link"/>
+            <child link="${name}_wheel_link"/>
+            <origin xyz="${x} ${y} 0" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+        </joint>
+
+        <gazebo reference="${name}_wheel_link">
+            <!-- 
+            The friction coefficient (mu1 and mu2) is a measure of the friction between the wheel and the ground. 
+            A higher value indicates more friction, which can lead to better traction but also more wear on the wheels.
+            The spring constant (kp) determines how stiff the suspension is. A higher value means a stiffer suspension.
+            The damping coefficient (kd) determines how much the suspension resists motion. A higher value means more resistance.
+            The minDepth and maxVel parameters are used to limit the depth of penetration and velocity of the wheel respectively.
+            The fdir parameter specifies the direction of the friction force. It is a 3D vector that indicates the direction of the friction force.
+            -->
+            <mu1>1000000000000000.0</mu1>
+            <mu2>1000000000000000.0</mu2>
+            <kp>1000000000000.0</kp>
+            <kd>10.0</kd>
+            <minDepth>0.001</minDepth>
+            <maxVel>0.1</maxVel>
+            <fdir1>1 0 0</fdir1>
+        </gazebo>
+
+    </xacro:macro>
+
+</robot>

@@ -4,8 +4,8 @@ controller_manager:
     use_sim_time: false # Set to true if you are using simulation
 
     # Add the name of the controllers you want to load and use for your robot
-    mecanum_drive_controller:
-      type: mecanum_drive_controller/MecanumDriveController
+    msds_controller:
+      type: "mecanum_drive_controller/MecanumDriveController"
 
     joint_state_broadcaster: # Responsible for publishing the current state of each joint of the robot into the /joint_states topic
       type: joint_state_broadcaster/JointStateBroadcaster
@@ -13,7 +13,7 @@ controller_manager:
 
 
 # This is the configuration for the mecanum_drive_controller
-mecanum_drive_controller:
+msds_controller:
   ros__parameters:
     reference_timeout: 5.0
 
@@ -35,3 +35,6 @@ mecanum_drive_controller:
 
     pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.0, 0.0, 0.01]
     twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.0, 0.0, 0.01]
+
+  # type: "mecanum_drive_controller/MecanumDriveController"
+    

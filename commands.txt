@@ -13,3 +13,19 @@ Serial Communication:
 
 ros2 launch msds_description display.launch.py
 ros2 launch msds_description gazebo.launch.py
+ros2 launch msds_controller controller.launch.py
+
+ros2 topic pub /msds_controller/reference geometry_msgs/msg/TwistStamped "header:
+  stamp:
+    sec: 0
+    nanosec: 0
+  frame_id: ''
+twist:
+  linear:
+    x: 0.433
+    y: 0.25
+    z: 0.0
+  angular:
+    x: 0.0
+    y: 0.0
+    z: 0.0" 

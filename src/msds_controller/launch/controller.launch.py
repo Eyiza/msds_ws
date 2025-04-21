@@ -24,7 +24,7 @@ def generate_launch_description():
     wheel_controller = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["mecanum_drive_controller",
+        arguments=["msds_controller",
                    "--controller-manager", 
                    "/controller_manager"
         ],

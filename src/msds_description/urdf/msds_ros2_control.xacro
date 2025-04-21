@@ -9,6 +9,7 @@
             <xacro:if value="$(arg is_ignition)">
                 <hardware>
                     <plugin>ign_ros2_control/IgnitionSystem</plugin>
+                    <param name="robot_description">$(find msds_description)/urdf/msds.urdf.xacro</param>
                 </hardware>
             </xacro:if>
 

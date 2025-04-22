@@ -22,8 +22,8 @@ ros2 topic pub /msds_controller/reference geometry_msgs/msg/TwistStamped "header
   frame_id: ''
 twist:
   linear:
-    x: 0.433
-    y: 0.25
+    x: 0.0
+    y: 0.5
     z: 0.0
   angular:
     x: 0.0

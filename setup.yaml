@@ -1,0 +1,107 @@
+IP Address Details:
+- Get IP Address from router e.g 192.168.1.154
+- ping 192.168.1.154
+
+Remotely connect to the raspberry pi using the ssh protocol:
+- ssh <user>@<host> e.g ssh eyiza@192.168.1.154
+- Type password set on the raspberry pi during installation
+- To exit the ssh session, type `exit`
+
+To save the IP address of the raspberry pi, type:
+- sudo nano /etc/hosts
+- Add the IP address and the name of the raspberry pi to the end of the file
+  - 192.168.1.154   raspberry
+- To save the file, press Ctrl + O and then Enter
+- ping raspberry
+- ssh eyiza@raspberry
+
+Installations and Commands:
+- sudo apt-get update
+- sudo apt-get upgrade
+- sudo apt install bluez
+
+To provide access to the serial port, add the user to the dialout group so that arduinos and other devices can be accessed:
+- sudo usermod -a -G dialout $USER
+
+To use bluetooth:
+- bluetoothctl power on - turn on the bluetooth
+- bluetoothctl scan on - to scan nearby Bluetooth devices.
+- or bluetoothctl --timeout 30 scan on
+- bluetoothctl devices - to list the devices found.
+- bluetoothctl pairable on - to make the device discoverable.
+- bluetoothctl pair <device_id> - to pair with the device.
+- bluetoothctl trust <device_id> - to trust and automatically connect to the device.
+- bluetoothctl connect <device_id> - to connect to the device.
+- bluetoothctl info <device_id> - to get information about the device.
+- bluetoothctl disconnect <device_id> - to disconnect from the device.
+- bluetoothctl remove <device_id> - to remove the device from the trusted list.
+
+To make connection between the raspberry pi and the bluetooth trusted device:
+- sudo nano /etc/bluetooth/main.conf
+- Uncomment `FastConnectable = false` in the [General] section
+- To save the file, press Ctrl + O and then Enter
+- To exit the nano editor, press Ctrl + X
+
+Provide the permission to the Raspberry Pi user to access the input port:
+- create new rules files within the rules folder in the etc. udev.
+- cd /etc/udev/rules.d/
+- sudo touch 81-event.rules :
+  - sudo nano 81-event.rules
+  - Add the following line to the file:
+  - SUBSYSTEM=="input", KERNEL=="event*", GROUP="raspberry", MODE="0660"
+- Create another rules file for the Arduino:
+  - sudo nano 99-arduino.rules 
+  - Add the following line to the file:
+  - SUBSYSTEMS=="usb", ATTRS{idVendor}=="2341", GROUP="plugdev", MODE="0666"
+
+Install ROS2 on Raspberry Pi:
+  - https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
+  - Error when downloading keyring:
+    - `scp` command is used to copy files between hosts on a network.
+    - scp <path_to_file> <user>@<host>:<destination_path> 
+    - scp -r <path_to_directory> <user>@<host>:<destination_path>
+    - From Main system: scp /usr/share/keyrings/ros-archive-keyring.gpg eyiza@192.168.1.154:/tmp/
+    - From Raspberry Pi: sudo mv /tmp/ros-archive-keyring.gpg /usr/share/keyrings/
+  - echo "source /opt/ros/jazzy/setup.bash" >> .bashrc  
+  - source .bashrc
+
+Start building your workspace on raspberry pi:
+  - mkdir msds_ws
+  - cd msds_ws
+  - mkdir src
+  - cd src
+
+Install packages on your pc first to test properly before moving to your raspberry:
+  - ros2 pkg create msds_bringup 
+  - ros2 pkg create msds_firmware
+  - ros2 pkg create msds_controller
+  - ros2 pkg create msds_localization
+  - colcon build
+
+Copy the packages to the raspberry pi:
+  - cd Desktop/msds_ws
+  - scp -r src/ eyiza@192.168.1.154:/home/eyiza/msds_ws
+
+Install missing dependencies:
+  - Login to the raspberry pi
+  - cd ~/msds_ws
+  - sudo rosdep init
+  - rosdep update
+  - rosdep install --from-paths src -y --ignore-src -r 
+  - rosdep install --from-paths src -y --ignore-src -r --skip-keys "gazebo_ros gazebo_ros_pkgs gazebo_plugins gazebo_ros2_control"
+  - If error with rosdep: Install packages manually from install.yml
+  - sudo apt-get install python3-pip
+  - pip install transforms3d or sudo apt install python3-transforms3d
+  - pip install pyserial or sudo apt install python3-serial
+  
+Build the packages:
+  - cd ~/msds_ws
+  - colcon build --parallel-workers 2 --symlink-install
+  - source install/setup.bash
+  - echo "source ~/msds_ws/install/setup.bash" >> ~/.bashrc
+  - source ~/.bashrc
+
+Setting ROS Domain:
+  - export ROS_DOMAIN_ID=2
+  - echo "export ROS_DOMAIN_ID=2" >> ~/.bashrc
+  - source ~/.bashrc

@@ -93,6 +93,7 @@ Install missing dependencies:
   - sudo apt-get install python3-pip
   - pip install transforms3d or sudo apt install python3-transforms3d
   - pip install pyserial or sudo apt install python3-serial
+  - pip install smbus or sudo apt install python3-smbus
   
 Build the packages:
   - cd ~/msds_ws

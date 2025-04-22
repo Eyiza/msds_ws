@@ -94,9 +94,11 @@ Install missing dependencies:
   - pip install transforms3d or sudo apt install python3-transforms3d
   - pip install pyserial or sudo apt install python3-serial
   - pip install smbus or sudo apt install python3-smbus
-  
+  - sudo apt-get install libserial-dev
+
 Build the packages:
   - cd ~/msds_ws
+  - colcon build --parallel-workers 2
   - colcon build --parallel-workers 2 --symlink-install
   - source install/setup.bash
   - echo "source ~/msds_ws/install/setup.bash" >> ~/.bashrc
@@ -106,3 +108,19 @@ Setting ROS Domain:
   - export ROS_DOMAIN_ID=2
   - echo "export ROS_DOMAIN_ID=2" >> ~/.bashrc
   - source ~/.bashrc
+
+Run IMU From Raspberry:
+  - cd ~/msds_ws
+  - ros2 run msds_firmware mpu6050_driver.py
+  - ros2 topic echo /imu/out
+  - To view the data in a more user friendly way, use:
+    - On your actual PC terminal:
+      - sudo apt-get install ros-jazzy-rviz-imu-plugin
+    - Change ROS_DOMAIN_ID to 2 so that the data can be viewed on your PC:
+      - export ROS_DOMAIN_ID=2
+    - Open rviz2:
+      - rviz2
+      - Add the IMU plugin (by topic) to the rviz2
+      - In the left side panel, expand the "Topic" Menu under IMU 
+      - Look for "Reliability Policy" and change it to Best Effort.
+

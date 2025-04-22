@@ -26,4 +26,4 @@ The robot is designed to navigate through hospital environments, delivering supp
 - **Simulation**: The project includes a simulation environment for testing and validation of the robot's capabilities before deployment in real-world scenarios.
 - **Visualization**: The system provides visualization tools for monitoring the robot's status, path, and environment.
 
-### Installation
+<!-- ### Installation -->

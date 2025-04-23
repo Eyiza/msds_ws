@@ -23,9 +23,12 @@ ros2 topic pub /msds_controller/reference geometry_msgs/msg/TwistStamped "header
 twist:
   linear:
     x: 0.0
-    y: 0.5
+    y: 0.0
     z: 0.0
   angular:
     x: 0.0
     y: 0.0
-    z: 0.0" 
+    z: 0.5" 
+
+ros2 launch msds_bringup simulated_robot.launch.py
+ros2 launch msds_bringup real_robot.launch.py

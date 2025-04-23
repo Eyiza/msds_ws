@@ -1,16 +1,15 @@
 import os
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
-from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
-    hardware_interface = IncludeLaunchDescription(
+    gazebo = IncludeLaunchDescription(
         os.path.join(
-            get_package_share_directory("msds_firmware"),
+            get_package_share_directory("msds_description"),
             "launch",
-            "hardware_interface.launch.py"
+            "gazebo.launch.py"
         ),
     )
     
@@ -19,7 +18,7 @@ def generate_launch_description():
             get_package_share_directory("msds_controller"),
             "launch",
             "controller.launch.py"
-        ),
+        )
     )
     
     # joystick = IncludeLaunchDescription(
@@ -29,18 +28,12 @@ def generate_launch_description():
     #         "joystick_teleop.launch.py"
     #     ),
     #     launch_arguments={
-    #         "use_sim_time": "False"
+    #         "use_sim_time": "True"
     #     }.items()
     # )
-
-    imu_driver_node = Node(
-        package="msds_firmware",
-        executable="mpu6050_driver.py"
-    )
     
     return LaunchDescription([
-        hardware_interface,
+        gazebo,
         controller,
         # joystick,
-        imu_driver_node,
     ])

@@ -120,7 +120,9 @@ Run IMU From Raspberry:
       - export ROS_DOMAIN_ID=2
     - Open rviz2:
       - rviz2
+      - frame Id should be set to "base_footprint"
       - Add the IMU plugin (by topic) to the rviz2
       - In the left side panel, expand the "Topic" Menu under IMU 
       - Look for "Reliability Policy" and change it to Best Effort.
+      - Check the "Acceleration" box to view the data.
 

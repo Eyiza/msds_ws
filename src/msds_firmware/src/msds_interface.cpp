@@ -19,6 +19,7 @@ namespace msds_firmware
     {
       try
       {
+        arduino_.Write("frp00.00,fln00.00,rrp00.00,rln00.00,\r");
         arduino_.Close();
       }
       catch (...)
@@ -44,6 +45,7 @@ namespace msds_firmware
       // info_ is inherited from SystemInterface
       // Note that .hardware_parameters.at() can also be written as .hardware_parameters["port"]
       port_ = info_.hardware_parameters.at("port"); // Get the port name from the hardware parameters
+      // RCLCPP_INFO(rclcpp::get_logger("MSDSInterface"), "Port: %s", port_.c_str());
     }
     catch (const std::out_of_range &e)
     {
@@ -123,6 +125,9 @@ namespace msds_firmware
       // Opens the serial port and sets the baud rate.
       arduino_.Open(port_);
       arduino_.SetBaudRate(LibSerial::BaudRate::BAUD_115200);
+      arduino_.FlushIOBuffers();
+      RCLCPP_INFO(rclcpp::get_logger("MSDSInterface"),
+                  "Opened port %s with baud rate %d", port_.c_str(), 115200);
     }
     catch (...) // Catches any exception
     {
@@ -145,6 +150,7 @@ namespace msds_firmware
     {
       try
       {
+        arduino_.Write("frp00.00,fln00.00,rrp00.00,rln00.00,\r"); // Stop all motors
         arduino_.Close();
       }
       catch (...)
@@ -166,12 +172,21 @@ namespace msds_firmware
     // Interpret the string
     if(arduino_.IsDataAvailable()) // Checks if there's something to read.
     {
+      // RCLCPP_INFO(rclcpp::get_logger("MSDSInterface"), "Reading from port %s", port_.c_str());
       // Calculates how much time has passed since last read() 
       // — used for integrating velocity into position.
       auto dt = (rclcpp::Clock().now() - last_run_).seconds(); 
 
       std::string message; 
+      // arduino_.FlushIOBuffers();
       arduino_.ReadLine(message); // Gets a full line from serial e.g "frp0.23,fln0.21,rrp0.25,rln0.22"
+      if (message.empty() || message.find(',') == std::string::npos) {
+        RCLCPP_WARN(rclcpp::get_logger("MSDSInterface"), "Invalid message: %s", message.c_str());
+        return hardware_interface::return_type::OK;
+      }
+
+      // RCLCPP_INFO(rclcpp::get_logger("MSDSInterface"),
+      //             "Received message: %s", message.c_str()); 
 
       std::stringstream ss(message); // Creates a string stream from the message.
       std::string res;
@@ -203,11 +218,11 @@ namespace msds_firmware
   hardware_interface::return_type MSDSInterface::write(const rclcpp::Time &,
                                                             const rclcpp::Duration &)
   {
-    if (!arduino_.IsOpen()) return hardware_interface::return_type::OK;
-
+    if (!arduino_.IsOpen()) return hardware_interface::return_type::ERROR;
+    
     // Implement communication protocol with the Arduino
     std::stringstream message_stream;
-    const std::vector<std::string> wheel_labels = {"fr", "fl", "br", "bl"};
+    const std::vector<std::string> wheel_labels = {"fr", "fl", "rr", "rl"};
 
     for (size_t i = 0; i < velocity_commands_.size(); ++i) {
       char sign = velocity_commands_.at(i) >= 0 ? 'p' : 'n';
@@ -218,10 +233,32 @@ namespace msds_firmware
       // std::fixed + std::setprecision(2) makes sure we get two decimal places.
       message_stream << wheel_labels[i] << sign << pad_zero << std::fixed << std::setprecision(2) << speed << ",";
     }
-
+    message_stream << "\r"; 
     try
     {
+      arduino_.FlushIOBuffers();
       arduino_.Write(message_stream.str()); // Sends the message string to arduino
+      // RCLCPP_INFO(rclcpp::get_logger("MSDSInterface"),
+      //             "Sent Message");
+      // std::this_thread::sleep_for(std::chrono::milliseconds(900));
+      
+
+      // std::string response = "";
+      // try
+      // {
+      //   // Responses end with \r\n so we will read up to (and including) the \n.
+      //   arduino_.ReadLine(response, '\n', 0);
+      // }
+      // catch (const LibSerial::ReadTimeout&)
+      // {
+      //   RCLCPP_WARN(rclcpp::get_logger("MSDSInterface"),
+      //               "Read timeout occurred while waiting for response from Arduino.");
+      // }
+      // RCLCPP_INFO(rclcpp::get_logger("MSDSInterface"),
+      //             "Received response: %s", response.c_str());
+      // RCLCPP_INFO_STREAM(rclcpp::get_logger("MSDSInterface"),
+      //             "Sent with str: " << message_stream.str() << " Recv: " << response);
+
     }
     catch (...)
     {

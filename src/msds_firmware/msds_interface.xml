@@ -6,8 +6,8 @@
   It will be used by the controller manager to load the hardware interface.
 -->
 <library path="msds_firmware">
-    <class name="msds_firmware/msdsInterface"
-      type="msds_firmware::msdsInterface"
+    <class name="msds_firmware/MSDSInterface"
+      type="msds_firmware::MSDSInterface"
       base_class_type="hardware_interface::SystemInterface"
     >
       <description>

@@ -1,6 +1,6 @@
 Serial Communication:
   ros2 run msds_firmware simple_serial_transmitter.py 
-  ros2 run msds_firmware simple_serial_transmitter.py --ros-args -p port:=/dev/ttyACM1
+  ros2 run msds_firmware simple_serial_transmitter --ros-args -p port:=/dev/ttyACM0
   If port error:
       - Close Serial Monitor or Conflicting Apps
   To turn LED Light 13 On:
@@ -22,13 +22,58 @@ ros2 topic pub /msds_controller/reference geometry_msgs/msg/TwistStamped "header
   frame_id: ''
 twist:
   linear:
-    x: 0.0
+    x: 0.5
     y: 0.0
     z: 0.0
   angular:
     x: 0.0
     y: 0.0
-    z: 0.5" 
+    z: 0.0" 
 
 ros2 launch msds_bringup simulated_robot.launch.py
 ros2 launch msds_bringup real_robot.launch.py
+ros2 launch msds_bringup real_robot.launch.py port:=/dev/ttyUSB1
+
+source /opt/ros/jazzy/setup.bash
+scp -r src/ eyiza@192.168.1.154:/home/eyiza/msds_ws
+
+export ROS_DOMAIN_ID=2
+
+echo "frn07.22,flp07.22,rrn07.22,rlp07.22," > /dev/ttyACM0
+
+ros2 topic pub /serial_transmitter std_msgs/msg/String "data: 'frp07.22,flp07.22,rrp07.22,rlp07.22,'"
+
+From hardware
+frp00.00,flp00.00,rrp00.00,rlp00.00,
+frp07.22,flp07.22,rrp07.22,rlp07.22,
+
+frp05.15,flp19.59,rrp05.15,rlp19.59,
+frp05.15,flp19.59,rrp05.15,rlp19.59,
+frp0.00,flp0.00,rrp0.00,rlp0.00
+
+ls -l /dev/ttyUSB*
+sudo usermod -a -G dialout $USER
+newgrp plugdev  
+
+sudo chmod 666 /dev/ttyUSB0
+
+Later:
+sudo apt install ros-humble-teleop-twist-keyboard
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+You’ll see a control interface like this:
+Moving around:
+   u    i    o
+   j    k    l
+   m    ,    .
+
+For Holonomic mode (strafing), hold down shift:
+   U    I    O
+   J    K    L
+   M    <    >
+
+k: stop
+
+CTRL-C to quit
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/your_cmd_vel_topic
+
+colcon build --parallel-workers 2

@@ -79,9 +79,25 @@ double pwm_RL = 0.0;             // 0-255
 double pwm_RR = 0.0;             // 0-255
 
 // PID Tuning
+// double Kp_FL = 11.5;
+// double Ki_FL = 7.5;
+// double Kd_FL = 0.1;
+
+// double Kp_FR = 12.8;
+// double Ki_FR = 8.3;
+// double Kd_FR = 0.1;
+
+// double Kp_RL = 11.5;
+// double Ki_RL = 7.5;
+// double Kd_RL = 0.1;
+
+// double Kp_RR = 12.8;
+// double Ki_RR = 8.3;
+// double Kd_RR = 0.1;
+
 double Kp_FL = 11.5;
 double Ki_FL = 7.5;
-double Kd_FL = 0.1;
+double Kd_FL = 0.2;
 
 double Kp_FR = 12.8;
 double Ki_FR = 8.3;
@@ -89,11 +105,11 @@ double Kd_FR = 0.1;
 
 double Kp_RL = 11.5;
 double Ki_RL = 7.5;
-double Kd_RL = 0.1;
+double Kd_RL = 0.2;
 
-double Kp_RR = 12.8;
+double Kp_RR = 15.0;
 double Ki_RR = 8.3;
-double Kd_RR = 0.1;
+double Kd_RR = 0.2;
 
 // PID Controllers which ensure actual speed reaches and stays at the desired speed
 // The PID constructor takes the estimated velocity, the PWM output, the target velocity, and the PID tuning parameters
@@ -129,6 +145,7 @@ void setup() {
 
   // Begin Serial Communication
   Serial.begin(115200); 
+  Serial2.begin(115200); 
 
   // Set encoder pins as inputs
   pinMode(FL_ENC_B, INPUT);
@@ -151,14 +168,15 @@ void setup() {
 
 void loop() {
   // Read and Interpret Wheel Velocity Commands
-  if (Serial.available())
+  if (Serial2.available())
   {
     // Read message character by character
-    char chr = Serial.read(); // Format:  "frp0.23,fln0.21,rrp0.25,rln0.22,"
+    char chr = Serial2.read(); // Format:  "frp0.23,fln0.21,rrp0.25,rln0.22,"
+    Serial.println(chr);
 
     // Front Left and Right Wheel
     if (chr == 'f' || chr == 'r') {
-      char next = Serial.read();
+      char next = Serial2.read();
       if (next == 'l') {
         is_front_left_wheel_cmd = (chr == 'f');
         is_front_right_wheel_cmd = false;
@@ -212,13 +230,13 @@ void loop() {
       }
       // Reset for next velocity command
       value_idx = 0;
-      memset(value, 0, sizeof(value)); 
-      // value[0] = '0';
-      // value[1] = '0';
-      // value[2] = '.';
-      // value[3] = '0';
-      // value[4] = '0';
-      // value[5] = '\0'; // Closing character of the array
+      // memset(value, 0, sizeof(value)); 
+      value[0] = '0';
+      value[1] = '0';
+      value[2] = '.';
+      value[3] = '0';
+      value[4] = '0';
+      value[5] = '\0'; // Closing character of the array
     } else { // Set the velocity comand value
       if (value_idx < 5) { // Ensure we don't overflow the buffer
         value[value_idx] = chr;
@@ -260,9 +278,11 @@ void loop() {
 
     // Send encoder data to serial
     String encoder_read = "fr" + sign_FR + String(meas_vel_FR) + "," +
-                              "fl" + sign_FL + String(meas_vel_FL) + "," +
-                              "rr" + sign_RR + String(meas_vel_RR) + "," +
-                              "rl" + sign_RL + String(meas_vel_RL) + ",";
+                          "fl" + sign_FL + String(meas_vel_FL) + "," +
+                          "rr" + sign_RR + String(meas_vel_RR) + "," +
+                          "rl" + sign_RL + String(meas_vel_RL) ;
+      
+    Serial2.println(encoder_read);
     Serial.println(encoder_read);
 
     last_update = now; // Update the last update time

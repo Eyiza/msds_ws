@@ -58,6 +58,22 @@ ament_target_dependencies(${PROJECT_NAME}
 # Export Plugin Info
 pluginlib_export_plugin_description_file(hardware_interface msds_interface.xml)
 
+
+add_executable(simple_serial_receiver src/simple_serial_receiver.cpp)
+ament_target_dependencies(simple_serial_receiver rclcpp std_msgs)
+target_include_directories(simple_serial_receiver PUBLIC
+ "${SERIAL_INCLUDE_DIRS}")
+target_link_libraries(simple_serial_receiver
+ "${SERIAL_LDFLAGS}")
+
+add_executable(simple_serial_transmitter src/simple_serial_transmitter.cpp)
+ament_target_dependencies(simple_serial_transmitter rclcpp std_msgs)
+target_include_directories(simple_serial_transmitter PUBLIC
+ "${SERIAL_INCLUDE_DIRS}")
+target_link_libraries(simple_serial_transmitter
+ "${SERIAL_LDFLAGS}")
+
+
 # Install the shared library (.so file)
 install(
   TARGETS ${PROJECT_NAME}
@@ -81,6 +97,15 @@ install(PROGRAMS
   ${PROJECT_NAME}/simple_serial_transmitter.py
   ${PROJECT_NAME}/simple_serial_receiver.py
   ${PROJECT_NAME}/mpu6050_driver.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(TARGETS
+  simple_serial_receiver
+  simple_serial_transmitter
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
   DESTINATION lib/${PROJECT_NAME}
 )
 

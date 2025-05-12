@@ -20,95 +20,199 @@
   
   <!-- Chassis -->
   <link name="base_link">
+    <!-- <inertial>
+      <origin xyz="0.00010187428365774479 -3.2714989699580867e-05 0.05381730231142636" rpy="0 0 0"/>
+      <mass value="8.2573504e-01"/>
+      <inertia ixx="2.2124416e-02" ixy="-1.2294101e-04" ixz="3.4938785e-04"
+            iyy="2.1193702e-02" iyz="-5.0120904e-05"
+            izz="2.0064271e-02" />
+    </inertial> -->
+    <xacro:box_inertia m="5.0" l="${2*chassis_length}" w="${2*chassis_width}" h="${2*chassis_height}" 
+                           xyz="0 0 ${chassis_height / 2.0}" rpy="0 0 0"/>
     <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+        <mesh filename="package://msds_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin xyz="0 0 ${chassis_height / 2}" rpy="0 0 0"/>
-      <material name="brown">
-        <color rgba="0.6 0.4 0.2 1"/>
-      </material>
+      <material name="white"/>
     </visual>
+    <!-- <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://msds_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision> -->
     <collision>
       <geometry>
         <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
       </geometry>
       <origin xyz="0 0 ${chassis_height / 2}" rpy="0 0 0"/>
     </collision>
-    <xacro:box_inertia m="5.0" l="${2*chassis_length}" w="${2*chassis_width}" h="${2*chassis_height}" 
-                           xyz="0 0 ${chassis_height / 2.0}" rpy="0 0 0"/>
   </link>
 
   <joint name="base_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link" />
-    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+    <origin xyz="0 0 0.081" rpy="0 0 0"/>
   </joint>
-
-  <!-- Wheels -->
-  <xacro:wheel name="front_left"  x="${chassis_length / 3.0}"  y="${(chassis_width + wheel_width) / 2.0}"/>
-  <xacro:wheel name="front_right" x="${chassis_length / 3.0}"  y="-${(chassis_width + wheel_width) / 2.0}"/>
-  <xacro:wheel name="rear_left"   x="-${chassis_length / 3.0}" y="${(chassis_width + wheel_width) / 2.0}"/>
-  <xacro:wheel name="rear_right"  x="-${chassis_length / 3.0}" y="-${(chassis_width + wheel_width) / 2.0}"/>
-
-  <!-- LIDAR -->
-  <link name="lidar_link">
+  
+  
+  <link name="front_right_wheel_link">
+    <xacro:cylinder_inertia m="0.152" r="${wheel_radius}" h="${wheel_width}" 
+                                    xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
     <visual>
+      <origin xyz="0.2058 0.1199 0.0341" rpy="0 0 0"/>
       <geometry>
-        <cylinder radius="0.03" length="0.05"/>
+        <mesh filename="package://msds_description/meshes/front_right_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <material name="black">
-        <color rgba="0.0 0.0 0.0 1.0"/>
-      </material>
+      <material name="blue"/>
     </visual>
     <collision>
       <geometry>
-        <cylinder radius="0.03" length="0.05"/>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
       </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
     </collision>
-    <xacro:cylinder_inertia m="0.007" r="${0.03}" h="${0.05}" 
-                                    xyz="0 0 0" rpy="0 0 0"/>
   </link>
 
-  <joint name="lidar_joint" type="fixed">
+  <joint name="front_right_wheel_joint" type="continuous">
+    <origin xyz="-0.2058 -0.1199 -0.0341" rpy="0 0 0"/>
     <parent link="base_link"/>
-    <child link="lidar_link"/>
-    <origin xyz="0 0 ${chassis_height + 0.005}" rpy="0 0 0"/>
+    <child link="front_right_wheel_link"/>
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <link name="front_left_wheel_link">
+    <xacro:cylinder_inertia m="0.152" r="${wheel_radius}" h="${wheel_width}" 
+                                    xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
+    <visual>
+      <origin xyz="-0.2058 0.1199 0.0341" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://msds_description/meshes/front_left_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
+    </collision>
+  </link>
+
+  <joint name="front_left_wheel_joint" type="continuous">
+    <origin xyz="0.2058 -0.1199 -0.0341" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="front_left_wheel_link"/>
+    <axis xyz="1.0 0.0 -0.0"/>
+  </joint>
+
+  <link name="rear_right_wheel_link">
+    <xacro:cylinder_inertia m="0.152" r="${wheel_radius}" h="${wheel_width}" 
+                                    xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
+    <visual>
+      <origin xyz="0.2058 -0.1199 0.0341" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://msds_description/meshes/rear_right_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
+    </collision>
+  </link>
+
+  <joint name="rear_right_wheel_joint" type="continuous">
+    <origin xyz="-0.2058 0.1199 -0.0341" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="rear_right_wheel_link"/>
+    <axis xyz="-1.0 0.0 -0.0"/>
+  </joint>
+  
+  <link name="rear_left_wheel_link">
+    <xacro:cylinder_inertia m="0.152" r="${wheel_radius}" h="${wheel_width}" 
+                                    xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
+    <visual>
+      <origin xyz="-0.2058 -0.1199 0.0341" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://msds_description/meshes/rear_left_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
+    </collision>
+  </link>
+
+  <joint name="rear_left_wheel_joint" type="continuous">
+    <origin xyz="0.2058 0.1199 -0.0341" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="rear_left_wheel_link"/>
+    <axis xyz="-1.0 0.0 0.0"/>
   </joint>
 
 
-  <!-- IMU -->
+
   <link name="imu_link">
     <inertial>
-      <origin xyz="-0.00552433659106688 0.000168210391520346 0.000514000497342681" rpy="0 0 0" />
-      <mass value="0.000528415362211671" />
-      <inertia ixx="1.46176048428261E-08" ixy="1.40015117949421E-10" ixz="-1.99633872937403E-12"
-               iyy="8.59662482954888E-09" iyz="7.52375112767959E-12"
-               izz="2.30279421279312E-08" />
+      <origin xyz="-0.020000000000000004 0.0 0.0009205607476635534" rpy="0 0 0"/>
+      <mass value="0.010079400000000002"/>
+      <inertia ixx="0.0" iyy="1e-06" izz="1e-06" ixy="-0.0" iyz="0.0" ixz="0.0"/>
     </inertial>
     <visual>
+      <origin xyz="0.107 -0.06 -0.014" rpy="0 0 0"/>
       <geometry>
-        <box size="0.03 0.03 0.01"/>
+        <mesh filename="package://msds_description/meshes/imu_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin xyz="0.05 -0.05 0" rpy="0 0 0"/>
-      <material name="blue">
-        <color rgba="0.2 0.2 1.0 1"/>
-      </material>
+      <material name="dark_grey"/>
     </visual>
     <collision>
-      <origin xyz="0.05 -0.05 0" rpy="0 0 0"/>
+      <origin xyz="0.107 -0.06 -0.014" rpy="0 0 0"/>
       <geometry>
-        <box size="0.03 0.03 0.01"/>
+        <mesh filename="package://msds_description/meshes/imu_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
-
+  
   <joint name="imu_joint" type="fixed">
+    <origin xyz="-0.107 0.06 0.014" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="imu_link"/>
-    <origin xyz="0.05 0 ${chassis_height}" rpy="0 0 0"/>
   </joint>
-
+  
+  <link name="laser_link">
+    <inertial>
+      <origin xyz="-0.049995771388990626 -0.010000165837721037 0.017999309133954644" rpy="0 0 0"/>
+      <mass value="0.7855753539396106"/>
+      <inertia ixx="0.000268" iyy="0.000268" izz="0.000331" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.05 0.105 -0.08" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://msds_description/meshes/lidar_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.05 0.105 -0.08" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://msds_description/meshes/lidar_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  
+  <joint name="laser_joint" type="fixed">
+    <origin xyz="0.05 -0.105 0.08" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="laser_link"/>
+  </joint>
+  
 </robot>
+  

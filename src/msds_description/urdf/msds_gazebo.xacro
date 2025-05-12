@@ -2,14 +2,78 @@
 
 <robot name="msds" xmlns:xacro="http://ros.org/wiki/xacro">
 
+  <gazebo reference="base_link">
+    <material>Gazebo/Blue</material>
+    <!-- <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>true</selfCollide>
+    <gravity>true</gravity> -->
+  </gazebo>
+
+  <!-- Wheels -->
+  <gazebo reference="front_right_wheel_link">
+    <material>Gazebo/Black</material>
+    <!-- 
+            The friction coefficient (mu1 and mu2) is a measure of the friction between the wheel and the ground. 
+            A higher value indicates more friction, which can lead to better traction but also more wear on the wheels.
+            The spring constant (kp) determines how stiff the suspension is. A higher value means a stiffer suspension.
+            The damping coefficient (kd) determines how much the suspension resists motion. A higher value means more resistance.
+            The minDepth and maxVel parameters are used to limit the depth of penetration and velocity of the wheel respectively.
+            The fdir parameter specifies the direction of the friction force. It is a 3D vector that indicates the direction of the friction force.
+    -->
+    <mu1>1000000000000000.0</mu1>
+    <mu2>1000000000000000.0</mu2>
+    <kp>1000000000000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="front_left_wheel_link">
+    <material>Gazebo/Black</material>
+    <mu1>1000000000000000.0</mu1>
+    <mu2>1000000000000000.0</mu2>
+    <kp>1000000000000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="rear_right_wheel_link">
+    <material>Gazebo/Black</material>
+    <mu1>1000000000000000.0</mu1>
+    <mu2>1000000000000000.0</mu2>
+    <kp>1000000000000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="rear_left_wheel_link">
+    <material>Gazebo/Black</material>
+    <mu1>1000000000000000.0</mu1>
+    <mu2>1000000000000000.0</mu2>
+    <kp>1000000000000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+
   <!-- ROS 2 Control -->
-  <gazebo>
+   <gazebo>
     <!-- ROS 2 Humble -->
-    <xacro:if value="$(arg is_ignition)">
+     <xacro:if value="$(arg is_ignition)">
       <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
         <parameters>$(find msds_controller)/config/msds_controllers.yaml</parameters>
       </plugin>
       <plugin filename="ignition-gazebo-imu-system" name="ignition::gazebo::systems::Imu">
+      </plugin>
+      <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">
+        <render_engine>ogre2</render_engine>
       </plugin>
     </xacro:if>
 
@@ -20,6 +84,9 @@
         <controller_manager_node_name>controller_manager</controller_manager_node_name>
       </plugin>
       <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu">
+      </plugin>
+      <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+        <render_engine>ogre2</render_engine>
       </plugin>
     </xacro:unless>
   </gazebo>
@@ -94,33 +161,64 @@
           </linear_acceleration>
         </imu>
     </sensor>
-  </gazebo>
+  </gazebo> 
 
   <!-- LIDAR -->
-  <!-- <gazebo reference="lidar_link">
-    <sensor name="lidar_sensor" type="ray">
+  <!-- 
+    The laser sensor is used to measure the distance to obstacles in the environment. 
+    The sensor tag specifies the type of sensor and its properties.
+    The reference attribute specifies the link to which the sensor is attached - in this case, the laser_link as defined in the urdf.
+    The always_on parameter specifies whether the sensor is always on or not.
+    The update_rate parameter specifies how often the sensor readings are updated in Hz.
+    The gz_frame_id parameter specifies the frame of reference for the sensor readings.
+    The visualize parameter specifies whether the sensor is visualized in the simulation or not.
+    The topic parameter specifies the topic on which the sensor readings are published.
+    The lidar tag specifies the properties of the laser sensor.
+    The scan tag specifies the properties of the laser scan readings.
+    The horizontal tag specifies the properties of the horizontal scan readings.
+    The samples tag specifies the number of beams the laser will emit in a single scan.
+    The resolution tags specify the number of resolution of the scan.
+    The min_angle is the angle where the first beam will be emitted. 
+    The max_angle is the angle where the last beam will be emitted. 360 degrees is 6.28 radians.
+    The range tag specifies the properties of the range readings.
+    The min and max tags specify how far the laser can measure.
+    The min tag is set to 0.12 meters, which means that the laser cannot measure distances closer than 0.12 meters.
+    The max tag is set to 12.0 meters, which means that the laser can measure distances up to 12.0 meters.
+    The resolution tag specifies the resolution of the range readings.
+    The noise parameters are used to simulate noise in the laser readings to make the simulation more realistic.
+    The noise type is set to gaussian, which means that the noise follows a Gaussian distribution.
+    The mean and stddev parameters specify the mean and standard deviation of the Gaussian distribution respectively.
+    The mean is set to 0.0, which means that the noise is centered around 0, and the stddev parameter specifies the standard deviation of the noise.
+    You can change some of the parameters to simulate different types of laser sensors / LIDARs.
+  -->
+  <gazebo reference="laser_link">
+    <sensor name="lidar" type="gpu_lidar">
       <always_on>true</always_on>
-      <update_rate>20.0</update_rate>
-      <ray>
+      <visualize>true</visualize>
+      <topic>scan</topic>
+      <update_rate>5</update_rate>
+      <gz_frame_id>laser_link</gz_frame_id>
+      <lidar>
         <scan>
           <horizontal>
             <samples>360</samples>
-            <resolution>1</resolution>
-            <min_angle>-3.14</min_angle>
-            <max_angle>3.14</max_angle>
+            <resolution>1.00000</resolution>
+            <min_angle>0.000000</min_angle>
+            <max_angle>6.280000</max_angle>
           </horizontal>
         </scan>
         <range>
-          <min>0.12</min>
-          <max>6.0</max>
-          <resolution>0.01</resolution>
+          <min>0.120000</min>
+          <max>12.0</max>
+          <resolution>0.02</resolution>
         </range>
-      </ray>
-      <plugin name="gazebo_ros_laser" filename="libgazebo_ros_ray_sensor.so">
-        <topicName>/scan</topicName>
-        <frameName>lidar_link</frameName>
-      </plugin>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </lidar>
     </sensor>
-  </gazebo> -->
+  </gazebo>
 
 </robot>

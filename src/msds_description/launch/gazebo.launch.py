@@ -74,12 +74,14 @@ def generate_launch_description():
 
     # Bridge to convert ROS2 messages to Gazebo messages and vice versa
     # It is in charge of interfacing sensors between ROS2 and Gazebo
+    # Format is: /topic_name@ros2_msg_type[gz_msg_type
     gz_ros2_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
         arguments=[
             "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
-            "/imu@sensor_msgs/msg/Imu[gz.msgs.IMU"
+            "/imu@sensor_msgs/msg/Imu[gz.msgs.IMU",
+            "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan"
         ],
         remappings=[
             ('/imu', '/imu/out'), # Remap the topic name to match the one used in the simulation

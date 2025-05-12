@@ -58,7 +58,7 @@
   
   
   <link name="front_right_wheel_link">
-    <xacro:cylinder_inertia m="0.152" r="${wheel_radius}" h="${wheel_width}" 
+    <xacro:cylinder_inertia m="0.24" r="${wheel_radius}" h="${wheel_width}" 
                                     xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
     <visual>
       <origin xyz="0.2058 0.1199 0.0341" rpy="0 0 0"/>
@@ -83,7 +83,7 @@
   </joint>
 
   <link name="front_left_wheel_link">
-    <xacro:cylinder_inertia m="0.152" r="${wheel_radius}" h="${wheel_width}" 
+    <xacro:cylinder_inertia m="0.24" r="${wheel_radius}" h="${wheel_width}" 
                                     xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
     <visual>
       <origin xyz="-0.2058 0.1199 0.0341" rpy="0 0 0"/>
@@ -108,7 +108,7 @@
   </joint>
 
   <link name="rear_right_wheel_link">
-    <xacro:cylinder_inertia m="0.152" r="${wheel_radius}" h="${wheel_width}" 
+    <xacro:cylinder_inertia m="0.24" r="${wheel_radius}" h="${wheel_width}" 
                                     xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
     <visual>
       <origin xyz="0.2058 -0.1199 0.0341" rpy="0 0 0"/>
@@ -133,7 +133,7 @@
   </joint>
   
   <link name="rear_left_wheel_link">
-    <xacro:cylinder_inertia m="0.152" r="${wheel_radius}" h="${wheel_width}" 
+    <xacro:cylinder_inertia m="0.24" r="${wheel_radius}" h="${wheel_width}" 
                                     xyz="0 0 0" rpy="${pi / 2.0} 0 0"/>
     <visual>
       <origin xyz="-0.2058 -0.1199 0.0341" rpy="0 0 0"/>

@@ -25,13 +25,13 @@ ros2 topic pub /msds_controller/reference geometry_msgs/msg/TwistStamped "header
   frame_id: ''
 twist:
   linear:
-    x: 0.5
-    y: 0.0
+    x: 0.0
+    y: 0.5
     z: 0.0
   angular:
     x: 0.0
     y: 0.0
-    z: 0.5" 
+    z: 0.0" 
 
 ros2 launch msds_bringup simulated_robot.launch.py
 ros2 launch msds_bringup real_robot.launch.py
@@ -92,3 +92,8 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/msd
 
 colcon build --parallel-workers 2
 ros2 run tf2_tools view_frames
+
+
+My urdf runs fine in rviz and the tf is fine. But when I try it on Gazebo, the wheels are entering the ground and the tf no longer has all the wheels.
+The first image shows my tf tree when running on rviz and the other shows my tf tree when running in Gazebo
+This is my urdf file:

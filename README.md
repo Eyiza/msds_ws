@@ -23,6 +23,8 @@ The robot is designed to navigate through hospital environments, delivering supp
 - **Mecanum Wheel Drive**: The robot is equipped with a Mecanum wheel drive system, allowing for omnidirectional movement.
 - **Obstacle Avoidance**: The system includes algorithms for obstacle detection and avoidance, ensuring safe navigation in dynamic environments.
 - **Path Planning**: The robot can plan its path to the destination while avoiding obstacles and optimizing for efficiency.
+- **Localization**: The robot uses various sensors to determine its position within the environment, enabling accurate navigation.
+- **Mapping**: The system can create a map of the environment using sensor data, allowing for better navigation and obstacle avoidance.
 - **Simulation**: The project includes a simulation environment for testing and validation of the robot's capabilities before deployment in real-world scenarios.
 - **Visualization**: The system provides visualization tools for monitoring the robot's status, path, and environment.
 

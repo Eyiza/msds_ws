@@ -1,6 +1,6 @@
 #include <PID_v1.h> // To convert velocity to PWM
 #include <EnableInterrupt.h> // To use interrupts for encoders
- 
+  
 // === Front Left Motor ===
 #define FL_IN1 12
 #define FL_IN2 11
@@ -44,6 +44,21 @@ String sign_FR = "p";
 String sign_RL = "p";
 String sign_RR = "p";
 
+// Interpret Serial Messages
+bool is_front_left_wheel_cmd = false; // true if the command is for the front left wheel
+bool is_front_right_wheel_cmd = false;
+bool is_rear_left_wheel_cmd = false;
+bool is_rear_right_wheel_cmd = false;
+
+bool is_front_left_wheel_forward = true; // true if the front left wheel is moving forward
+bool is_front_right_wheel_forward = true;
+bool is_rear_left_wheel_forward = true;
+bool is_rear_right_wheel_forward = true;
+
+char value[] = "00.00"; // Buffer for command value - velocity to be sent to the motors
+uint8_t value_idx = 0; // Index for command value
+bool is_cmd_complete = false; // true if the command is complete
+
 // PID
 // Setpoint - Desired
 double cmd_vel_FL = 0.0;     // rad/s
@@ -58,27 +73,43 @@ double meas_vel_RL = 0.0;     // rad/s
 double meas_vel_RR = 0.0;     // rad/s
 
 // Output - PWM Command
-double pwm_FL = 0.0;          // 0-255
-double pwm_FR = 0.0;          // 0-255
-double pwm_RL = 0.0;          // 0-255
-double pwm_RR = 0.0;          // 0-255
+double pwm_FL = 0.0;             // 0-255
+double pwm_FR = 0.0;             // 0-255
+double pwm_RL = 0.0;             // 0-255
+double pwm_RR = 0.0;             // 0-255
 
 // PID Tuning
-double Kp_FR = 30;
-double Ki_FR = 10;
-double Kd_FR = 0.2;
+// double Kp_FL = 11.5;
+// double Ki_FL = 7.5;
+// double Kd_FL = 0.1;
 
-double Kp_FL = 30;
-double Ki_FL = 10;
+// double Kp_FR = 12.8;
+// double Ki_FR = 8.3;
+// double Kd_FR = 0.1;
+
+// double Kp_RL = 11.5;
+// double Ki_RL = 7.5;
+// double Kd_RL = 0.1;
+
+// double Kp_RR = 12.8;
+// double Ki_RR = 8.3;
+// double Kd_RR = 0.1;
+
+double Kp_FL = 11.5;
+double Ki_FL = 7.5;
 double Kd_FL = 0.2;
 
-double Kp_RR = 30;
-double Ki_RR = 10;
-double Kd_RR = 0.2;
+double Kp_FR = 12.8;
+double Ki_FR = 8.3;
+double Kd_FR = 0.1;
 
-double Kp_RL = 30;
-double Ki_RL = 10;
+double Kp_RL = 11.5;
+double Ki_RL = 7.5;
 double Kd_RL = 0.2;
+
+double Kp_RR = 15.0;
+double Ki_RR = 8.3;
+double Kd_RR = 0.2;
 
 // PID Controllers which ensure actual speed reaches and stays at the desired speed
 // The PID constructor takes the estimated velocity, the PWM output, the target velocity, and the PID tuning parameters
@@ -113,8 +144,8 @@ void setup() {
   pidRR.SetMode(AUTOMATIC);
 
   // Begin Serial Communication
-  Serial.begin(500000); 
-  Serial2.begin(500000); 
+  Serial.begin(115200); 
+  Serial2.begin(115200); 
 
   // Set encoder pins as inputs
   pinMode(FL_ENC_B, INPUT);
@@ -127,20 +158,88 @@ void setup() {
   enableInterrupt(FR_ENC_A, frontRightEncoderCallback, RISING);
   enableInterrupt(RL_ENC_A, rearLeftEncoderCallback, RISING);
   enableInterrupt(RR_ENC_A, rearRightEncoderCallback, RISING);
+
+  // Alternatively, you can use attachInterrupt
+  // attachInterrupt(digitalPinToInterrupt(FL_ENC_A), frontLeftEncoderCallback, RISING);
+  // attachInterrupt(digitalPinToInterrupt(FR_ENC_A), frontRightEncoderCallback, RISING);
+  // attachInterrupt(digitalPinToInterrupt(RL_ENC_A), rearLeftEncoderCallback, RISING);
+  // attachInterrupt(digitalPinToInterrupt(RR_ENC_A), rearRightEncoderCallback, RISING);
 }
 
 void loop() {
   // Read and Interpret Wheel Velocity Commands
   if (Serial2.available())
   {
-    String cmd = Serial2.readStringUntil('\n'); // Format: "frp0.23,fln0.21,rrp0.25,rln0.22,"
-    cmd.trim();
+    // Read message character by character
+    char chr = Serial2.read(); // Format:  "frp0.23,fln0.21,rrp0.25,rln0.22,"
+    Serial.println(chr);
 
-    // Serial.println("CMD RECEIVED: " + cmd);
-    parseWheelCommand(cmd, "fr", &cmd_vel_FR, FR_IN1, FR_IN2);
-    parseWheelCommand(cmd, "fl", &cmd_vel_FL, FL_IN1, FL_IN2);
-    parseWheelCommand(cmd, "rr", &cmd_vel_RR, RR_IN1, RR_IN2);
-    parseWheelCommand(cmd, "rl", &cmd_vel_RL, RL_IN1, RL_IN2);
+    // Front Left and Right Wheel
+    if (chr == 'f' || chr == 'r') {
+      char next = Serial2.read();
+      if (next == 'l') {
+        is_front_left_wheel_cmd = (chr == 'f');
+        is_front_right_wheel_cmd = false;
+        is_rear_left_wheel_cmd = (chr == 'r');
+        is_rear_right_wheel_cmd = false;
+      } else if (next == 'r') {
+        is_front_left_wheel_cmd = false;
+        is_front_right_wheel_cmd = (chr == 'f');
+        is_rear_left_wheel_cmd = false;
+        is_rear_right_wheel_cmd = (chr == 'r');
+        is_cmd_complete = false; // Reset command completion status
+      }
+      value_idx = 0; // As we are reading a new command, reset the index
+    } else if (chr == 'p' || chr == 'n') {
+      bool forward = (chr == 'p');
+
+      if (is_front_left_wheel_cmd) {
+        is_front_left_wheel_forward = forward;
+        // change the direction of the rotation
+        digitalWrite(FL_IN1, forward ? HIGH : LOW);
+        digitalWrite(FL_IN2, forward ? LOW : HIGH);
+      } else if (is_front_right_wheel_cmd) {
+        is_front_right_wheel_forward = forward;
+        // change the direction of the rotation
+        digitalWrite(FR_IN1, forward ? HIGH : LOW);
+        digitalWrite(FR_IN2, forward ? LOW : HIGH);
+      } else if (is_rear_left_wheel_cmd) {
+        is_rear_left_wheel_forward = forward;
+        // change the direction of the rotation
+        digitalWrite(RL_IN1, forward ? HIGH : LOW);
+        digitalWrite(RL_IN2, forward ? LOW : HIGH);
+      } else if (is_rear_right_wheel_cmd) {
+        // change the direction of the rotation
+        is_rear_right_wheel_forward = forward;
+        digitalWrite(RR_IN1, forward ? HIGH : LOW);
+        digitalWrite(RR_IN2, forward ? LOW : HIGH);
+        // sign_RR = forward ? "p" : "n";
+      }
+    } else if (chr == ',') { // Separation character which indicates end of a velocity command
+      double cmd_val = atof(value); // Convert string to double
+
+      if (is_front_left_wheel_cmd) cmd_vel_FL = cmd_val;
+      else if (is_front_right_wheel_cmd) cmd_vel_FR = cmd_val;
+      else if (is_rear_right_wheel_cmd) cmd_vel_RR = cmd_val;
+      else if (is_rear_left_wheel_cmd) {
+        cmd_vel_RL = cmd_val;
+        is_cmd_complete = true;
+      }
+      // Reset for next velocity command
+      value_idx = 0;
+      // memset(value, 0, sizeof(value)); 
+      value[0] = '0';
+      value[1] = '0';
+      value[2] = '.';
+      value[3] = '0';
+      value[4] = '0';
+      value[5] = '\0'; // Closing character of the array
+    } else { // Set the velocity comand value
+      if (value_idx < 5) { // Ensure we don't overflow the buffer
+        value[value_idx] = chr;
+        value_idx++;
+      }
+    }
   }
 
   // Encoder
@@ -178,14 +277,10 @@ void loop() {
     String encoder_read = "fr" + sign_FR + String(meas_vel_FR) + "," +
                           "fl" + sign_FL + String(meas_vel_FL) + "," +
                           "rr" + sign_RR + String(meas_vel_RR) + "," +
-                          "rl" + sign_RL + String(meas_vel_RL);
+                          "rl" + sign_RL + String(meas_vel_RL) ;
       
     Serial2.println(encoder_read);
-    // Serial.println(encoder_read);
-    // Serial.print(cmd_vel_RL);   // Target
-    // Serial.print(",");
-    // Serial.println(meas_vel_RL); // Actual
-
+    Serial.println(encoder_read);
 
     last_update = now; // Update the last update time
 
@@ -201,35 +296,6 @@ void loop() {
     analogWrite(RL_EN, pwm_RL);
     analogWrite(RR_EN, pwm_RR);
   }
-}
-
-void parseWheelCommand(String cmd, String label, double* cmd_vel, int in1, int in2) {
-  // Format of cmd - the full string message: "frp0.23,fln0.21,rrp0.25,rln0.22,"
-  // label is the wheel identifier, e.g., "fr" or "rl"
-  // cmd_vel is the pointer to the double variable that stores the velocity (e.g., &cmd_vel_FR)
-  // in1 / in2 are the motor direction control pins (used to set forward/reverse)
-
-  int start = cmd.indexOf(label); // finds the index where the substring label (e.g., rl) appears in the cmd string.
-  if (start == -1) return; // If it doesn’t exist, skip processing for this wheel.
-
-  char direction = cmd.charAt(start + 2); // finds the 3rd character after the label e.g 'p' or 'n'
-  bool forward = (direction == 'p');
-
-  int value_start = start + 3; // velocity value starts from the 4th character
-  int value_end = cmd.indexOf(',', value_start); // where the comma ends this velocity.
-  if (value_end == -1) value_end = cmd.length(); // just in case
-
-  // Get the numeric string and convert
-  String val_str = cmd.substring(value_start, value_end);
-  *cmd_vel = val_str.toFloat();
-
-  digitalWrite(in1, forward ? HIGH : LOW);
-  digitalWrite(in2, forward ? LOW : HIGH);
-
-  // Serial.print(label);
-  // Serial.print(": ");
-  // Serial.print(forward ? "+" : "-");
-  // Serial.println(*cmd_vel);
 }
 
 // New pulse from Front Left Wheel Encoder
@@ -258,7 +324,7 @@ void frontRightEncoderCallback()
   }
   countFR++;
 }
-// // New pulse from Rear Left Wheel Encoder
+// New pulse from Rear Left Wheel Encoder
 void rearLeftEncoderCallback()
 {
   if(digitalRead(RL_ENC_B) == HIGH)
@@ -271,7 +337,7 @@ void rearLeftEncoderCallback()
   }
   countRL++;
 }
-// // New pulse from Rear Right Wheel Encoder
+// New pulse from Rear Right Wheel Encoder
 void rearRightEncoderCallback()
 {
   if(digitalRead(RR_ENC_B) == HIGH)

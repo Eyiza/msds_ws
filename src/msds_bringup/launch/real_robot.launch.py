@@ -22,21 +22,21 @@ def generate_launch_description():
         ),
     )
     
-    # joystick = IncludeLaunchDescription(
-    #     os.path.join(
-    #         get_package_share_directory("msds_controller"),
-    #         "launch",
-    #         "joystick_teleop.launch.py"
-    #     ),
-    #     launch_arguments={
-    #         "use_sim_time": "False"
-    #     }.items()
-    # )
+    joystick = IncludeLaunchDescription(
+        os.path.join(
+            get_package_share_directory("msds_controller"),
+            "launch",
+            "joystick_teleop.launch.py"
+        ),
+        launch_arguments={
+            "use_sim_time": "False"
+        }.items()
+    )
 
-    # imu_driver_node = Node(
-    #     package="msds_firmware",
-    #     executable="mpu6050_driver.py"
-    # )
+    imu_driver_node = Node(
+        package="msds_firmware",
+        executable="mpu6050_driver.py"
+    )
     
     return LaunchDescription([
         hardware_interface,

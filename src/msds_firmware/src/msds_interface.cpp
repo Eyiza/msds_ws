@@ -2,7 +2,7 @@
 #include <hardware_interface/types/hardware_interface_type_values.hpp> // For hardware interface type values
 #include <pluginlib/class_list_macros.hpp> // Lets ROS2 dynamically load this class like a plugin
 
-
+ 
 namespace msds_firmware
 {
 
@@ -124,10 +124,10 @@ namespace msds_firmware
     {
       // Opens the serial port and sets the baud rate.
       arduino_.Open(port_);
-      arduino_.SetBaudRate(LibSerial::BaudRate::BAUD_115200);
+      arduino_.SetBaudRate(LibSerial::BaudRate::BAUD_500000);
       arduino_.FlushIOBuffers();
       RCLCPP_INFO(rclcpp::get_logger("MSDSInterface"),
-                  "Opened port %s with baud rate %d", port_.c_str(), 115200);
+                  "Opened port %s with baud rate %d", port_.c_str(), 500000);
     }
     catch (...) // Catches any exception
     {

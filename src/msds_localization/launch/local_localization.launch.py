@@ -8,14 +8,6 @@ import os
 
 def generate_launch_description():
 
-    use_python_arg = DeclareLaunchArgument(
-        "use_python",
-        default_value="True", # Set to "True" to use the Python version of the IMU republisher
-        description="Use Python or C++ for the IMU republisher. Set to 'True' to use Python, 'False' to use C++.",
-    )
-
-    use_python = LaunchConfiguration("use_python")
-
     # Static transform publisher to publish the transform between base_footprint_ekf and imu_link_ekf
     # This is used to transform the IMU data from the IMU frame to the base_footprint frame
     # Translation: (0, 0, 0.103) - The translation is 0.103 meters in the z direction
@@ -43,22 +35,13 @@ def generate_launch_description():
         parameters=[os.path.join(get_package_share_directory("msds_localization"), "config", "ekf.yaml")],
     )
 
-    imu_republisher_py = Node(
+    imu_republisher = Node(
         package="msds_localization",
         executable="imu_republisher.py",
-        condition=IfCondition(use_python),
-    )
-
-    imu_republisher_cpp = Node(
-        package="msds_localization",
-        executable="imu_republisher",
-        condition=UnlessCondition(use_python),
     )
 
     return LaunchDescription([
-        use_python_arg,
         static_transform_publisher,
         robot_localization,
-        imu_republisher_py,
-        imu_republisher_cpp,   
+        imu_republisher
     ])

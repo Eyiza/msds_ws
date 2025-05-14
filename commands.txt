@@ -55,3 +55,7 @@ Manual Control with teleop_twist_keyboard
 add esp to the raspberry rules
 verify what to do with the odometry data
 move SLAM folders
+msds_controller in both hardare interface launch and real_robot??
+remove imu from the hardware interface launch??
+ekf for a omnidirection robot
+Local localization

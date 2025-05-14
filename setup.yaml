@@ -19,6 +19,7 @@ Installations and Commands:
 - sudo apt-get update
 - sudo apt-get upgrade
 - sudo apt install bluez
+- sudo apt install ros-jazzy-teleop-twist-keyboard
 
 To provide access to the serial port, add the user to the dialout group so that arduinos and other devices can be accessed:
 - sudo usermod -a -G dialout $USER
@@ -41,6 +42,42 @@ To make connection between the raspberry pi and the bluetooth trusted device:
 - Uncomment `FastConnectable = false` in the [General] section
 - To save the file, press Ctrl + O and then Enter
 - To exit the nano editor, press Ctrl + X
+
+Check number of connected devices:
+  - ls -l /dev | grep ttyUSB
+    - crw-rw----  1 root dialout 188,   0 Feb 21 22:20 ttyUSB0
+    - crw-rw----  1 root dialout 188,   1 May  8 20:19 ttyUSB1
+    For Me:
+    - USB0 is Arduino
+    - USB1 is RPLidar
+  - lsusb - to see all the connected USB devices and their IDs:
+    Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+    Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
+    Bus 001 Device 003: ID 1a86:7523 QinHeng Electronics CH340 serial converter
+    Bus 001 Device 004: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+    Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+    Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+Provide the permission to the Raspberry Pi user to access the input ports:
+- create new rules files within the rules folder in the etc. udev.
+- cd /etc/udev/rules.d/
+- sudo touch 81-event.rules :
+  - sudo nano 81-event.rules
+  - Add the following line to the file:
+  - SUBSYSTEM=="input", KERNEL=="event*", GROUP="raspberry", MODE="0660"
+- Create another rules file for the Arduino:
+  - sudo touch 90-msds.rules 
+  - sudo vim 90-msds.rules 
+  - Add the following lines to the file:
+  - KERNEL=="ttyUSB*", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", MODE:="0777", SYMLINK+="rplidar"
+    SUBSYSTEM=="tty", GROUP="plugdev". MODE="0660"
+    SUBSYSTEMS=="usb", ATTRS{idProduct}=="7523", ATTRS{idVendor}=="1a86", SYMLINK+="arduino"
+  - 0777 means read, write and execute permission for all users.
+  - 0660 means read and write permission for the owner and group, but no permission for others.
+  - SYMLINK+="rplidar" creates a symbolic link to the device.
+- Load the new rules:
+  - sudo udevadm control --reload-rules && sudo service udev restart && sudo udevadm trigger
+- New symbolic link, you can use/check with: /dev/rplidar, /dev/arduino
 
 Provide the permission to the Raspberry Pi user to access the input port:
 - create new rules files within the rules folder in the etc. udev.

@@ -1,0 +1,9 @@
+rplidar_node: # Node name to be configured
+  ros__parameters:
+    channel_type: serial # serial, udp, or tcp - choose the type of communication/connection
+    serial_port: /dev/rplidar # serial port for the RPLidar with symbolic link
+    serial_baudrate: 115200 # baudrate for the RPLidar
+    frame_id: laser_link # frame id for the laser scan
+    inverted: false # False because the laser is mounted straight on the robot
+    angle_compensate: true
+    scan_mode: Sensitivity

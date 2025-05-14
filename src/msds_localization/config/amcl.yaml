@@ -1,0 +1,56 @@
+amcl: # Node name to configure  
+  ros__parameters: # Parameters for the AMCL node
+
+    # ROS2 Interface with other nodes and components
+    use_sim_time: True
+    base_frame_id: "base_footprint" # Initial frame of the robot that we want to localize
+    global_frame_id: "map" # The frame we want to localize the robot in. Global reference frame
+    odom_frame_id: "odom" # The initial position of the robot on the map
+    scan_topic: scan # The topic where the laser scan data is published
+    tf_broadcast: true # Whether to broadcast the transform between the map and base_footprint frames
+    transform_tolerance: 1.0 # Expected rate to receive the transform
+    save_pose_rate: 0.5 # Rate to save the robot's position in the file system incase the robot is turned off and on
+
+    # Parameters for the AMCL algorithm
+    set_initial_pose: true # Whether amcl should set the initial pose of the robot at startup
+    initial_pose: # Initial pose of the robot in the map frame
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      yaw: 0.0
+
+    # Odometry Motion Model Parameters
+    robot_model_type: "nav2_amcl::OmniMotionModel" 
+    alpha1: 0.2 # How the motion components are affected by noise
+    alpha2: 0.2
+    alpha3: 0.2
+    alpha4: 0.2
+    alpha5: 0.2
+
+    # Laser Scan Parameters (Sensor Model)
+    beam_skip_distance: 0.5
+    beam_skip_error_threshold: 0.9
+    beam_skip_threshold: 0.3
+    do_beamskip: false
+    lambda_short: 0.1
+    laser_likelihood_max_dist: 2.0
+    laser_max_range: 100.0
+    laser_min_range: -1.0
+    laser_model_type: "likelihood_field"
+    max_beams: 60
+    pf_err: 0.05
+    pf_z: 0.99
+    sigma_hit: 0.2
+    z_hit: 0.5
+    z_max: 0.05
+    z_rand: 0.5
+    z_short: 0.05
+
+    # Resampling Parameters
+    resample_interval: 1 
+    max_particles: 2000 # Maximum number of particles to use
+    min_particles: 500 # Minimum number of particles to use
+    recovery_alpha_fast: 0.0 # To randoomly generate new particles in new locations all around the map not just in the area of the robot
+    recovery_alpha_slow: 0.0 # To randoomly generate new particles in new locations all around the map not just in the area of the robot
+    update_min_a: 0.2 # Minimum angular movement the robot has to perform to trigger a particle update
+    update_min_d: 0.25 # Minimum linear movement the robot has to perform to trigger a particle update

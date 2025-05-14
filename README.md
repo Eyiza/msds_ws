@@ -27,7 +27,7 @@ The robot is designed to navigate through hospital environments, delivering supp
 - **Mapping**: The system can create a map of the environment using sensor data, allowing for better navigation and obstacle avoidance.
 - **SLAM**: The project implements Simultaneous Localization and Mapping (SLAM) techniques to build a map of the environment while keeping track of the robot's location.
 - **Teleoperation**: The robot can be controlled remotely for manual operation and testing.
-- **Simulation**: The project includes a simulation environment for testing and validation of the robot's capabilities before deployment in real-world scenarios.
+<!-- - **Simulation**: The project includes a simulation environment for testing and validation of the robot's capabilities before deployment in real-world scenarios. -->
 - **Visualization**: The system provides visualization tools for monitoring the robot's status, path, and environment.
 
 <!-- ### Installation -->

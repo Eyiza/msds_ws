@@ -1,0 +1,12 @@
+twist_mux:
+  ros__parameters:
+    use_stamped: false # if true, the input topics must be of type geometry_msgs/TwistStamped
+    topics: # List of topics to be multiplexed i.e the sources of the velocity commands
+      # joystick:
+      #   topic   : joy_vel # Where the joystick velocity command is published to
+      #   timeout : 0.5 # In seconds. How long to wait before considering the topic to be timed out and inactive
+      #   priority: 99 # The higher the number, the higher the priority. Range: 0-255
+      keyboard: 
+        topic   : cmd_vel # Where the keyboard velocity command is published to
+        timeout : 0.5
+        priority: 99

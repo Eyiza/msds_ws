@@ -1,0 +1,7 @@
+twist_mux:
+  ros__parameters:
+    locks: # List of locks to be used by the twist_mux
+      safety_stop:
+        topic   : safety_stop
+        timeout : 0.0 # We'll never timeout this lock i.e it will always be active
+        priority: 255 # Maximum priority. 

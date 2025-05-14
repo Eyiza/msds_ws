@@ -12,7 +12,7 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 install(DIRECTORY
-    launch
+    config launch
     DESTINATION share/${PROJECT_NAME}
 )
 # This is a CMake function that will install the launch files in the launch directory 

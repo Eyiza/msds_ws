@@ -40,17 +40,17 @@ def generate_launch_description():
         executable="ekf_node",
         name="ekf_filter_node",
         output="screen", # Print the output in the same terminal
-        parameters=[os.path.join(get_package_share_directory("bumperbot_localization"), "config", "ekf.yaml")],
+        parameters=[os.path.join(get_package_share_directory("msds_localization"), "config", "ekf.yaml")],
     )
 
     imu_republisher_py = Node(
-        package="bumperbot_localization",
+        package="msds_localization",
         executable="imu_republisher.py",
         condition=IfCondition(use_python),
     )
 
     imu_republisher_cpp = Node(
-        package="bumperbot_localization",
+        package="msds_localization",
         executable="imu_republisher",
         condition=UnlessCondition(use_python),
     )

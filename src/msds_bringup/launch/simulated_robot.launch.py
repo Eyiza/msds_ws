@@ -31,21 +31,10 @@ def generate_launch_description():
             "controller.launch.py"
         )
     )
-    
-    joystick = IncludeLaunchDescription(
-        os.path.join(
-            get_package_share_directory("msds_controller"),
-            "launch",
-            "joystick_teleop.launch.py"
-        ),
-        launch_arguments={
-            "use_sim_time": "True"
-        }.items()
-    )
 
     # Safety stop node to ensure the robot stops in case of emergency
     safety_stop = Node(
-        package="bumperbot_utils",
+        package="msds_utils",
         executable="safety_stop", # safety_stop.py if using Python
         output="screen",
         parameters=[{"use_sim_time": True}]
@@ -54,7 +43,7 @@ def generate_launch_description():
     # Include the localization launch file if SLAM is not used
     localization = IncludeLaunchDescription(
         os.path.join(
-            get_package_share_directory("bumperbot_localization"),
+            get_package_share_directory("msds_localization"),
             "launch",
             "global_localization.launch.py"
         ),
@@ -64,7 +53,7 @@ def generate_launch_description():
     # Include the slam launch file if SLAM is used
     slam = IncludeLaunchDescription(
         os.path.join(
-            get_package_share_directory("bumperbot_mapping"),
+            get_package_share_directory("msds_mapping"),
             "launch",
             "slam.launch.py"
         ),
@@ -76,7 +65,7 @@ def generate_launch_description():
         package="rviz2",
         executable="rviz2",
         arguments=["-d", os.path.join(
-                get_package_share_directory("bumperbot_localization"),
+                get_package_share_directory("msds_localization"),
                 "rviz",
                 "global_localization.rviz"
             )
@@ -91,7 +80,7 @@ def generate_launch_description():
         package="rviz2",
         executable="rviz2",
         arguments=["-d", os.path.join(
-                get_package_share_directory("bumperbot_mapping"),
+                get_package_share_directory("msds_mapping"),
                 "rviz",
                 "slam.rviz"
             )
@@ -105,7 +94,6 @@ def generate_launch_description():
         use_slam_arg,
         gazebo,
         controller,
-        joystick,
         safety_stop,
         localization,
         slam,

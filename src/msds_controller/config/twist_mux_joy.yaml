@@ -1,0 +1,11 @@
+joystick_relay: # Allows us to increase or decrease the robot velocity
+  ros__parameters:
+    priority: True
+    turbo:
+      linear_forward_min  : 0.2 # Minimum forward Velocity in m/s used when we lower the robot's speed
+      linear_forward_max  : 0.8 # Maximum forward Velocity in m/s used when we increase the robot's speed
+      linear_backward_min : 0.2 # Minimum backward Velocity in m/s used when we lower the robot's speed
+      linear_backward_max : 0.8 # Maximum backward Velocity in m/s used when we increase the robot's speed
+      angular_min : 0.7 # Minimum angular Velocity in rad/s used when we lower the robot's speed
+      angular_max : 5.0 # Maximum angular Velocity in rad/s used when we increase the robot's speed
+      steps       : 3 # number of steps that indicates the intervals that we want to use in order to increase or decrease the velocity from its maximum to its minimum.

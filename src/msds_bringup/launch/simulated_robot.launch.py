@@ -23,6 +23,12 @@ def generate_launch_description():
             "gazebo.launch.py"
         ),
     )
+
+    # Laser filter node to filter out standoff angles
+    laser_filter = Node(
+        package="msds_utils",
+        executable="laser_filter"
+    )
     
     controller = IncludeLaunchDescription(
         os.path.join(
@@ -37,7 +43,10 @@ def generate_launch_description():
         package="msds_utils",
         executable="safety_stop", # safety_stop.py if using Python
         output="screen",
-        parameters=[{"use_sim_time": True}]
+        parameters=[{
+            "use_sim_time": True,
+            "scan_topic": "/scan_filtered",
+            }]
     )
 
     # Include the localization launch file if SLAM is not used
@@ -93,6 +102,7 @@ def generate_launch_description():
     return LaunchDescription([
         use_slam_arg,
         gazebo,
+        laser_filter,
         controller,
         safety_stop,
         localization,

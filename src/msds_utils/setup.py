@@ -21,7 +21,9 @@ setup(
     entry_points={
         'console_scripts': [
             'safety_stop = msds_utils.safety_stop:main',
-            'twist_relay = msds_utils.twist_relay:main'
+            'twist_relay = msds_utils.twist_relay:main',
+            'standoff = msds_utils.standoff:main',
+            'laser_filter = msds_utils.laser_filter:main',
         ],
     },
 )

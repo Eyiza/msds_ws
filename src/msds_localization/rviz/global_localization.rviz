@@ -65,6 +65,10 @@ Visualization Manager:
           Value: true
         laser_link:
           Value: true
+        map:
+          Value: true
+        odom:
+          Value: true
         rear_left_wheel_link:
           Value: true
         rear_right_wheel_link:
@@ -75,20 +79,22 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        base_footprint:
-          base_link:
-            front_left_wheel_link:
-              {}
-            front_right_wheel_link:
-              {}
-            imu_link:
-              {}
-            laser_link:
-              {}
-            rear_left_wheel_link:
-              {}
-            rear_right_wheel_link:
-              {}
+        map:
+          odom:
+            base_footprint:
+              base_link:
+                front_left_wheel_link:
+                  {}
+                front_right_wheel_link:
+                  {}
+                imu_link:
+                  {}
+                laser_link:
+                  {}
+                rear_left_wheel_link:
+                  {}
+                rear_right_wheel_link:
+                  {}
       Update Interval: 0
       Value: true
     - Alpha: 0.699999988079071
@@ -164,6 +170,18 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /particle_cloud
       Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: MarkerArray
+      Namespaces:
+        "": true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /zones
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -225,10 +243,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.785398006439209
+      Pitch: 0.17979688942432404
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.785398006439209
+      Yaw: 1.1953973770141602
     Saved: ~
 Window Geometry:
   Displays:

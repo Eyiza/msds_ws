@@ -106,17 +106,10 @@ class SafetyStop(Node):
         
         self.zones.markers = [warning_zone, danger_zone]
 
-    def is_robot_body(self, angle, distance):
-        # Check if the angle and distance are within the robot's body
-        x = distance * math.cos(angle)
-        y = distance * math.sin(angle)
-
-        # The lidar is 10mm from the front of the robot and 240mm from the back of the robot
-        # The lidar is 180mm from the left side of the robot and 180mm from the right side of the robot
-        # The robot's body is 300mm long and 400mm wide 
-        if (x >= -0.24 and x <= 0.1) and (y >= -0.18 and y <= 0.18):
-            return True
-        return False
+        self.standoff_angles = []  # Will store detected standoff angles
+        self.standoff_update_threshold = 5  # Degrees tolerance for standoff detection
+        self.scan_count = 0
+        self.standoff_detection_phase = True  # Start in calibration mode
 
     # Execute when a new laser scan message is received
     def laser_callback(self, msg: LaserScan):
@@ -125,8 +118,9 @@ class SafetyStop(Node):
         for i, range_value in enumerate(msg.ranges): # msg.ranges is a list of distances to obstacles
             angle = msg.angle_min + i * msg.angle_increment # Calculate the angle of the laser beam
 
-            # Check if the angle is within the robot's body
-            if self.is_robot_body(angle, range_value):
+            # Ignore angles where the standoffs are located
+            deg = math.degrees(angle)
+            if any(abs(deg - d) < 5 for d in [45, 135, 225, 315]):
                 continue
 
             # Check if the range value is valid (not NaN or Inf)

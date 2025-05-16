@@ -24,16 +24,20 @@ def generate_launch_description():
     )
 
     # laser_driver = IncludeLaunchDescription(
-    #     os.path.join(
-    #         get_package_share_directory("rplidar_ros"),
-    #         "launch",
-    #         "rplidar_c1_launch.py",
+    #     PythonLaunchDescriptionSource(
+    #         os.path.join(
+    #             get_package_share_directory("rplidar_ros"),
+    #             "launch",
+    #             "rplidar_c1_launch.py"
+    #         )
     #     ),
-    #     launch_arguments=[os.path.join(
+    #     launch_arguments={
+    #         "param_file": os.path.join(
     #             get_package_share_directory("msds_bringup"),
     #             "config",
     #             "rplidar_c1.yaml"
-    #         )]
+    #         )
+    #     }.items()
     # )
 
     laser_driver = IncludeLaunchDescription(
@@ -45,11 +49,13 @@ def generate_launch_description():
             )
         ),
         launch_arguments={
-            "param_file": os.path.join(
-                get_package_share_directory("msds_bringup"),
-                "config",
-                "rplidar_c1.yaml"
-            )
+            "channel_type": "serial",
+            "serial_port": "/dev/rplidar",
+            "serial_baudrate": "115200",
+            "frame_id": "laser_link",
+            "inverted": "false",
+            "angle_compensate": "true",
+            "scan_mode": "Sensitivity"
         }.items()
     )
     

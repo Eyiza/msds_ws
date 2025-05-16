@@ -43,10 +43,12 @@ sudo usermod -a -G dialout $USER
 newgrp plugdev  
 sudo chmod 666 /dev/ttyUSB0
 
-sudo apt install ros-jazzy-teleop-twist-keyboard
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/your_cmd_vel_topic
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/msds_controller/reference
+
+ros2 launch gz_ros2_control_demos mecanum_drive_example.launch.py
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
 
 colcon build --parallel-workers 2
 ros2 run tf2_tools view_frames
@@ -60,27 +62,32 @@ angular:
   y: 0.0
   z: 0.5' -r 10
 
+Links to the documentation:
+- https://github.com/ros-controls/ros2_controllers/tree/jazzy/mecanum_drive_controller
+- https://control.ros.org/jazzy/doc/ros2_controllers/mecanum_drive_controller/doc/userdoc.html#description-of-controller-s-interfaces
+- https://github.dev/RBinsonB/nexus_4wd_mecanum_simulator
+- https://github.dev/roboticslabs/mec_mobile/tree/main/mec_mobile_description/meshes
+- https://control.ros.org/jazzy/doc/gz_ros2_control/doc/index.html
+- https://control.ros.org/master/doc/ros2_controllers/doc/writing_new_controller.html
+
 Done:
 uncomment imu
 add esp to the raspberry rules
 remove imu from the hardware interface launch?? - Yes
 Update order of joint velocities in arduino and msds_interface
-
-TODO:
 Manual Control with teleop_twist_keyboard
 Twist mux is not outputting anything
-verify what to do with the odometry data
 move SLAM folders
-msds_controller in both hardare interface launch and real_robot??
-ekf for a omnidirection robot
-Local localization
+
+
+TODO:
+verify what to do with the odometry data
+ekf for a omnidirection robot - Local localization
 Can I have another hardware interface for the esp-beacon and rfid
-
 How do I expose my encoder readings of each wheel to the mecanum drive controller from the hardware interface
-Links to the documentation:
-- https://github.com/ros-controls/ros2_controllers/tree/jazzy/mecanum_drive_controller
-- https://control.ros.org/jazzy/doc/ros2_controllers/mecanum_drive_controller/doc/userdoc.html#description-of-controller-s-interfaces
 
+Note about odometry calculation: In the DiffDRiveController, the velocity is filtered out, but we prefer to return it raw and let the user perform post-processing at will. We prefer this way of doing so as filtering introduces delay (which makes it difficult to interpret and compare behavior curves).
+What does this mean?
 
 ros2 topic pub /msds_controller/reference geometry_msgs/msg/TwistStamped "header:
   stamp:
@@ -145,18 +152,15 @@ twist:
       y: 0.0
       z: 0.20000000021208408
 
-Note about odometry calculation: In the DiffDRiveController, the velocity is filtered out, but we prefer to return it raw and let the user perform post-processing at will. We prefer this way of doing so as filtering introduces delay (which makes it difficult to interpret and compare behavior curves).
-What does this mean?
 
-sudo apt update && sudo apt upgrade ros-jazzy-ros2-control ros-jazzy-ros2-controllers
+sudo apt install ros-jazzy-laser-filters
+If you like, I can help you:
 
-Add debug output to the controller:
-Change urdf collision to the stl instead of shapes
-Update urdf compare to the test
-sudo apt install ros-jazzy-gz-ros2-control ros-jazzy-gz-ros2-control-demos
-ros2 launch gz_ros2_control_demos mecanum_drive_example.launch.py
-ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
+Create a filtered LaserScan publisher that ignores values within certain angles
+Cluster
+15.03°, 33.58°, 48.61°, 62.14°, 71.66°, 90.20°, 107.74°, 118.27°, 130.80°, 146.33°, 164.87°, 
 
-Check if you need to add more parameters to your actual hardware interface plugin
-https://control.ros.org/jazzy/doc/gz_ros2_control/doc/index.html
-https://control.ros.org/master/doc/ros2_controllers/doc/writing_new_controller.html
+Original
+1.00, 2.00, 3.01, 4.01, 5.01, 6.01, 7.02, 8.02, 9.02, 10.02, 11.03, 12.03, 13.03, 14.03, 15.03, 16.04, 17.04, 18.04, 19.04, 20.05, 21.05, 22.05, 23.05, 24.05, 25.06, 26.06, 27.06, 28.06, 29.07, 32.07, 33.08, 34.08, 35.08, 42.10, 43.10, 44.10, 45.10, 46.10, 47.11, 48.11, 49.11, 50.11, 51.12, 52.12, 53.12, 54.12, 55.13, 59.13, 60.14, 61.14, 62.14, 63.14, 64.15, 65.15, 67.15, 68.15, 69.16, 70.16, 71.16, 72.16, 73.17, 74.17, 75.17, 76.17, 89.20, 90.20, 91.21, 103.23, 104.24, 105.24, 106.24, 107.24, 108.25, 109.25, 110.25, 111.25, 112.26, 115.26, 116.26, 117.27, 118.27, 119.27, 120.27, 121.28, 124.28, 125.28, 126.29, 127.29, 128.29, 129.29, 130.30, 131.30, 132.30, 133.30, 134.31, 135.31, 136.31, 137.31, 144.33, 145.33, 146.33, 147.33, 148.34, 150.34, 151.34, 152.35, 153.35, 154.35, 155.35, 156.36, 157.36, 158.36, 159.36, 160.36, 161.37, 162.37, 163.37, 164.37, 165.38, 166.38, 167.38, 168.38, 169.38, 170.39, 171.39, 172.39, 173.39, 174.40, 175.40, 176.40, 177.40, 178.41, 179.41, 190.43, 349.79
+
+It worked!!! Thank you Jesus!!! Thank you Lord!! THe laser filter workeddd

@@ -1,7 +1,7 @@
 controller_manager:
   ros__parameters:
     update_rate: 100 # This means the controller will executed 100Hz i.e 10 times per second
-    use_sim_time: true # Set to true if you are using simulation
+    use_sim_time: false # Set to true if you are using simulation
 
     # Add the name of the controllers you want to load and use for your robot
     msds_controller:

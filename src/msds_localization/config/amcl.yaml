@@ -6,7 +6,7 @@ amcl: # Node name to configure
     base_frame_id: "base_footprint" # Initial frame of the robot that we want to localize
     global_frame_id: "map" # The frame we want to localize the robot in. Global reference frame
     odom_frame_id: "odom" # The initial position of the robot on the map
-    scan_topic: scan # The topic where the laser scan data is published
+    scan_topic: scan_filtered # or scan - The topic where the laser scan data is published
     tf_broadcast: true # Whether to broadcast the transform between the map and base_footprint frames
     transform_tolerance: 1.0 # Expected rate to receive the transform
     save_pose_rate: 0.5 # Rate to save the robot's position in the file system incase the robot is turned off and on

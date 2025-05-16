@@ -188,12 +188,12 @@
   
   <link name="laser_link">
     <inertial>
-      <origin xyz="-0.049995771388990626 -0.010000165837721037 0.017999309133954644" rpy="0 0 0"/>
+      <origin xyz="-0.05479577138899063 -0.007200165837721026 0.017999309133954644" rpy="0 0 0"/>
       <mass value="0.7855753539396106"/>
       <inertia ixx="0.000268" iyy="0.000268" izz="0.000331" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
     </inertial>
     <visual>
-      <origin xyz="-0.05 0.105 -0.08" rpy="0 0 0"/>
+      <origin xyz="-0.0 0.105 -0.08" rpy="0 0 0"/>
       <geometry>
         <mesh filename="package://msds_description/meshes/lidar_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
@@ -209,7 +209,7 @@
   
   
   <joint name="laser_joint" type="fixed">
-    <origin xyz="0.05 -0.105 0.08" rpy="0 0 0"/>
+    <origin xyz="0.0 -0.105 0.08" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="laser_link"/>
   </joint>

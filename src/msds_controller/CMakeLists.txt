@@ -12,16 +12,9 @@ find_package(nav_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2 REQUIRED)
 
-ament_python_install_package(${PROJECT_NAME})
-
 install(
   DIRECTORY launch config
   DESTINATION share/${PROJECT_NAME}
-)
-
-install(PROGRAMS
-  ${PROJECT_NAME}/twist_relay.py
-  DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_package()

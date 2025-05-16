@@ -9,7 +9,7 @@
   <!-- Load Simulated or Real Hardware Interfaces -->
   <xacro:arg name="is_sim" default="true"/>
   <!-- Port -->
-  <xacro:arg name="port" default="/dev/ttyUSB0"/>
+  <xacro:arg name="port" default="/dev/esp"/>
   <!-- Include Gazebo Parameters -->
   <xacro:include filename="msds_gazebo.xacro" />
   <!-- Include ros2_control Plugins -->

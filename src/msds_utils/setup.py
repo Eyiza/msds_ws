@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'safety_stop = msds_utils.safety_stop:main',
+            'twist_relay = msds_utils.twist_relay:main'
         ],
     },
 )

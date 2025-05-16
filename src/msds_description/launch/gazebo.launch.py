@@ -47,6 +47,7 @@ def generate_launch_description():
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
+        output='screen',
         parameters=[{"robot_description": robot_description,
                      "use_sim_time": True}]
     )
@@ -69,7 +70,9 @@ def generate_launch_description():
         executable="create",
         output="screen",
         arguments=["-topic", "robot_description",
-                   "-name", "msds"],
+                   "-name", "msds",
+                #    '-allow_renaming', 'true'
+                   ],
     )    
 
     # Bridge to convert ROS2 messages to Gazebo messages and vice versa

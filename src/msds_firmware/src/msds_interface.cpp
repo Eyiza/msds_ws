@@ -19,7 +19,7 @@ namespace msds_firmware
     {
       try
       {
-        arduino_.Write("frp00.00,fln00.00,rrp00.00,rln00.00,\r");
+        arduino_.Write("flp00.00,frn00.00,rrp00.00,rln00.00,\r"); // Stop all motors
         arduino_.Close();
       }
       catch (...)
@@ -77,16 +77,20 @@ namespace msds_firmware
       // Add the state interfaces to the vector
       // emplace_back(...) is like Python’s list.append(...), but more efficient. 
       // info_.joints[i].name → name of the joint
-      // HW_IF_POSITION → predefined constant (a string) for "position"
       // &position_states_[i] → pointer to the memory where the current joint’s position is stored
+      // state_interfaces.emplace_back(hardware_interface::StateInterface(
+      //     info_.joints[i].name, hardware_interface::HW_IF_POSITION, &position_states_[i]));
+      // state_interfaces.emplace_back(hardware_interface::StateInterface(
+      //     info_.joints[i].name, hardware_interface::HW_IF_VELOCITY, &velocity_states_[i]));
+
       state_interfaces.emplace_back(hardware_interface::StateInterface(
-          info_.joints[i].name, hardware_interface::HW_IF_POSITION, &position_states_[i]));
+          info_.joints[i].name, "position", &position_states_[i]));
       state_interfaces.emplace_back(hardware_interface::StateInterface(
           info_.joints[i].name, hardware_interface::HW_IF_VELOCITY, &velocity_states_[i]));
     }
 
     return state_interfaces;
-  }
+  } 
 
 
   // returns command interfaces that ROS2 will use to send commands to your robot.
@@ -150,7 +154,7 @@ namespace msds_firmware
     {
       try
       {
-        arduino_.Write("frp00.00,fln00.00,rrp00.00,rln00.00,\r"); // Stop all motors
+        arduino_.Write("flp00.00,frn00.00,rrp00.00,rln00.00,\r"); // Stop all motors
         arduino_.Close();
       }
       catch (...)
@@ -179,7 +183,7 @@ namespace msds_firmware
 
       std::string message; 
       // arduino_.FlushIOBuffers();
-      arduino_.ReadLine(message); // Gets a full line from serial e.g "frp0.23,fln0.21,rrp0.25,rln0.22"
+      arduino_.ReadLine(message); // Gets a full line from serial e.g "flp0.23,frn0.21,rrp0.25,rln0.22"
       if (message.empty() || message.find(',') == std::string::npos) {
         RCLCPP_WARN(rclcpp::get_logger("MSDSInterface"), "Invalid message: %s", message.c_str());
         return hardware_interface::return_type::OK;
@@ -222,7 +226,8 @@ namespace msds_firmware
     
     // Implement communication protocol with the Arduino
     std::stringstream message_stream;
-    const std::vector<std::string> wheel_labels = {"fr", "fl", "rr", "rl"};
+    // const std::vector<std::string> wheel_labels = {"fr", "fl", "rr", "rl"};
+    const std::vector<std::string> wheel_labels = {"fl", "fr", "rr", "rl"};
 
     for (size_t i = 0; i < velocity_commands_.size(); ++i) {
       char sign = velocity_commands_.at(i) >= 0 ? 'p' : 'n';

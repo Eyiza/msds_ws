@@ -133,12 +133,12 @@ void loop() {
   // Read and Interpret Wheel Velocity Commands
   if (Serial2.available())
   {
-    String cmd = Serial2.readStringUntil('\n'); // Format: "frp0.23,fln0.21,rrp0.25,rln0.22,"
+    String cmd = Serial2.readStringUntil('\n'); // Format: "flp0.23,frn0.21,rrp0.25,rln0.22,"
     cmd.trim();
 
     // Serial.println("CMD RECEIVED: " + cmd);
-    parseWheelCommand(cmd, "fr", &cmd_vel_FR, FR_IN1, FR_IN2);
-    parseWheelCommand(cmd, "fl", &cmd_vel_FL, FL_IN1, FL_IN2);
+    parseWheelCommand(cmd, "fl", &cmd_vel_FR, FR_IN1, FR_IN2);
+    parseWheelCommand(cmd, "fr", &cmd_vel_FL, FL_IN1, FL_IN2);
     parseWheelCommand(cmd, "rr", &cmd_vel_RR, RR_IN1, RR_IN2);
     parseWheelCommand(cmd, "rl", &cmd_vel_RL, RL_IN1, RL_IN2);
   }
@@ -175,8 +175,8 @@ void loop() {
     if (cmd_vel_RR == 0.0) pwm_RR = 0.0;
 
     // Send encoder data to serial
-    String encoder_read = "fr" + sign_FR + String(meas_vel_FR) + "," +
-                          "fl" + sign_FL + String(meas_vel_FL) + "," +
+    String encoder_read = "fl" + sign_FL + String(meas_vel_FL) + "," +
+                          "fr" + sign_FR + String(meas_vel_FR) + "," +
                           "rr" + sign_RR + String(meas_vel_RR) + "," +
                           "rl" + sign_RL + String(meas_vel_RL);
       
@@ -204,7 +204,7 @@ void loop() {
 }
 
 void parseWheelCommand(String cmd, String label, double* cmd_vel, int in1, int in2) {
-  // Format of cmd - the full string message: "frp0.23,fln0.21,rrp0.25,rln0.22,"
+  // Format of cmd - the full string message: "flp0.23,frn0.21,rrp0.25,rln0.22,"
   // label is the wheel identifier, e.g., "fr" or "rl"
   // cmd_vel is the pointer to the double variable that stores the velocity (e.g., &cmd_vel_FR)
   // in1 / in2 are the motor direction control pins (used to set forward/reverse)

@@ -26,7 +26,7 @@ class State(Enum):  # Enum to represent the state of the robot
 
 class SafetyStop(Node):
     def __init__(self):
-        super().__init__('safety_stop_node')
+        super().__init__('safety_stop')
 
         # Declare parameters to make the node reusable by another application
         self.declare_parameter('warning_distance', 0.6) # Warning threshold. Anything below this distance will trigger a decrease in speed.
@@ -106,12 +106,29 @@ class SafetyStop(Node):
         
         self.zones.markers = [warning_zone, danger_zone]
 
+    def is_robot_body(self, angle, distance):
+        # Check if the angle and distance are within the robot's body
+        x = distance * math.cos(angle)
+        y = distance * math.sin(angle)
+
+        # The lidar is 10mm from the front of the robot and 240mm from the back of the robot
+        # The lidar is 180mm from the left side of the robot and 180mm from the right side of the robot
+        # The robot's body is 300mm long and 400mm wide 
+        if (x >= -0.24 and x <= 0.1) and (y >= -0.18 and y <= 0.18):
+            return True
+        return False
 
     # Execute when a new laser scan message is received
     def laser_callback(self, msg: LaserScan):
         self.state = State.FREE
 
-        for range_value in msg.ranges: # msg.ranges is a list of distances to obstacles
+        for i, range_value in enumerate(msg.ranges): # msg.ranges is a list of distances to obstacles
+            angle = msg.angle_min + i * msg.angle_increment # Calculate the angle of the laser beam
+
+            # Check if the angle is within the robot's body
+            if self.is_robot_body(angle, range_value):
+                continue
+
             # Check if the range value is valid (not NaN or Inf)
             if not math.isinf(range_value) and range_value <= self.warning_distance:
                 # If in the warning zone, set the state to WARNING

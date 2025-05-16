@@ -5,6 +5,7 @@ from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 from launch.substitutions import LaunchConfiguration
 from launch.conditions import IfCondition, UnlessCondition
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
     use_slam = LaunchConfiguration("use_slam")
@@ -22,30 +23,34 @@ def generate_launch_description():
         ),
     )
 
-    laser_driver = IncludeLaunchDescription(
-        os.path.join(
-            get_package_share_directory("rplidar_ros"),
-            "launch",
-            "rplidar_c1_launch.py",
-        ),
-        launch_arguments=[os.path.join(
-                get_package_share_directory("msds_bringup"),
-                "config",
-                "rplidar_ac1.yaml"
-            )],
-        output="screen"
-    )
+    # laser_driver = IncludeLaunchDescription(
+    #     os.path.join(
+    #         get_package_share_directory("rplidar_ros"),
+    #         "launch",
+    #         "rplidar_c1_launch.py",
+    #     ),
+    #     launch_arguments=[os.path.join(
+    #             get_package_share_directory("msds_bringup"),
+    #             "config",
+    #             "rplidar_c1.yaml"
+    #         )]
+    # )
 
-    laser_driver = Node(
-            package="rplidar_ros",
-            executable="rplidar_node",
-            name="rplidar_node",
-            parameters=[os.path.join(
+    laser_driver = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                get_package_share_directory("rplidar_ros"),
+                "launch",
+                "rplidar_c1_launch.py"
+            )
+        ),
+        launch_arguments={
+            "param_file": os.path.join(
                 get_package_share_directory("msds_bringup"),
                 "config",
-                "rplidar_a1.yaml"
-            )],
-            output="screen"
+                "rplidar_c1.yaml"
+            )
+        }.items()
     )
     
     controller = IncludeLaunchDescription(
@@ -54,6 +59,9 @@ def generate_launch_description():
             "launch",
             "controller.launch.py"
         ),
+        launch_arguments={
+                "use_sim_time": False
+            }.items()
     )
 
     imu_driver_node = Node(
@@ -65,6 +73,7 @@ def generate_launch_description():
         package="msds_utils",
         executable="safety_stop",
         output="screen",
+        parameters=[{"use_sim_time": False}]
     )
 
     localization = IncludeLaunchDescription(
@@ -73,7 +82,10 @@ def generate_launch_description():
             "launch",
             "global_localization.launch.py"
         ),
-        condition=UnlessCondition(use_slam)
+        launch_arguments={
+                "use_sim_time": False
+            }.items(),
+        condition=UnlessCondition(use_slam),
     )
 
     slam = IncludeLaunchDescription(
@@ -82,6 +94,9 @@ def generate_launch_description():
             "launch",
             "slam.launch.py"
         ),
+        launch_arguments={
+                "use_sim_time": False
+            }.items(),
         condition=IfCondition(use_slam)
     )
 

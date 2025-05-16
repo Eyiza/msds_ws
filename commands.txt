@@ -11,6 +11,8 @@ Serial Communication:
   ros2 run msds_firmware simple_serial_receiver.py --ros-args -p port:=/dev/ttyACM1
   ros2 topic echo /serial_receiver
 
+Always: conda deactivate
+
 ros2 launch msds_description display.launch.py
 ros2 launch msds_description gazebo.launch.py
 ros2 launch msds_controller controller.launch.py
@@ -26,13 +28,13 @@ ros2 topic pub /msds_controller/reference geometry_msgs/msg/TwistStamped "header
   frame_id: ''
 twist:
   linear:
-    x: 0.5
+    x: 0.0
     y: 0.0
     z: 0.0
   angular:
     x: 0.0
     y: 0.0
-    z: 0.0" 
+    z: 0.2" 
 
 scp -r src/ eyiza@192.168.1.154:/home/eyiza/msds_ws
 export ROS_DOMAIN_ID=2
@@ -49,16 +51,112 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/msd
 colcon build --parallel-workers 2
 ros2 run tf2_tools view_frames
 
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist 'linear:
+  x: 0.5
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.5' -r 10
+
+Done:
+uncomment imu
+add esp to the raspberry rules
+remove imu from the hardware interface launch?? - Yes
+Update order of joint velocities in arduino and msds_interface
 
 TODO:
-uncomment imu
 Manual Control with teleop_twist_keyboard
-add esp to the raspberry rules
+Twist mux is not outputting anything
 verify what to do with the odometry data
 move SLAM folders
 msds_controller in both hardare interface launch and real_robot??
-remove imu from the hardware interface launch??
 ekf for a omnidirection robot
 Local localization
 Can I have another hardware interface for the esp-beacon and rfid
 
+How do I expose my encoder readings of each wheel to the mecanum drive controller from the hardware interface
+Links to the documentation:
+- https://github.com/ros-controls/ros2_controllers/tree/jazzy/mecanum_drive_controller
+- https://control.ros.org/jazzy/doc/ros2_controllers/mecanum_drive_controller/doc/userdoc.html#description-of-controller-s-interfaces
+
+
+ros2 topic pub /msds_controller/reference geometry_msgs/msg/TwistStamped "header:
+  stamp:
+    sec: 0
+    nanosec: 0
+  frame_id: ''
+twist:
+  linear:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  angular:
+    x: 0.0
+    y: 0.0
+    z: 0.2"
+
+Twistmux
+-0.022864285714285722
+
+Real
+pose:
+  position:
+    x: 0.11229494660238228
+    y: -8.520346339012029
+    z: 0.0
+  orientation:
+    x: 0.0
+    y: 0.0
+    z: 0.01968401124519326
+    w: 0.9998062510813278
+twist:
+  linear:
+    x: 0.003879999999999998
+    y: -0.15835249999999998
+    z: 0.0
+  angular:
+    x: 0.0
+    y: 0.0
+    z: 0.01143214285714287
+
+Simulation:
+pose:
+  pose:
+    position:
+      x: 6.235431906665326e-10
+      y: 2.997198648295404e-10
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: -0.6320418912512901
+      w: 0.7749342215333457
+
+twist:
+  twist:
+    linear:
+      x: -7.714759386878711e-12
+      y: 1.2817522820895988e-11
+      z: 0.0
+    angular:
+      x: 0.0
+      y: 0.0
+      z: 0.20000000021208408
+
+Note about odometry calculation: In the DiffDRiveController, the velocity is filtered out, but we prefer to return it raw and let the user perform post-processing at will. We prefer this way of doing so as filtering introduces delay (which makes it difficult to interpret and compare behavior curves).
+What does this mean?
+
+sudo apt update && sudo apt upgrade ros-jazzy-ros2-control ros-jazzy-ros2-controllers
+
+Add debug output to the controller:
+Change urdf collision to the stl instead of shapes
+Update urdf compare to the test
+sudo apt install ros-jazzy-gz-ros2-control ros-jazzy-gz-ros2-control-demos
+ros2 launch gz_ros2_control_demos mecanum_drive_example.launch.py
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
+
+Check if you need to add more parameters to your actual hardware interface plugin
+https://control.ros.org/jazzy/doc/gz_ros2_control/doc/index.html
+https://control.ros.org/master/doc/ros2_controllers/doc/writing_new_controller.html

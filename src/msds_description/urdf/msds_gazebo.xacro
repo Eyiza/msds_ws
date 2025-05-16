@@ -12,7 +12,7 @@
 
   <!-- Wheels -->
   <gazebo reference="front_right_wheel_link">
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Orange</material>
     <!-- 
             The friction coefficient (mu1 and mu2) is a measure of the friction between the wheel and the ground. 
             A higher value indicates more friction, which can lead to better traction but also more wear on the wheels.
@@ -31,7 +31,7 @@
   </gazebo>
 
   <gazebo reference="front_left_wheel_link">
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Orange</material>
     <mu1>1000000000000000.0</mu1>
     <mu2>1000000000000000.0</mu2>
     <kp>1000000000000.0</kp>

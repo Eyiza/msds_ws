@@ -30,7 +30,7 @@ class SafetyStop(Node):
 
         # Declare parameters to make the node reusable by another application
         self.declare_parameter('warning_distance', 0.6) # Warning threshold. Anything below this distance will trigger a decrease in speed.
-        self.declare_parameter('danger_distance', 0.2) # Danger threshold. Anything below this distance will trigger a stop.
+        self.declare_parameter('danger_distance', 0.3) # Danger threshold. Anything below this distance will trigger a stop.
         self.declare_parameter('scan_topic', 'scan') # Topic to subscribe to for laser scan data. This is the topic where the laser scan data is published.
         self.declare_parameter('safety_stop_topic', 'safety_stop') # Topic to publish safety stop commands. This indicates the name of the lock topic that the twist mux is using in order to determine whether or not to allow sending velocity messages to the robot.
 

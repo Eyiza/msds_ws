@@ -16,13 +16,13 @@ def generate_launch_description():
         default_value="false"
     )
     
-    gazebo = IncludeLaunchDescription(
-        os.path.join(
-            get_package_share_directory("msds_description"),
-            "launch",
-            "gazebo.launch.py"
-        ),
-    )
+    # gazebo = IncludeLaunchDescription(
+    #     os.path.join(
+    #         get_package_share_directory("msds_description"),
+    #         "launch",
+    #         "gazebo.launch.py"
+    #     ),
+    # )
 
     # Laser filter node to filter out standoff angles
     laser_filter = Node(
@@ -30,11 +30,18 @@ def generate_launch_description():
         executable="laser_filter"
     )
     
-    controller = IncludeLaunchDescription(
+    # controller = IncludeLaunchDescription(
+    #     os.path.join(
+    #         get_package_share_directory("msds_controller"),
+    #         "launch",
+    #         "controller.launch.py"
+    #     )
+    # )
+    gazebo_controller = IncludeLaunchDescription(
         os.path.join(
             get_package_share_directory("msds_controller"),
             "launch",
-            "controller.launch.py"
+            "gazebo_controller.launch.py"
         )
     )
 
@@ -101,9 +108,10 @@ def generate_launch_description():
     
     return LaunchDescription([
         use_slam_arg,
-        gazebo,
+        # gazebo,
+        gazebo_controller,
         laser_filter,
-        controller,
+        # controller,
         safety_stop,
         localization,
         slam,

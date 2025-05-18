@@ -148,7 +148,12 @@ void loop() {
   if (now - last_update >= interval) // if 100ms has passed
   {
     // Convert encoder count to velocity
-    double conversion = (10 * (60.0 / 385.0)) * 0.10472; // 10ms, 385 counts per revolution, 0.10472 rad/s
+    double conversion = (10 * (60.0 / 616.0)) * 0.10472; // 616 counts per revolution, 0.10472 rad/s
+    // The conversion factor is based on the wheel's characteristics and the encoder's resolution
+    // The formula is: (counts / counts_per_revolution) * (2 * pi / time_interval)
+    // The 10 is because we are measuring in 100ms intervals, and the 60 is to convert to minutes
+    // The 0.10472 is the conversion from rpm to rad/s. 1 rpm = 0.10472 rad/s
+    // The 385.0 is the number of counts per revolution for the encoder
     meas_vel_FL = (countFL * conversion); 
     meas_vel_FR = (countFR * conversion); 
     meas_vel_RL = (countRL * conversion); 

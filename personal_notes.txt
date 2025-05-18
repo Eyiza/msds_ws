@@ -5,14 +5,43 @@ Links to useful documentations:
 - https://github.dev/roboticslabs/mec_mobile/tree/main/mec_mobile_description/meshes
 - https://control.ros.org/jazzy/doc/gz_ros2_control/doc/index.html
 - https://control.ros.org/master/doc/ros2_controllers/doc/writing_new_controller.html
+- https://github.com/mlherd/Dataset-of-Gazebo-Worlds-Models-and-Maps
+- https://automaticaddison.com/useful-world-files-for-gazebo-and-ros-2-simulations/
+- https://github.com/aws-robotics/aws-robomaker-small-house-world
+- https://www.slamtec.com/en/Support#rplidar-c1
+- https://github.com/Slamtec/rplidar_ros/tree/ros2
+- https://github.com/Slamtec/sllidar_ros2
+- https://github.com/Mr-Monwe/Udev-Rules
+- https://wiki.ros.org/twist_mux
+- https://docs.nav2.org/configuration/packages/configuring-amcl.html
+- https://github.com/cloud-rocket/bbblue_drivers/blob/add-mecanum-driver/src/bb-blue-mecanum-motor-driver-node.cpp
+- https://github.com/dudasdavid/mecanum_drive
+- https://github.dev/ros-controls/ros2_controllers/tree/jazzy/mecanum_drive_controller
+
+Standoff angles:
+  Cluster code: 
+  15.03°, 33.58°, 48.61°, 62.14°, 71.66°, 90.20°, 107.74°, 118.27°, 130.80°, 146.33°, 164.87°, 
+  Original
+  1.00, 2.00, 3.01, 4.01, 5.01, 6.01, 7.02, 8.02, 9.02, 10.02, 11.03, 12.03, 13.03, 14.03, 15.03, 16.04, 
+  17.04, 18.04, 19.04, 20.05, 21.05, 22.05, 23.05, 24.05, 25.06, 26.06, 27.06, 28.06, 29.07, 32.07, 33.08, 
+  34.08, 35.08, 42.10, 43.10, 44.10, 45.10, 46.10, 47.11, 48.11, 49.11, 50.11, 51.12, 52.12, 53.12, 54.12, 
+  55.13, 59.13, 60.14, 61.14, 62.14, 63.14, 64.15, 65.15, 67.15, 68.15, 69.16, 70.16, 71.16, 72.16, 73.17, 
+  74.17, 75.17, 76.17, 89.20, 90.20, 91.21, 103.23, 104.24, 105.24, 106.24, 107.24, 108.25, 109.25, 110.25, 
+  111.25, 112.26, 115.26, 116.26, 117.27, 118.27, 119.27, 120.27, 121.28, 124.28, 125.28, 126.29, 127.29, 
+  128.29, 129.29, 130.30, 131.30, 132.30, 133.30, 134.31, 135.31, 136.31, 137.31, 144.33, 145.33, 146.33, 
+  147.33, 148.34, 150.34, 151.34, 152.35, 153.35, 154.35, 155.35, 156.36, 157.36, 158.36, 159.36, 160.36, 
+  161.37, 162.37, 163.37, 164.37, 165.38, 166.38, 167.38, 168.38, 169.38, 170.39, 171.39, 172.39, 173.39, 
+  174.40, 175.40, 176.40, 177.40, 178.41, 179.41, 190.43, 349.79
 
 
 TODO:
 verify what to do with the odometry data
-ekf for a omnidirection robot - Local localization
-Can I have another hardware interface for the esp-beacon and rfid
 How do I expose my encoder readings of each wheel to the mecanum drive controller from the hardware interface
-Add Event holders - check the ros2 cntrol demos
+Use rviz to visualize your physical robot as you move it to be sure it follows the physical robot movement
+
+ekf for a omnidirection robot - Local localization
+test global localization again
+Can I have another hardware interface for the esp-beacon and rfid
 
 Note about odometry calculation: In the DiffDRiveController, the velocity is filtered out, but we prefer to return it raw and let the user perform post-processing at will. We prefer this way of doing so as filtering introduces delay (which makes it difficult to interpret and compare behavior curves).
 What does this mean?
@@ -63,18 +92,5 @@ twist:
       z: 0.20000000021208408
 
 
-Standoff angles:
-  Cluster code: 
-  15.03°, 33.58°, 48.61°, 62.14°, 71.66°, 90.20°, 107.74°, 118.27°, 130.80°, 146.33°, 164.87°, 
-  Original
-  1.00, 2.00, 3.01, 4.01, 5.01, 6.01, 7.02, 8.02, 9.02, 10.02, 11.03, 12.03, 13.03, 14.03, 15.03, 16.04, 
-  17.04, 18.04, 19.04, 20.05, 21.05, 22.05, 23.05, 24.05, 25.06, 26.06, 27.06, 28.06, 29.07, 32.07, 33.08, 
-  34.08, 35.08, 42.10, 43.10, 44.10, 45.10, 46.10, 47.11, 48.11, 49.11, 50.11, 51.12, 52.12, 53.12, 54.12, 
-  55.13, 59.13, 60.14, 61.14, 62.14, 63.14, 64.15, 65.15, 67.15, 68.15, 69.16, 70.16, 71.16, 72.16, 73.17, 
-  74.17, 75.17, 76.17, 89.20, 90.20, 91.21, 103.23, 104.24, 105.24, 106.24, 107.24, 108.25, 109.25, 110.25, 
-  111.25, 112.26, 115.26, 116.26, 117.27, 118.27, 119.27, 120.27, 121.28, 124.28, 125.28, 126.29, 127.29, 
-  128.29, 129.29, 130.30, 131.30, 132.30, 133.30, 134.31, 135.31, 136.31, 137.31, 144.33, 145.33, 146.33, 
-  147.33, 148.34, 150.34, 151.34, 152.35, 153.35, 154.35, 155.35, 156.36, 157.36, 158.36, 159.36, 160.36, 
-  161.37, 162.37, 163.37, 164.37, 165.38, 166.38, 167.38, 168.38, 169.38, 170.39, 171.39, 172.39, 173.39, 
-  174.40, 175.40, 176.40, 177.40, 178.41, 179.41, 190.43, 349.79
 
+Can I use imu 6050 to improve odometry

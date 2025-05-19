@@ -64,20 +64,23 @@ double pwm_RL = 0.0;          // 0-255
 double pwm_RR = 0.0;          // 0-255
 
 // PID Tuning
-double Kp_FR = 30;
-double Ki_FR = 10;
+double Kp_FR = 30.0;
+double Ki_FR = 10.0;
 double Kd_FR = 0.2;
 
-double Kp_FL = 30;
-double Ki_FL = 10;
+// double Kp_FL = 34;
+// double Ki_FL = 12;
+// double Kd_FL = 0.2;
+double Kp_FL = 30.0;
+double Ki_FL = 10.0;
 double Kd_FL = 0.2;
 
-double Kp_RR = 30;
-double Ki_RR = 10;
+double Kp_RR = 30.0;
+double Ki_RR = 10.0;
 double Kd_RR = 0.2;
 
-double Kp_RL = 30;
-double Ki_RL = 10;
+double Kp_RL = 30.0;
+double Ki_RL = 10.0;
 double Kd_RL = 0.2;
 
 // PID Controllers which ensure actual speed reaches and stays at the desired speed

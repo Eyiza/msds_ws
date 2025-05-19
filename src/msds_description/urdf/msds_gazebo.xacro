@@ -82,10 +82,10 @@
       <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
         <parameters>$(find msds_controller)/config/msds_controllers.yaml</parameters>
         <controller_manager_node_name>controller_manager</controller_manager_node_name>
-        <ros>
-          <!-- <remapping>/msds_controller/reference:=/cmd_vel</remapping> -->
+        <!-- <ros>
+          <remapping>/msds_controller/reference:=/cmd_vel</remapping>
           <remapping>/msds_controller/odom:=/odom</remapping>
-        </ros>
+        </ros> -->
       </plugin>
       <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu">
       </plugin>

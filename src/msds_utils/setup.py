@@ -24,6 +24,7 @@ setup(
             'twist_relay = msds_utils.twist_relay:main',
             'standoff = msds_utils.standoff:main',
             'laser_filter = msds_utils.laser_filter:main',
+            'mecanum_odometry = msds_utils.mecanum_odometry:main',
         ],
     },
 )

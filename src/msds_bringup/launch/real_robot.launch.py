@@ -8,12 +8,12 @@ from launch.conditions import IfCondition, UnlessCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
-    use_slam = LaunchConfiguration("use_slam")
+    # use_slam = LaunchConfiguration("use_slam")
 
-    use_slam_arg = DeclareLaunchArgument(
-        "use_slam",
-        default_value="false"
-    )
+    # use_slam_arg = DeclareLaunchArgument(
+    #     "use_slam",
+    #     default_value="false"
+    # )
 
     hardware_interface = IncludeLaunchDescription(
         os.path.join(
@@ -66,7 +66,7 @@ def generate_launch_description():
             "controller.launch.py"
         ),
         launch_arguments={
-                "use_sim_time": False
+                "use_sim_time": "false"
             }.items()
     )
 
@@ -75,44 +75,44 @@ def generate_launch_description():
         executable="mpu6050_driver.py"
     )
 
-    safety_stop = Node(
-        package="msds_utils",
-        executable="safety_stop",
-        output="screen",
-        parameters=[{"use_sim_time": False}]
-    )
+    # safety_stop = Node(
+    #     package="msds_utils",
+    #     executable="safety_stop",
+    #     output="screen",
+    #     parameters=[{"use_sim_time": False}]
+    # )
 
-    localization = IncludeLaunchDescription(
-        os.path.join(
-            get_package_share_directory("msds_localization"),
-            "launch",
-            "global_localization.launch.py"
-        ),
-        launch_arguments={
-                "use_sim_time": False
-            }.items(),
-        condition=UnlessCondition(use_slam),
-    )
+    # localization = IncludeLaunchDescription(
+    #     os.path.join(
+    #         get_package_share_directory("msds_localization"),
+    #         "launch",
+    #         "global_localization.launch.py"
+    #     ),
+    #     launch_arguments={
+    #             "use_sim_time": False
+    #         }.items(),
+    #     condition=UnlessCondition(use_slam),
+    # )
 
-    slam = IncludeLaunchDescription(
-        os.path.join(
-            get_package_share_directory("msds_mapping"),
-            "launch",
-            "slam.launch.py"
-        ),
-        launch_arguments={
-                "use_sim_time": False
-            }.items(),
-        condition=IfCondition(use_slam)
-    )
+    # slam = IncludeLaunchDescription(
+    #     os.path.join(
+    #         get_package_share_directory("msds_mapping"),
+    #         "launch",
+    #         "slam.launch.py"
+    #     ),
+    #     launch_arguments={
+    #             "use_sim_time": False
+    #         }.items(),
+    #     condition=IfCondition(use_slam)
+    # )
 
     return LaunchDescription([
-            use_slam_arg,
+            # use_slam_arg,
             hardware_interface,
-            laser_driver,
+            # laser_driver,
             controller,
             imu_driver_node,
-            safety_stop,
-            localization,
-            slam
+            # safety_stop,
+            # localization,
+            # slam
         ])

@@ -9,7 +9,8 @@
                 "/opt/ros/jazzy/include/**",
                 "/usr/include/**",
                 "${workspaceFolder}/src/msds_firmware/include",
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/opt/ros/jazzy/include/sensor_msgs"
             ],
             "name": "ROS",
             "intelliSenseMode": "gcc-x64",

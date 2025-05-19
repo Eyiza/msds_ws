@@ -11,7 +11,7 @@
 #include <libserial/SerialPort.h> // LibSerial library for serial communication.
 #include <rclcpp_lifecycle/state.hpp> // Lifecycle state management.
 #include <rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp> // Lifecycle node interface.
-
+#include <sensor_msgs/msg/joint_state.hpp> // ROS 2 message type for joint states.
 #include <vector> // Standard library for using vectors which are dynamic arrays / lists.
 #include <string> // Standard library for using strings.
 
@@ -75,6 +75,10 @@ namespace msds_firmware // Namespace for the MSDS firmware interface
         std::vector<double> velocity_states_; // Current speed of the motors.
 
         rclcpp::Time last_run_; // The last time the read/write functions were called.
+
+        // Publisher for joint/wheel states.
+        rclcpp::Node::SharedPtr node_;  // Needed to create a publisher
+        rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr wheel_state_pub_; // Publisher for joint/wheel states.
     };
 }  // namespace msds_firmware
 

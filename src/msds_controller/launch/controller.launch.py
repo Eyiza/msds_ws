@@ -48,7 +48,7 @@ def generate_launch_description():
                    '--param-file',
                     robot_controllers,
                     '--controller-ros-args',
-                    '-r /msds_controller/tf_odometry:=/tf',
+                    '-r /msds_controller/tf_odometry:=/tf', # Uncomment if using simulation
         ],
     )
 

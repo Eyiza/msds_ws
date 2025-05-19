@@ -61,6 +61,10 @@ namespace msds_firmware
 
     last_run_ = rclcpp::Clock().now();
 
+    // Initialize wheel state publisher
+    node_ = std::make_shared<rclcpp::Node>("msds_hardware_node");
+    wheel_state_pub_ = node_->create_publisher<sensor_msgs::msg::JointState>("wheel_states", 10);
+
     return CallbackReturn::SUCCESS;
   }
 
@@ -70,6 +74,7 @@ namespace msds_firmware
   {
     // Vector variable to store state_intefaces
     std::vector<hardware_interface::StateInterface> state_interfaces;
+    RCLCPP_INFO(rclcpp::get_logger("MSDSInterface"), "Exporting state interfaces ...");
 
     // Provide only a position Interaface
     for (size_t i = 0; i < info_.joints.size(); i++) // For each joint. Note that size_t is an unsigned integer type used in C++ for array indexing.
@@ -78,15 +83,21 @@ namespace msds_firmware
       // emplace_back(...) is like Python’s list.append(...), but more efficient. 
       // info_.joints[i].name → name of the joint
       // &position_states_[i] → pointer to the memory where the current joint’s position is stored
-      // state_interfaces.emplace_back(hardware_interface::StateInterface(
-      //     info_.joints[i].name, hardware_interface::HW_IF_POSITION, &position_states_[i]));
-      // state_interfaces.emplace_back(hardware_interface::StateInterface(
-      //     info_.joints[i].name, hardware_interface::HW_IF_VELOCITY, &velocity_states_[i]));
-
       state_interfaces.emplace_back(hardware_interface::StateInterface(
-          info_.joints[i].name, "position", &position_states_[i]));
+          info_.joints[i].name, hardware_interface::HW_IF_POSITION, &position_states_[i]));
       state_interfaces.emplace_back(hardware_interface::StateInterface(
           info_.joints[i].name, hardware_interface::HW_IF_VELOCITY, &velocity_states_[i]));
+
+      // state_interfaces.emplace_back(hardware_interface::StateInterface(
+      //     info_.joints[i].name, "position", &position_states_[i]));
+      // state_interfaces.emplace_back(hardware_interface::StateInterface(
+      //     info_.joints[i].name, "velocity", &velocity_states_[i]));
+      
+      // RCLCPP_INFO(rclcpp::get_logger("MSDSInterface"),
+      //   "[%s] vel: %f, pos: %f",
+      //   info_.joints[i].name.c_str(),
+      //   &velocity_states_[i],
+      //   &position_states_[i]);
     }
 
     return state_interfaces;
@@ -209,8 +220,24 @@ namespace msds_firmware
 
         // Integrate velocity over time to update position.
         position_states_.at(index) += velocity_states_.at(index) * dt;
+        
+        // RCLCPP_INFO(rclcpp::get_logger("MSDSInterface"),
+        //   "Wheel[%d] (%s) velocity = %.3f, position = %.3f",
+        //   index,
+        //   info_.joints[index].name.c_str(),
+        //   velocity_states_.at(index),
+        //   position_states_.at(index));
+
         index++;
       }
+      // Publish the wheel states
+      sensor_msgs::msg::JointState msg;
+      msg.header.stamp = rclcpp::Clock().now();
+      msg.name = {"front_left_wheel_joint", "front_right_wheel_joint", "rear_right_wheel_joint", "rear_left_wheel_joint"};
+      msg.position = position_states_;
+      msg.velocity = velocity_states_;
+      wheel_state_pub_->publish(msg);
+
       // update last_run_
       last_run_ = rclcpp::Clock().now();
     }

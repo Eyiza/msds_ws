@@ -17,6 +17,7 @@ Links to useful documentations:
 - https://github.com/cloud-rocket/bbblue_drivers/blob/add-mecanum-driver/src/bb-blue-mecanum-motor-driver-node.cpp
 - https://github.com/dudasdavid/mecanum_drive
 - https://github.dev/ros-controls/ros2_controllers/tree/jazzy/mecanum_drive_controller
+- https://github.dev/mirkousuelli/genetic-omni-robot
 
 Standoff angles:
   Cluster code: 
@@ -36,36 +37,13 @@ Standoff angles:
 
 TODO:
 verify what to do with the odometry data
-How do I expose my encoder readings of each wheel to the mecanum drive controller from the hardware interface
 Use rviz to visualize your physical robot as you move it to be sure it follows the physical robot movement
 
 ekf for a omnidirection robot - Local localization
 test global localization again
 Can I have another hardware interface for the esp-beacon and rfid
 
-Note about odometry calculation: In the DiffDRiveController, the velocity is filtered out, but we prefer to return it raw and let the user perform post-processing at will. We prefer this way of doing so as filtering introduces delay (which makes it difficult to interpret and compare behavior curves).
-What does this mean?
 
-Real Odometry
-pose:
-  position:
-    x: 0.11229494660238228
-    y: -8.520346339012029
-    z: 0.0
-  orientation:
-    x: 0.0
-    y: 0.0
-    z: 0.01968401124519326
-    w: 0.9998062510813278
-twist:
-  linear:
-    x: 0.003879999999999998
-    y: -0.15835249999999998
-    z: 0.0
-  angular:
-    x: 0.0
-    y: 0.0
-    z: 0.01143214285714287
 
 Simulation Odometry:
 pose:

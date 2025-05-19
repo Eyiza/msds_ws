@@ -14,9 +14,11 @@ class MecanumOdometry(Node):
         super().__init__('mecanum_odometry_publisher')
         self.declare_parameter('wheel_radius', 0.0485)
         self.declare_parameter('wheel_separation_base', 0.7)
+        self.declare_parameter('publish_tf', False)
 
-        self.wheel_radius = self.get_parameter('wheel_radius').double_value
-        self.wheel_separation_base = self.get_parameter('wheel_separation_base').double_value
+        self.wheel_radius = self.get_parameter('wheel_radius').get_parameter_value().double_value
+        self.wheel_separation_base = self.get_parameter('wheel_separation_base').get_parameter_value().double_value
+        self.publish_tf = self.get_parameter('publish_tf').get_parameter_value().bool_value
 
         self.fl_prev_pos = 0.0 # Front Left Previous Position
         self.fr_prev_pos = 0.0 # Front Right Previous Position
@@ -63,6 +65,8 @@ class MecanumOdometry(Node):
         self.transform_data = TransformStamped()
         self.transform_data.header.frame_id = 'odom'
         self.transform_data.child_frame_id = 'base_footprint'
+
+        self.get_logger().info("Mecanum Odometry Node has been started")
 
     def joint_state_callback(self, msg):
         if len(msg.velocity) < 4:
@@ -123,18 +127,19 @@ class MecanumOdometry(Node):
         # Publish the odometry data
         self.odometry_publisher.publish(self.odom_data)
 
-        # TF - The transform between the odom and base_footprint 
-        self.transform_data.transform.translation.x = self.x
-        self.transform_data.transform.translation.y = self.y
+        if self.publish_tf:
+            # TF - The transform between the odom and base_footprint 
+            self.transform_data.transform.translation.x = self.x
+            self.transform_data.transform.translation.y = self.y
 
-        self.transform_data.transform.rotation.x = q[0]
-        self.transform_data.transform.rotation.y = q[1]
-        self.transform_data.transform.rotation.z = q[2]
-        self.transform_data.transform.rotation.w = q[3]
-        self.transform_data.header.stamp = self.get_clock().now().to_msg()
+            self.transform_data.transform.rotation.x = q[0]
+            self.transform_data.transform.rotation.y = q[1]
+            self.transform_data.transform.rotation.z = q[2]
+            self.transform_data.transform.rotation.w = q[3]
+            self.transform_data.header.stamp = self.get_clock().now().to_msg()
 
-        # Publish the transform
-        self.tf_broadcaster.sendTransform(self.transform_data)
+            # Publish the transform
+            self.tf_broadcaster.sendTransform(self.transform_data)
 
 
 def main(args=None):

@@ -58,6 +58,13 @@ def generate_launch_description():
             "scan_mode": "Sensitivity"
         }.items()
     )
+
+    odometry = Node(
+        package="msds_utils",
+        executable="mecanum_odometry",
+        name="mecanum_odometry_publisher",
+        output="screen",
+    )
     
     controller = IncludeLaunchDescription(
         os.path.join(
@@ -69,6 +76,7 @@ def generate_launch_description():
                 "use_sim_time": "false"
             }.items()
     )
+
 
     imu_driver_node = Node(
         package="msds_firmware",
@@ -111,6 +119,7 @@ def generate_launch_description():
             hardware_interface,
             # laser_driver,
             controller,
+            odometry,
             imu_driver_node,
             # safety_stop,
             # localization,

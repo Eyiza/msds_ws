@@ -58,3 +58,5 @@ CATKIN_IGNORE
 **/.catkin_workspace
 **/.vscode
 **.pyc
+
+notes.txt

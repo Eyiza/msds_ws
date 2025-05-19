@@ -10,13 +10,14 @@ def generate_launch_description():
 
     # Static transform publisher to publish the transform between base_footprint_ekf and imu_link_ekf
     # This is used to transform the IMU data from the IMU frame to the base_footprint frame
-    # Translation: (0, 0, 0.103) - The translation is 0.103 meters in the z direction
+    # ros2 run tf2_ros tf2_echo base_footprint imu_link
+    # Translation: (-0.087, 0.055, 0.095) - The translation is the offset between the IMU and the base_footprint
     # Rotation: (1, 0, 0, 0) - This is a quaternion representation of the rotation
     # The rotation is 180 degrees around the x-axis
     static_transform_publisher = Node(
         package="tf2_ros",
         executable="static_transform_publisher",
-        arguments=["--x", "0", "--y", "0","--z", "0.103",
+        arguments=["--x", "-0.087", "--y", "0.055","--z", "0.095", 
                    "--qx", "1", "--qy", "0", "--qz", "0", "--qw", "0",
                    "--frame-id", "base_footprint_ekf",
                    "--child-frame-id", "imu_link_ekf"],

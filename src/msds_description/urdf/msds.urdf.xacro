@@ -166,7 +166,7 @@
       <inertia ixx="0.0" iyy="1e-06" izz="1e-06" ixy="-0.0" iyz="0.0" ixz="0.0"/>
     </inertial>
     <visual>
-      <origin xyz="0.107 -0.06 -0.014" rpy="0 0 0"/>
+      <origin xyz="0.087 -0.055 -0.014" rpy="0 0 0"/>
       <geometry>
         <mesh filename="package://msds_description/meshes/imu_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
@@ -181,7 +181,7 @@
   </link>
   
   <joint name="imu_joint" type="fixed">
-    <origin xyz="-0.107 0.06 0.014" rpy="0 0 0"/>
+    <origin xyz="-0.087 0.055 0.014" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="imu_link"/>
   </joint>

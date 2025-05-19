@@ -1,7 +1,5 @@
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Float64MultiArray
-import numpy as np
 from rclpy.constants import S_TO_NS # S_TO_NS is a constant that converts seconds to nanoseconds
 from rclpy.time import Time
 from sensor_msgs.msg import JointState

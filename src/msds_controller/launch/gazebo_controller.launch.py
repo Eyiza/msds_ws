@@ -3,7 +3,7 @@ from pathlib import Path
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable, RegisterEventHandler, TimerAction
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable, RegisterEventHandler, TimerAction, OpaqueFunction
 from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution, PythonExpression
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.substitutions import FindPackageShare
@@ -35,6 +35,8 @@ def generate_launch_description():
                         LaunchConfiguration("world_name"), "'", " + '.world'"])
                     ]
                 )
+
+    use_sim_time = LaunchConfiguration("use_sim_time")
 
     robot_description = ParameterValue(Command([
             "xacro ",
@@ -103,6 +105,14 @@ def generate_launch_description():
                     '--controller-ros-args', '--ros-args  -r /msds_controller/tf_odometry:=/tf',
         ],
     )
+
+    noisy_odometry = Node(
+        package="msds_utils",
+        executable="noisy_odometry",
+        parameters=[
+            {"use_sim_time": use_sim_time},
+        ],
+    )
     
 
     gz_ros2_bridge = Node(
@@ -143,10 +153,12 @@ def generate_launch_description():
 
     twist_relay_node = Node(
         package="msds_utils",
-        executable="twist_relay"
+        executable="twist_relay",
+        parameters=[{"use_sim_time": LaunchConfiguration("use_sim_time")}]
     )
 
     return LaunchDescription([
+        use_sim_time_arg,
         model_arg,
         world_name_arg,
         gazebo_resource_path,
@@ -179,10 +191,10 @@ def generate_launch_description():
                 # ],
             )
         ),
+        noisy_odometry,
         gz_ros2_bridge,
         robot_state_publisher_node,
         gz_spawn_entity,
-        use_sim_time_arg,
         twist_mux_launch,
         twist_relay_node,
     ])

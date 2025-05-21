@@ -22,6 +22,9 @@ ros2 launch msds_bringup simulated_robot.launch.py use_slam:=true world_name:=te
 ros2 launch msds_bringup real_robot.launch.py
 ros2 launch msds_bringup real_robot.launch.py port:=/dev/ttyUSB1
 ros2 launch rplidar_ros rplidar_c1_launch.py 
+ros2 launch rplidar_ros rplidar_c1_launch.py serial_port:=/dev/rplidar
+
+ros2 launch gz_ros2_control_demos mecanum_drive_example.launch.py
 
 ros2 topic pub /msds_controller/reference geometry_msgs/msg/TwistStamped "header:
   stamp:
@@ -45,13 +48,11 @@ sudo usermod -a -G dialout $USER
 newgrp plugdev  
 sudo chmod 666 /dev/ttyUSB0
 
+colcon build --parallel-workers 2
+
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/your_cmd_vel_topic
-
-ros2 launch gz_ros2_control_demos mecanum_drive_example.launch.py
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
-
-colcon build --parallel-workers 2
 
 ros2 run tf2_tools view_frames
 ros2 run tf2_ros tf2_echo [source_frame] [target_frame]

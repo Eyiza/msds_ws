@@ -47,9 +47,21 @@ def generate_launch_description():
                    "/controller_manager",
                    '--param-file',
                     robot_controllers,
-                    '--controller-ros-args',
-                    '-r /msds_controller/tf_odometry:=/tf', # Uncomment if using simulation
+                    # '--controller-ros-args',
+                    # '-r /msds_controller/tf_odometry:=/tf', # Uncomment if using simulation
         ],
+    )
+
+    odometry = Node(
+        package="msds_utils",
+        executable="mecanum_odometry",
+        name="mecanum_odometry_publisher",
+        output="screen",
+        parameters=[{
+            "publish_tf": True,
+            # "base_frame": "base_footprint",
+            "joint_state_base": "position"
+        }]
     )
 
 
@@ -87,6 +99,7 @@ def generate_launch_description():
             use_sim_time_arg,
             joint_state_broadcaster_spawner,
             wheel_controller,
+            odometry,
             twist_mux_launch,
             twist_relay_node,
         ]

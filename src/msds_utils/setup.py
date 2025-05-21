@@ -25,6 +25,7 @@ setup(
             'standoff = msds_utils.standoff:main',
             'laser_filter = msds_utils.laser_filter:main',
             'mecanum_odometry = msds_utils.mecanum_odometry:main',
+            'noisy_odometry = msds_utils.noisy_odometry:main',
         ],
     },
 )

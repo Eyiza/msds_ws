@@ -78,7 +78,8 @@ def generate_launch_description():
         parameters=[
             {"node_names": lifecycle_nodes}, # Nodes to manage
             {"use_sim_time": use_sim_time}, 
-            {"autostart": True} # Automatically start the nodes
+            {"autostart": True}, # Automatically start the nodes
+            {"bond_timeout": 10.0}
         ],
     )
 

@@ -5,6 +5,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import Imu
+import math
 
 # MPU6050 Registers Addresses
 # These values are extracted from the datasheet of the sensor, 
@@ -60,11 +61,22 @@ class MPU6050_Driver(Node):
             self.imu_msg_.linear_acceleration.x = acc_x / 1670.13
             self.imu_msg_.linear_acceleration.y = acc_y / 1670.13
             self.imu_msg_.linear_acceleration.z = acc_z / 1670.13
+            self.imu_msg_.linear_acceleration_covariance = [
+                0.01, 0, 0,
+                0, 0.01, 0,
+                0, 0, 0.01
+            ]
 
             self.imu_msg_.angular_velocity.x = gyro_x / 7509.55
             self.imu_msg_.angular_velocity.y = gyro_y / 7509.55
-            self.imu_msg_.angular_velocity.z = gyro_z / 7509.55
+            self.imu_msg_.angular_velocity.z = (gyro_z / 16.4) * (math.pi / 180.0)
+            self.imu_msg_.angular_velocity_covariance = [
+                0.01, 0, 0,
+                0, 0.01, 0,
+                0, 0, 0.01
+            ]
 
+            # Set the header timestamp
             self.imu_msg_.header.stamp = self.get_clock().now().to_msg()
             self.imu_pub_.publish(self.imu_msg_)
         except OSError:

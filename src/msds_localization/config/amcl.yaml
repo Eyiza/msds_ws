@@ -2,7 +2,7 @@ amcl: # Node name to configure
   ros__parameters: # Parameters for the AMCL node
 
     # ROS2 Interface with other nodes and components
-    use_sim_time: True
+    use_sim_time: False
     base_frame_id: "base_footprint" # Initial frame of the robot that we want to localize
     global_frame_id: "map" # The frame we want to localize the robot in. Global reference frame
     odom_frame_id: "odom" # The initial position of the robot on the map

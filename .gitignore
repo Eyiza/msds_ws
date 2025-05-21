@@ -60,3 +60,4 @@ CATKIN_IGNORE
 **.pyc
 
 notes.txt
+ekf_debug.txt

@@ -59,7 +59,7 @@ def generate_launch_description():
         output="screen",
         parameters=[{
             "publish_tf": True,
-            # "base_frame": "base_footprint",
+            "base_frame": "base_footprint",
             "joint_state_base": "position"
         }]
     )

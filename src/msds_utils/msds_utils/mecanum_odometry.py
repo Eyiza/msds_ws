@@ -157,7 +157,7 @@ class MecanumOdometry(Node):
             rs_fl = delta_fl / dt
             rs_fr = delta_fr / dt
             rs_rr = delta_rr / dt
-            rs_rl = delta_rl / dt
+            rs_rl = delta_rl / dt 
 
             # Calculate the linear and angular velocities - Mecanum forward kinematics
             v_x = 0.25 * self.wheel_radius * (rs_fl + rs_fr + rs_rr + rs_rl)

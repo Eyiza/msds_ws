@@ -33,13 +33,13 @@ ros2 topic pub /msds_controller/reference geometry_msgs/msg/TwistStamped "header
   frame_id: ''
 twist:
   linear:
-    x: 0.0
+    x: 0.2
     y: 0.0
     z: 0.0
   angular:
     x: 0.0
     y: 0.0
-    z: 0.2" 
+    z: 0.0" 
 
 scp -r src/ eyiza@192.168.1.154:/home/eyiza/msds_ws
 export ROS_DOMAIN_ID=2

@@ -116,7 +116,7 @@ def generate_launch_description():
             imu_driver_node,
             laser_filter,
             laser_driver,
-            robot_localization,
+            # robot_localization,
             safety_stop,
             localization,
             slam

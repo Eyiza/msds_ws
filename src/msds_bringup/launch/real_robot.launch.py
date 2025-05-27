@@ -44,10 +44,10 @@ def generate_launch_description():
         package="msds_utils",
         executable="laser_filter",
         parameters=[{
-            "standoff_angles": [1.25, 1.75, 3.75, 4.24, 4.74, 5.24, 
-                                173.51, 174.01, 174.51, 176.50, 177.00, 177.50, 178.00, 
-                                -57.17, -56.67, -56.17, -55.67, -55.17, -54.67, 
-                                -127.07, -126.57]
+            "standoff_angles": [-124.58, -124.08, -53.67, -53.18, -52.68, -52.18, 
+                                3.75, 4.24, 4.74, 5.74, 6.24, 6.74, 7.24, 175.01, 
+                                175.51, 176.01, 176.50, 177.00, 178.00, 178.50, 
+                                179.50, 180.00]
         }],
     )
 
@@ -117,7 +117,7 @@ def generate_launch_description():
             laser_filter,
             laser_driver,
             # robot_localization,
-            safety_stop,
-            localization,
-            slam
+            # safety_stop,
+            # localization,
+            # slam
         ])

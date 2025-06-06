@@ -69,34 +69,55 @@ def generate_launch_description():
         condition=IfCondition(use_slam)
     )
 
-    # To visualize the necessary topics for localization in rviz
-    rviz_localization = Node(
-        package="rviz2",
-        executable="rviz2",
-        arguments=["-d", os.path.join(
-                get_package_share_directory("msds_localization"),
-                "rviz",
-                "global_localization.rviz"
-            )
-        ],
-        output="screen",
-        parameters=[{"use_sim_time": True}],
-        condition=UnlessCondition(use_slam)
+    navigation = IncludeLaunchDescription(
+        os.path.join(
+            get_package_share_directory("bumperbot_navigation"),
+            "launch",
+            "navigation.launch.py"
+        ),
     )
 
+    # To visualize the necessary topics for localization in rviz
+    # rviz_localization = Node(
+    #     package="rviz2",
+    #     executable="rviz2",
+    #     arguments=["-d", os.path.join(
+    #             get_package_share_directory("msds_localization"),
+    #             "rviz",
+    #             "global_localization.rviz"
+    #         )
+    #     ],
+    #     output="screen",
+    #     parameters=[{"use_sim_time": True}],
+    #     condition=UnlessCondition(use_slam)
+    # )
+
     # To visualize the necessary topics for mapping in rviz
-    rviz_slam = Node(
+    # rviz_slam = Node(
+    #     package="rviz2",
+    #     executable="rviz2",
+    #     arguments=["-d", os.path.join(
+    #             get_package_share_directory("msds_mapping"),
+    #             "rviz",
+    #             "slam.rviz"
+    #         )
+    #     ],
+    #     output="screen",
+    #     parameters=[{"use_sim_time": True}],
+    #     condition=IfCondition(use_slam)
+    # )
+
+    rviz = Node(
         package="rviz2",
         executable="rviz2",
         arguments=["-d", os.path.join(
-                get_package_share_directory("msds_mapping"),
+                get_package_share_directory("nav2_bringup"),
                 "rviz",
-                "slam.rviz"
+                "nav2_default_view.rviz"
             )
         ],
         output="screen",
-        parameters=[{"use_sim_time": True}],
-        condition=IfCondition(use_slam)
+        parameters=[{"use_sim_time": True}]
     )
     
     return LaunchDescription([
@@ -104,9 +125,9 @@ def generate_launch_description():
         gazebo_controller,
         laser_filter,
         safety_stop,
-        local_localization,
-        # localization,
+        # local_localization,
+        localization,
         slam,
-        rviz_localization,
-        rviz_slam
+        # navigation,
+        rviz
     ])

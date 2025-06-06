@@ -1,0 +1,28 @@
+behavior_server: 
+  ros__parameters:
+    costmap_topic: local_costmap/costmap_raw # costmap topic used to implement the behavior tree and obstacle avoidance
+    footprint_topic: local_costmap/published_footprint # footprint topic to be used by the behaviour server
+    cycle_frequency: 10.0 # rate at which the control loop managed by the behavior server will run in Hz
+    behavior_plugins: ["spin", "backup", "wait"] # List of behavior plugins to be used by the behavior server
+
+    # Behavior plugins configuration
+    spin:
+      plugin: "nav2_behaviors::Spin"
+    backup:
+      plugin: "nav2_behaviors::BackUp"
+    wait:
+      plugin: "nav2_behaviors::Wait"
+
+    global_frame: odom # since it's a local behavior, it is relative to the robot's position in the odom frame.
+    robot_base_frame: base_link # The frame of the robot base
+    transform_tolerance: 0.1 # Tolerance for transforms in seconds
+    use_sim_time: true # Set to true if using simulation time
+
+    simulate_ahead_time: 2.0 # Time in seconds to simulate ahead for the robot to check for obstacles
+    # So a quantity that a certain velocity command will be propagated and simulated ahead in time in order to check its consequences on the robot.
+    # It checks that when a certain velocity command calculated by any of these plugins is applied on the real robot, 
+    # what are the consequences of applying this command on the real robot to make sure it will not cause any collision.
+
+    max_rotational_vel: 1.0 # Maximum rotational velocity in radians per second
+    min_rotational_vel: 0.4 # Minimum rotational velocity in radians per second
+    rotational_acc_lim: 3.2 # Rotational acceleration limit in radians per second squared

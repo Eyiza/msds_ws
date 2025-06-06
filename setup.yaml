@@ -163,3 +163,11 @@ Run IMU From Raspberry:
       - Look for "Reliability Policy" and change it to Best Effort.
       - Check the "Acceleration" box to view the data.
 
+To save the Map (From RViz):
+  - Panels -> Add New Panel -> slam_toolbox -> SlamToolboxPlugin
+  - In the left side panel, a box will appear with the title "SlamToolboxPlugin"
+  - Specify the map name and the path where you want to save the map
+  - Click on the "Save Map" button to save the map.
+  - You should have .yaml and .pgm files in the specified path.
+  - You can create a new folder in the msds_mapping package and properly format and leave it there
+  - You can update the map name in ros args when launching

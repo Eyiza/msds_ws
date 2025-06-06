@@ -1,0 +1,74 @@
+planner_server: # MSDS Planner Server Configuration
+  ros__parameters:
+    expected_planner_frequency: 1.0 # Frequency at which the planner is expected to run. 
+    # This is especially useful when repeatedly calling the planner server to calculate a path to the goal while the robot moves.
+    # This is a very common use case and allows having a path that is always up to date, and also that is always considering the latest detected obstacles.
+
+    use_sim_time: true # Use simulation time for the planner server, useful in simulation environments.
+    planner_plugins: ["GridBased"] # List /Names of planner plugins to be used by the planner server.
+
+    # !-- Plugin Configurations --!
+
+    # Smac 2D parameters
+    # SMAC planner implements an A* algorithm with a more efficient search strategy and is designed to work well in 2D environments.
+    GridBased:
+      plugin: "nav2_smac_planner::SmacPlanner2D" # In Iron and older versions, "/" was used instead of "::"
+      tolerance: 0.125                      # tolerance for planning if unable to reach exact pose, in meters
+      downsample_costmap: false             # whether or not to downsample the map
+      downsampling_factor: 1                # multiplier for the resolution of the costmap layer (e.g. 2 on a 5cm costmap would be 10cm)
+      allow_unknown: true                   # allow traveling in unknown space
+      max_iterations: 1000000               # maximum total iterations to search for before failing (in case unreachable), set to -1 to disable
+      max_on_approach_iterations: 1000      # maximum number of iterations to attempt to reach goal once in tolerance
+      max_planning_time: 2.0                # max time in s for planner to plan, smooth
+      cost_travel_multiplier: 2.0           # Cost multiplier to apply to search to steer away from high cost areas. Larger values will place in the center of aisles more exactly (if non-`FREE` cost potential field exists) but take slightly longer to compute. To optimize for speed, a value of 1.0 is reasonable. A reasonable tradeoff value is 2.0. A value of 0.0 effective disables steering away from obstacles and acts like a naive binary search A*.
+      use_final_approach_orientation: false # Whether to set the final path pose at the goal's orientation to the requested orientation (false) or in line with the approach angle so the robot doesn't rotate to heading (true)
+      smoother:
+        max_iterations: 1000
+        w_smooth: 0.3
+        w_data: 0.2
+        tolerance: 1.0e-10
+
+global_costmap: # This is the global costmap configuration for the robot. Same as the one used in the costmap.yaml configuration file.
+  global_costmap:
+    ros__parameters:
+      update_frequency: 1.0 # The costmap will be update every second - 1Hz
+      publish_frequency: 1.0 # The costmap will be published every second - 1Hz
+      global_frame: map
+      robot_base_frame: base_link
+      use_sim_time: true
+      robot_radius: 0.255 # The robot can be approximated with a circle with this radius in meters.
+      resolution: 0.05 # Size of each cell composing the costmap grid in meters. Each cell is a square of size resolution x resolution.
+      track_unknown_space: true # If true, the costmap will track unknown space incase it's lost.
+      plugins: ["static_layer", "obstacle_layer", "inflation_layer"] # List of plugins / costmap layers to be used in the costmap. The order is important!
+
+      # Configurations of the costmap layers
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: True # If true, the obstacle layer will be enabled by default at startup.
+        observation_sources: scan # List of sources of observations to be used in the obstacle layer.
+        # The observation sources are the topics where the sensors are publishing their data. 
+        # There can be multiple sources, but in this case, the costmap will be updated with the data from all of them.
+        # The obstacle layer will use the data from these topics to update the costmap.
+
+        # Configurations of the observation sources
+        scan:
+          topic: /scan_filtered # Topic where the laser scan data is published
+          max_obstacle_height: 2.0 # Maximum height of the obstacles to be considered in the costmap in meters.
+          clearing: True # If true, the obstacle layer will clear the obstacles that are no longer detected.
+          marking: True # If true, the obstacle layer will mark the obstacles that are detected.
+          data_type: "LaserScan"
+          raytrace_max_range: 3.0 # Maximum range of the ray tracing in meters. The ray tracing is used to fill the costmap with obstacles and the cells traversed before the obstacle will be marked as free using the Bresenham algorithm.
+          raytrace_min_range: 0.0
+          obstacle_max_range: 2.5  # Maximum range of the obstacles to be considered in the costmap in meters.
+          obstacle_min_range: 0.0
+      static_layer:
+        plugin: "nav2_costmap_2d::StaticLayer"
+        map_topic: /map # Topic where the static map is published
+        map_subscribe_transient_local: True # If true, the static map will be subscribed as transient local. Recall that /map publishes with a transient local QoS.
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        cost_scaling_factor: 3.0 # How much the cost of the cells is scaled. The higher the value, the more the cost of the cells is inflated.
+        # The cost of the cells is inflated to create a buffer around the obstacles. This buffer is used to avoid collisions with the obstacles.
+        inflation_radius: 0.655 # Radius of the inflation in meters. The cost of the cells will be inflated to this radius. It should be at least equal or greater than the robot radius.
+      always_send_full_costmap: True # If true, the costmap will always be sent in full, even if it is not updated.
+ 

@@ -12,7 +12,7 @@ def generate_launch_description():
 
     use_slam_arg = DeclareLaunchArgument(
         "use_slam",
-        default_value="true"
+        default_value="false"
     )
 
     hardware_interface = IncludeLaunchDescription(
@@ -39,6 +39,14 @@ def generate_launch_description():
         executable="mpu6050_driver.py"
     )
 
+    robot_localization = Node(
+        package="robot_localization",
+        executable="ekf_node",
+        name="ekf_filter_node",
+        output="screen",
+        parameters=[os.path.join(get_package_share_directory("msds_localization"), "config", "ekf.yaml")],
+    )
+    
 
     laser_filter = Node(
         package="msds_utils",
@@ -66,15 +74,6 @@ def generate_launch_description():
         }.items()
     )
 
-    robot_localization = Node(
-        package="robot_localization",
-        executable="ekf_node",
-        name="ekf_filter_node",
-        output="screen",
-        parameters=[os.path.join(get_package_share_directory("msds_localization"), "config", "ekf.yaml")],
-    )
-    
-
     safety_stop = Node(
         package="msds_utils",
         executable="safety_stop",
@@ -85,7 +84,7 @@ def generate_launch_description():
         }]
     )
 
-    localization = IncludeLaunchDescription(
+    global_localization = IncludeLaunchDescription(
         os.path.join(
             get_package_share_directory("msds_localization"),
             "launch",
@@ -115,6 +114,9 @@ def generate_launch_description():
             "launch",
             "navigation.launch.py"
         ),
+        launch_arguments={
+                "use_sim_time": "false"
+            }.items(),
     )
 
     return LaunchDescription([
@@ -122,11 +124,11 @@ def generate_launch_description():
             hardware_interface,
             controller,
             imu_driver_node,
-            # laser_filter,
-            # laser_driver,
             robot_localization,
-            # safety_stop,
-            # localization,
-            # slam
-            # navigation
+            laser_filter,
+            laser_driver,
+            safety_stop,
+            global_localization,
+            slam,
+            navigation
         ])

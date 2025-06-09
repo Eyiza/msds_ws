@@ -69,11 +69,14 @@ class MPU6050_Driver(Node):
 
             self.imu_msg_.angular_velocity.x = gyro_x / 7509.55
             self.imu_msg_.angular_velocity.y = gyro_y / 7509.55
+            # Apply a noise threshold to the gyroscope readings to filter out small fluctuations
+            if abs(gyro_z) < 100:
+                gyro_z = 0
             self.imu_msg_.angular_velocity.z = (gyro_z / 16.4) * (math.pi / 180.0)
             self.imu_msg_.angular_velocity_covariance = [
                 0.01, 0, 0,
                 0, 0.01, 0,
-                0, 0, 0.01
+                0, 0, 0.05
             ]
 
             # Set the header timestamp

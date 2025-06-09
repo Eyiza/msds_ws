@@ -1,11 +1,13 @@
 import os
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, RegisterEventHandler, TimerAction
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 from launch.substitutions import LaunchConfiguration
 from launch.conditions import IfCondition, UnlessCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.event_handlers import OnProcessExit
+
 
 def generate_launch_description():
     use_slam = LaunchConfiguration("use_slam")
@@ -119,16 +121,30 @@ def generate_launch_description():
             }.items(),
     )
 
+    # return LaunchDescription([
+    #         use_slam_arg,
+    #         hardware_interface,
+    #         controller,
+    #         imu_driver_node,
+    #         robot_localization,
+    #         laser_filter,
+    #         laser_driver,
+    #         safety_stop,
+    #         global_localization,
+    #         slam,
+    #         navigation
+    #     ])
     return LaunchDescription([
-            use_slam_arg,
-            hardware_interface,
-            controller,
-            imu_driver_node,
-            robot_localization,
-            laser_filter,
-            laser_driver,
-            safety_stop,
-            global_localization,
-            slam,
-            navigation
-        ])
+        use_slam_arg,
+
+        hardware_interface,      # Arduino
+        controller,              # ros2_control
+        imu_driver_node,         # MPU6050
+        laser_driver,            # RPLiDAR
+        laser_filter,
+        safety_stop,
+
+        TimerAction(period=3.0, actions=[robot_localization]),
+        TimerAction(period=6.0, actions=[global_localization, slam]),
+        TimerAction(period=10.0, actions=[navigation])
+    ])

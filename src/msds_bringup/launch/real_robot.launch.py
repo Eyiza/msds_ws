@@ -41,7 +41,7 @@ def generate_launch_description():
         executable="mpu6050_driver.py"
     )
 
-    robot_localization = Node(
+    local_localization = Node(
         package="robot_localization",
         executable="ekf_node",
         name="ekf_filter_node",
@@ -121,30 +121,31 @@ def generate_launch_description():
             }.items(),
     )
 
-    # return LaunchDescription([
-    #         use_slam_arg,
-    #         hardware_interface,
-    #         controller,
-    #         imu_driver_node,
-    #         robot_localization,
-    #         laser_filter,
-    #         laser_driver,
-    #         safety_stop,
-    #         global_localization,
-    #         slam,
-    #         navigation
-    #     ])
     return LaunchDescription([
-        use_slam_arg,
+            use_slam_arg,
+            hardware_interface,
+            imu_driver_node,
+            controller,
+            local_localization,
+            laser_filter,
+            laser_driver,
+            safety_stop,
+            # global_localization,
+            # slam,
+            # navigation
+        ])
 
-        hardware_interface,      # Arduino
-        controller,              # ros2_control
-        imu_driver_node,         # MPU6050
-        laser_driver,            # RPLiDAR
-        laser_filter,
-        safety_stop,
+    # return LaunchDescription([
+    #     use_slam_arg,
 
-        TimerAction(period=3.0, actions=[robot_localization]),
-        TimerAction(period=6.0, actions=[global_localization, slam]),
-        TimerAction(period=10.0, actions=[navigation])
-    ])
+    #     hardware_interface,      # Arduino
+    #     imu_driver_node,         # MPU6050
+    #     controller,              # ros2_control
+    #     laser_driver,            # RPLiDAR
+    #     laser_filter,
+    #     safety_stop,
+
+    #     TimerAction(period=5.0, actions=[local_localization]),
+    #     TimerAction(period=10.0, actions=[global_localization, slam]),
+    #     # TimerAction(period=10.0, actions=[navigation])
+    # ])

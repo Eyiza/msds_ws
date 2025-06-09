@@ -36,7 +36,7 @@ global_costmap: # This is the global costmap configuration for the robot. Same a
       global_frame: map
       robot_base_frame: base_link
       use_sim_time: true
-      robot_radius: 0.255 # The robot can be approximated with a circle with this radius in meters.
+      robot_radius: 0.3 # The robot can be approximated with a circle with this radius in meters.
       resolution: 0.05 # Size of each cell composing the costmap grid in meters. Each cell is a square of size resolution x resolution.
       track_unknown_space: true # If true, the costmap will track unknown space incase it's lost.
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"] # List of plugins / costmap layers to be used in the costmap. The order is important!
@@ -69,6 +69,6 @@ global_costmap: # This is the global costmap configuration for the robot. Same a
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0 # How much the cost of the cells is scaled. The higher the value, the more the cost of the cells is inflated.
         # The cost of the cells is inflated to create a buffer around the obstacles. This buffer is used to avoid collisions with the obstacles.
-        inflation_radius: 0.655 # Radius of the inflation in meters. The cost of the cells will be inflated to this radius. It should be at least equal or greater than the robot radius.
+        inflation_radius: 0.7 # Radius of the inflation in meters. The cost of the cells will be inflated to this radius. It should be at least equal or greater than the robot radius.
       always_send_full_costmap: True # If true, the costmap will always be sent in full, even if it is not updated.
  

@@ -4,6 +4,8 @@ from ament_index_python.packages import get_package_share_directory
 from launch_ros.actions import Node
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
+from launch.actions import TimerAction
+
 
 '''
 This launch file is used to start the SLAM Toolbox and Map Server nodes for the msds robot.
@@ -79,7 +81,7 @@ def generate_launch_description():
             {"node_names": lifecycle_nodes}, # Nodes to manage
             {"use_sim_time": use_sim_time}, 
             {"autostart": True}, # Automatically start the nodes
-            {"bond_timeout": 10.0}
+            {"bond_timeout": 30.0}
         ],
     )
 
@@ -88,5 +90,9 @@ def generate_launch_description():
         slam_config_arg,
         nav2_map_saver,
         slam_toolbox,
-        nav2_lifecycle_manager,
+        # nav2_lifecycle_manager,
+        TimerAction(
+            period=5.0,  # delay in seconds
+            actions=[nav2_lifecycle_manager]
+        )
     ])

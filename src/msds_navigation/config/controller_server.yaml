@@ -13,7 +13,7 @@ controller_server: # Node for the controller server
     # The goal checker plugins are responsible for checking if the robot has reached its goal.
     controller_plugins: ["FollowPath"] # List of controller plugins to use
     # These plugins are responsible for controlling the robot's movement based on the planned path.
-    odom_topic: /msds_controller/odom # topic to subscribe to for the robot's odometry information
+    odom_topic: /odometry/filtered # topic to subscribe to for the robot's odometry information
 
     # !-- Plugin Configurations --!
 
@@ -75,12 +75,12 @@ local_costmap:
       width: 3
       height: 3
       resolution: 0.05
-      robot_radius: 0.255
+      robot_radius: 0.3
       plugins: ["obstacle_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.655
+        inflation_radius: 0.7
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True

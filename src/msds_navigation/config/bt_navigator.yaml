@@ -3,10 +3,10 @@ bt_navigator: # Nav2 Behavior Tree Navigator
     use_sim_time: true # Set to true if using simulation time
     global_frame: map # The global frame in which the robot operates
     robot_base_frame: base_link # The frame of the robot base
-    odom_topic: /msds_controller/odom # The topic to subscribe to for odometry data
+    odom_topic: /odometry/filtered # The topic to subscribe to for odometry data
     transform_tolerance: 0.3 # Tolerance for transforms in seconds
     default_server_timeout: 1000 # Timeout for each action server calls in milliseconds
     bt_loop_duration: 10 # Frequency/rate in which the behavior tree will generate a new tick signal in milliseconds
     wait_for_service_timeout: 1000 # Timeout each service client will use inorder to wait for the server response in milliseconds
-    default_nav_to_pose_bt_xml: "/home/eyiza/Desktop/msds_ws/src/msds_navigation/behavior_tree/simple_navigation_w_replanning_and_recovery.xml" # Path to the default behavior tree XML file for navigation to a pose
-    default_nav_through_poses_bt_xml: "/home/eyiza/Desktop/msds_ws/src/msds_navigation/behavior_tree/simple_navigation_w_replanning_and_recovery.xml" # Path to the default behavior tree XML file for navigation through poses
+    default_nav_to_pose_bt_xml: "/home/eyiza/msds_ws/src/msds_navigation/behavior_tree/simple_navigation_w_replanning_and_recovery.xml" # Path to the default behavior tree XML file for navigation to a pose
+    default_nav_through_poses_bt_xml: "/home/eyiza/msds_ws/src/msds_navigation/behavior_tree/simple_navigation_w_replanning_and_recovery.xml" # Path to the default behavior tree XML file for navigation through poses

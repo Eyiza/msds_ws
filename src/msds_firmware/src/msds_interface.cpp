@@ -233,7 +233,7 @@ namespace msds_firmware
       // Publish the wheel states
       sensor_msgs::msg::JointState msg;
       msg.header.stamp = rclcpp::Clock().now();
-      msg.name = {"front_left_wheel_joint", "front_right_wheel_joint", "rear_right_wheel_joint", "rear_left_wheel_joint"};
+      msg.name = {"front_left_wheel_joint", "front_right_wheel_joint", "rear_left_wheel_joint", "rear_right_wheel_joint"};
       msg.position = position_states_;
       msg.velocity = velocity_states_;
       wheel_state_pub_->publish(msg);
@@ -254,7 +254,7 @@ namespace msds_firmware
     // Implement communication protocol with the Arduino
     std::stringstream message_stream;
     // const std::vector<std::string> wheel_labels = {"fr", "fl", "rr", "rl"};
-    const std::vector<std::string> wheel_labels = {"fl", "fr", "rr", "rl"};
+    const std::vector<std::string> wheel_labels = {"fl", "fr", "rl", "rr"};
 
     for (size_t i = 0; i < velocity_commands_.size(); ++i) {
       char sign = velocity_commands_.at(i) >= 0 ? 'p' : 'n';

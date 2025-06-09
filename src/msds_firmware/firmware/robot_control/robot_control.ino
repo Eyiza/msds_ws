@@ -140,10 +140,10 @@ void loop() {
     cmd.trim();
 
     // Serial.println("CMD RECEIVED: " + cmd);
-    parseWheelCommand(cmd, "fl", &cmd_vel_FR, FR_IN1, FR_IN2);
-    parseWheelCommand(cmd, "fr", &cmd_vel_FL, FL_IN1, FL_IN2);
-    parseWheelCommand(cmd, "rr", &cmd_vel_RR, RR_IN1, RR_IN2);
+    parseWheelCommand(cmd, "fl", &cmd_vel_FL, FL_IN1, FL_IN2);
+    parseWheelCommand(cmd, "fr", &cmd_vel_FR, FR_IN1, FR_IN2);
     parseWheelCommand(cmd, "rl", &cmd_vel_RL, RL_IN1, RL_IN2);
+    parseWheelCommand(cmd, "rr", &cmd_vel_RR, RR_IN1, RR_IN2);
   }
 
   // Encoder
@@ -156,7 +156,7 @@ void loop() {
     // The formula is: (counts / counts_per_revolution) * (2 * pi / time_interval)
     // The 10 is because we are measuring in 100ms intervals, and the 60 is to convert to minutes
     // The 0.10472 is the conversion from rpm to rad/s. 1 rpm = 0.10472 rad/s
-    // The 385.0 is the number of counts per revolution for the encoder
+    // The 616.0 is the number of counts per revolution for the encoder - 11 pulses per revolution * 56 counts per pulse
     meas_vel_FL = (countFL * conversion); 
     meas_vel_FR = (countFR * conversion); 
     meas_vel_RL = (countRL * conversion); 
@@ -185,8 +185,9 @@ void loop() {
     // Send encoder data to serial
     String encoder_read = "fl" + sign_FL + String(meas_vel_FL) + "," +
                           "fr" + sign_FR + String(meas_vel_FR) + "," +
-                          "rr" + sign_RR + String(meas_vel_RR) + "," +
-                          "rl" + sign_RL + String(meas_vel_RL);
+                          "rl" + sign_RL + String(meas_vel_RL) + "," +
+                          "rr" + sign_RR + String(meas_vel_RR);
+                          
       
     Serial2.println(encoder_read);
     // Serial.println(encoder_read);

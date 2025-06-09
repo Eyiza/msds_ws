@@ -31,7 +31,7 @@
         </xacro:unless>
 
         <!--
-            Define joints that needs to be conrolled. 
+            Define joints that needs to be controlled. 
             Remember that the name of the joint must be the same as the name of the joint in the urdf file.
             Also recall, to connect ros2 control to the hardware, we need to define the command and state interfaces for each joint.
             The command_interface defines how we want to write messages to the hardware.

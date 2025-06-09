@@ -5,7 +5,7 @@ ekf_filter_node:
       # frequency specified here, regardless of whether it receives more measurements. Defaults to 30 if unspecified.
       frequency: 30.0
       sensor_timeout: 0.1
-
+ 
       # Use this if you are operating in a planar
       # environment and want to ignore the effect of small variations in the ground plane that might otherwise be detected
       # by, for example, an IMU. Defaults to false if unspecified.
@@ -30,16 +30,16 @@ ekf_filter_node:
       #  vx, vy, vz,
       #  vroll, vpitch, vyaw,
       #  ax, ay, az]
-      # odom0_config: [true, true, false,
-      #                false, false, true,
+      odom0_config: [true, true, false,    
+                   false, false, false,  
+                   true, true, false, 
+                   false, false, false, 
+                   false, false, false]
+      # odom0_config: [false, false, false,
+      #                false, false, false,
       #                true,  true,  false,
       #                false, false, true,
       #                false, false, false]
-      odom0_config: [false, false, false,
-                     false, false, false,
-                     true,  true,  false,
-                     false, false, true,
-                     false, false, false]
                      # All the values set to false means that the filter will not use the data from the odometry message and would instead use the filter to reestimate them
                      # x, y, z are the position coordinates in the x, y and z directions respectively
                      # roll, pitch, yaw are the orientation angles in the roll, pitch and yaw directions respectively
@@ -54,7 +54,7 @@ ekf_filter_node:
                     false, false, false,
                     false, false, false,
                     false, false, true,
-                    true,  true, false]
+                    false,  false, false]
       # imu0_config: [false, false, false,
       #               false, false, true,
       #               false, false, false,

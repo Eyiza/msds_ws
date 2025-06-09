@@ -111,7 +111,7 @@ def generate_launch_description():
 
     navigation = IncludeLaunchDescription(
         os.path.join(
-            get_package_share_directory("bumperbot_navigation"),
+            get_package_share_directory("msds_navigation"),
             "launch",
             "navigation.launch.py"
         ),
@@ -122,9 +122,9 @@ def generate_launch_description():
             hardware_interface,
             controller,
             imu_driver_node,
-            laser_filter,
-            laser_driver,
-            # robot_localization,
+            # laser_filter,
+            # laser_driver,
+            robot_localization,
             # safety_stop,
             # localization,
             # slam

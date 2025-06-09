@@ -32,8 +32,8 @@ class MecanumOdometry(Node):
 
         self.fl_prev_pos = 0.0 # Front Left Previous Position
         self.fr_prev_pos = 0.0 # Front Right Previous Position
-        self.rr_prev_pos = 0.0 # Rear Right Previous Position
         self.rl_prev_pos = 0.0 # Rear Left Previous Position
+        self.rr_prev_pos = 0.0 # Rear Right Previous Position
 
         # Initialize the previous time
         self.prev_time = self.get_clock().now()
@@ -105,8 +105,8 @@ class MecanumOdometry(Node):
             
             # Calculate the linear and angular velocities - Mecanum forward kinematics
             v_x = 0.25 * self.wheel_radius * (wheel_velocities[0] + wheel_velocities[1] + wheel_velocities[2] + wheel_velocities[3])
-            v_y = 0.25 * self.wheel_radius * (-wheel_velocities[0] + wheel_velocities[1] - wheel_velocities[2] + wheel_velocities[3])
-            w_z =  0.25 * self.wheel_radius / self.wheel_separation_base * (-wheel_velocities[0] + wheel_velocities[1] + wheel_velocities[2] - wheel_velocities[3])
+            v_y = -0.25 * self.wheel_radius * (-wheel_velocities[0] + wheel_velocities[1] + wheel_velocities[2] - wheel_velocities[3])
+            w_z =  0.25 * self.wheel_radius / self.wheel_separation_base * (-wheel_velocities[0] + wheel_velocities[1] - wheel_velocities[2] + wheel_velocities[3])
 
             # Calculate the change in position
             delta_x = (v_x * math.cos(self.theta) - v_y * math.sin(self.theta)) * dt
@@ -133,8 +133,8 @@ class MecanumOdometry(Node):
             # Calculate the change in position
             delta_fl = wheel_positions[0] - self.fl_prev_pos
             delta_fr = wheel_positions[1] - self.fr_prev_pos
-            delta_rr = wheel_positions[2] - self.rr_prev_pos
-            delta_rl = wheel_positions[3] - self.rl_prev_pos
+            delta_rl = wheel_positions[2] - self.rl_prev_pos
+            delta_rr = wheel_positions[3] - self.rr_prev_pos
 
             # Extract the time from the joint states
             current_time = Time.from_msg(msg.header.stamp)
@@ -147,8 +147,8 @@ class MecanumOdometry(Node):
             # Update the previous positions
             self.fl_prev_pos = wheel_positions[0]
             self.fr_prev_pos = wheel_positions[1]
-            self.rr_prev_pos = wheel_positions[2]
-            self.rl_prev_pos = wheel_positions[3]
+            self.rl_prev_pos = wheel_positions[2]
+            self.rr_prev_pos = wheel_positions[3]
 
             # Update the previous time
             self.prev_time = current_time
@@ -156,17 +156,17 @@ class MecanumOdometry(Node):
             # Calculate the rotational speed of each wheel
             rs_fl = delta_fl / dt
             rs_fr = delta_fr / dt
-            rs_rr = delta_rr / dt
             rs_rl = delta_rl / dt 
+            rs_rr = delta_rr / dt
 
             # Calculate the linear and angular velocities - Mecanum forward kinematics
             v_x = 0.25 * self.wheel_radius * (rs_fl + rs_fr + rs_rr + rs_rl)
-            v_y = 0.25 * self.wheel_radius * (-rs_fl + rs_fr - rs_rr + rs_rl)
-            w_z =  0.25 * self.wheel_radius / self.wheel_separation_base * (-rs_fl + rs_fr + rs_rr - rs_rl)    
+            v_y = -0.25 * self.wheel_radius * (-rs_fl + rs_fr + rs_rl - rs_rr)
+            w_z =  0.25 * self.wheel_radius / self.wheel_separation_base * (-rs_fl + rs_fr - rs_rl + rs_rr)    
 
             # Calculate the position increment 
             delta_x = 0.25 * self.wheel_radius * (delta_fl + delta_fr + delta_rr + delta_rl)
-            delta_y = 0.25 * self.wheel_radius * (-delta_fl + delta_fr - delta_rr + delta_rl)
+            delta_y = -0.25 * self.wheel_radius * (-delta_fl + delta_fr - delta_rr + delta_rl)
             delta_theta =  0.25 * self.wheel_radius / self.wheel_separation_base * (-delta_fl + delta_fr + delta_rr - delta_rl)            
             
             # Update the odometry data

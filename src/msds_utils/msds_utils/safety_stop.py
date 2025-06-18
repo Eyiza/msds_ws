@@ -9,6 +9,7 @@ from std_msgs.msg import Bool
 from twist_mux_msgs.action import JoyTurbo
 from rclpy.action import ActionClient
 from visualization_msgs.msg import Marker, MarkerArray
+from geometry_msgs.msg import TwistStamped
 
 '''
     This script implements a safety stop mechanism for a robot using laser scan data.
@@ -61,6 +62,12 @@ class SafetyStop(Node):
             MarkerArray, 'zones', 10
         )
 
+        self.controller_pub = self.create_publisher(
+            TwistStamped,
+            "/msds_controller/reference",
+            10
+        )
+
         # Create action clients for decreasing and increasing speed
         # These action clients would send goals to the twist mux action server
         self.decrease_speed_client = ActionClient(self, JoyTurbo, 'joy_turbo_decrease')
@@ -106,11 +113,6 @@ class SafetyStop(Node):
         
         self.zones.markers = [warning_zone, danger_zone]
 
-        self.standoff_angles = []  # Will store detected standoff angles
-        self.standoff_update_threshold = 5  # Degrees tolerance for standoff detection
-        self.scan_count = 0
-        self.standoff_detection_phase = True  # Start in calibration mode
-
     # Execute when a new laser scan message is received
     def laser_callback(self, msg: LaserScan):
         self.state = State.FREE
@@ -142,10 +144,13 @@ class SafetyStop(Node):
                 # Set the transparency of the markers to indicate the state. ID 0 is the warning zone and ID 1 is the danger zone
                 self.zones.markers[0].color.a = 1.0
                 self.zones.markers[1].color.a = 0.5
+
             elif self.state == State.DANGER: # Robot is in danger
                 is_safety_stop.data = True
                 self.zones.markers[0].color.a = 1.0 # If an object is the danger zone, it is also in the warning zone
                 self.zones.markers[1].color.a = 1.0
+                self.send_zero_twist() # Send a zero twist to stop the robot
+
             elif self.state == State.FREE: # Robot is free to move
                 is_safety_stop.data = False
                 self.increase_speed_client.send_goal_async(JoyTurbo.Goal()) # Increase speed
@@ -166,6 +171,21 @@ class SafetyStop(Node):
 
         self.zones_pub.publish(self.zones) # Publish Marker zones
 
+
+    def send_zero_twist(self):
+        twist = TwistStamped()
+
+        twist.header.stamp = self.get_clock().now().to_msg()
+
+        twist.twist.linear.x = 0.0
+        twist.twist.linear.y = 0.0
+        twist.twist.linear.z = 0.0
+
+        twist.twist.angular.x = 0.0
+        twist.twist.angular.y = 0.0
+        twist.twist.angular.z = 0.0
+
+        self.controller_pub.publish(twist)
 
 def main():
     rclpy.init()

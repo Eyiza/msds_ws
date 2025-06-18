@@ -10,7 +10,8 @@ The robot is designed to navigate through hospital environments, delivering supp
 - **Wheel Diameter**: 97mm
 - **Wheel Width**: 40mm
 - **Wheel RPM**: 178
-- **Max Speed**: 0.9m/s
+- **Max Linear Speed**: 0.9m/s
+- **Max Angular Speed**: 2.58rad/s
 - **Base Material**: Acrylic and Wood
 - **Base Thickness**: 14mm
 - **Wall Material**: Foam Board
@@ -30,4 +31,38 @@ The robot is designed to navigate through hospital environments, delivering supp
 <!-- - **Simulation**: The project includes a simulation environment for testing and validation of the robot's capabilities before deployment in real-world scenarios. -->
 - **Visualization**: The system provides visualization tools for monitoring the robot's status, path, and environment.
 
-<!-- ### Installation -->
+### Installation
+1. **Clone the Repository**: 
+   ```bash
+   git clone https://github.com/Eyiza/msds_ws.git
+   ```
+2. **Navigate to the Workspace**:
+   ```bash
+   cd msds_ws
+   ```
+3. **Install Dependencies**:
+   ```bash
+   sudo rosdep init
+   rosdep install --from-paths src --ignore-src -r -y
+   ```
+4. **Build the Workspace**:
+   ```bash
+   colcon build
+   ```
+5. **Source the Workspace**:
+   ```bash
+   source install/setup.bash
+   ```
+6. **Launch the Simulated or Real Robot**:
+   ```bash
+   ros2 launch msds_bringup simulated_robot.launch.py
+   ```
+   ```bash
+   ros2 launch msds_bringup real_robot.launch.py
+   ```
+
+<!-- ### Contributing
+Contributions are welcome! Please fork the repository and submit a pull request with your changes. Ensure that your code adheres to the project's coding standards and includes appropriate documentation. -->
+
+### Contact
+For any questions or issues, please open an issue on the GitHub repository or contact the project maintainers at [eyiza.mich@gmail.com](mailto:eyiza.mich@gmail.com)

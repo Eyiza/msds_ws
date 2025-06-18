@@ -41,6 +41,17 @@ def generate_launch_description():
         executable="mpu6050_driver.py"
     )
 
+    joystick = IncludeLaunchDescription(
+        os.path.join(
+            get_package_share_directory("msds_controller"),
+            "launch",
+            "joystick_teleop.launch.py"
+        ),
+        launch_arguments={
+            "use_sim_time": "False"
+        }.items()
+    )
+
     local_localization = Node(
         package="robot_localization",
         executable="ekf_node",
@@ -126,6 +137,7 @@ def generate_launch_description():
             hardware_interface,
             imu_driver_node,
             controller,
+            joystick,
             local_localization,
             laser_filter,
             laser_driver,

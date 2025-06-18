@@ -30,6 +30,17 @@ def generate_launch_description():
         )
     )
 
+    joystick = IncludeLaunchDescription(
+        os.path.join(
+            get_package_share_directory("msds_controller"),
+            "launch",
+            "joystick_teleop.launch.py"
+        ),
+        launch_arguments={
+            "use_sim_time": "True"
+        }.items()
+    )
+
     # Safety stop node to ensure the robot stops in case of emergency
     safety_stop = Node(
         package="msds_utils",
@@ -123,6 +134,7 @@ def generate_launch_description():
     return LaunchDescription([
         use_slam_arg,
         gazebo_controller,
+        joystick,
         laser_filter,
         safety_stop,
         # local_localization,

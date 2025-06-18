@@ -61,7 +61,8 @@ Check number of connected devices:
 Provide the permission to the Raspberry Pi user to access the input ports:
 - create new rules files within the rules folder in the etc. udev.
 - cd /etc/udev/rules.d/
-- sudo touch 81-event.rules :
+- For the input / bluetooth devices:
+  - sudo touch 81-event.rules
   - sudo nano 81-event.rules
   - Add the following line to the file:
   - SUBSYSTEM=="input", KERNEL=="event*", GROUP="raspberry", MODE="0660"

@@ -1,0 +1,10 @@
+joystick:
+  ros__parameters:
+    # This contains all the parameters we want to configure for the joystick node
+    device_id: 0
+    device_name: ""
+    deadzone: 0.5 # The deadzone is the area around the center of the joystick where no movement is detected
+    # This is useful for preventing accidental movement when the joystick is not being used
+    autorepeat_rate: 20.0 # The rate at which the joystick will repeat the button presses
+    sticky_buttons: false # If true, the joystick will remember the last button pressed and will repeat it until a new button is pressed
+    coalesce_interval_ms: 1 # The interval at which the joystick will coalesce the button presses

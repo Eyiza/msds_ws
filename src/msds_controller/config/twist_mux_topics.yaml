@@ -10,10 +10,10 @@ twist_mux:
         topic   : cmd_vel # Where the teleop velocity command is published to
         timeout : 0.5
         priority: 90
-      # joystick:
-      #   topic   : joy_vel # Where the joystick velocity command is published to
-      #   timeout : 0.5 
-      #   priority: 99 
+      joystick:
+        topic   : joy_vel # Where the joystick velocity command is published to
+        timeout : 0.5 
+        priority: 99 
       keyboard:
         topic   : key_vel # Where the keyboard velocity command is published to
         timeout : 0.5

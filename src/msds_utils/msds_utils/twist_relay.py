@@ -27,12 +27,30 @@ class TwistRelayNode(Node):
             10
         )
 
+        # To interface between the joystick and twist relay
+        self.joy_sub = self.create_subscription(
+            TwistStamped,
+            "/input_joy/cmd_vel_stamped",
+            self.joy_twist_callback,
+            10
+        )
+        # The final output to the joystick
+        self.joy_pub = self.create_publisher(
+            Twist,
+            "/input_joy/cmd_vel",
+            10
+        )
+
     def controller_twist_callback(self, msg):
         twist_stamped = TwistStamped()
         twist_stamped.header.stamp = self.get_clock().now().to_msg()
         twist_stamped.twist = msg
         self.controller_pub.publish(twist_stamped)
 
+    def joy_twist_callback(self, msg):
+        twist = Twist()
+        twist = msg.twist
+        self.joy_pub.publish(twist)
 
 def main(args=None):
     rclpy.init(args=args)

@@ -1,0 +1,32 @@
+joy_teleop:
+  ros__parameters:
+    move:
+      type: topic
+      interface_type: geometry_msgs/msg/TwistStamped
+      topic_name: input_joy/cmd_vel_stamped # The topic name to which the joystick will publish the velocity commands
+      deadman_buttons: [5] # The indicates the button of our joystick we need to keep pressed in order to move the robot. This is the right R1 R2 button of the ps4 joystick
+      # If for any reason, we stop pressing the button, the robot will stop moving.
+      # This is useful for preventing the robot from moving when the joystick is not being used
+
+      # axis mappings indicates which keys of the joystick we want to map with the velocity commands for the robot
+      axis_mappings:
+        # output = scale * joystick_value + offset
+        twist-linear-x:
+          axis: 1 # The axis of the joystick we want to use for the linear velocity in the x direction. The left rotatable button of the ps4 joystick - Left stick vertical
+          scale: 0.8 # The scale defines how much velocity to apply based on full joystick deflection. It is a multiplier for the joystick value. For example, if the scale is 0.8 and the joystick is fully deflected, the velocity will be 0.8 m/s
+          offset: 0.0 # The offset is the value we want to add to the value of the joystick
+        twist-linear-y:
+          axis: 0 # The axis of the joystick we want to use for the linear velocity in the y direction. The left rotatable button of the ps4 joystick - Left stick horizontal
+          scale: 0.8
+          offset: 0.0
+        twist-angular-z:
+          axis: 3 # The axis of the joystick we want to use for the angular velocity in the z direction. The right rotatable button of the ps4 joystick - Right stick horizontal
+          scale: 2.0 
+          offset: 0.0
+
+# axis 0: Left stick left/right → lateral (Y)
+# axis 1: Left stick up/down → forward/backward (X)
+# axis 2: L2 trigger
+# axis 3: Right stick left/right → rotation (Z)
+# axis 4: Right stick up/down → elevation (Y)
+# axis 5: R2 trigger

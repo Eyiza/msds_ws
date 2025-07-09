@@ -53,9 +53,9 @@ def generate_launch_description():
         name="map_saver_server",
         output="screen",
         parameters=[
-            {"save_map_timeout": 5.0}, # 5second. It is the time to wait for the map to be saved
+            {"save_map_timeout": 5.0}, # 5 second. It is the time to wait for the map to be saved
             {"use_sim_time": use_sim_time},
-            {"free_thresh_default", "0.196"}, # Default value for free space threshold
+            {"free_thresh_default", "0.25"}, # Default value for free space threshold
             {"occupied_thresh_default", "0.65"}, # Default value for occupied space threshold
         ],
     )

@@ -52,5 +52,5 @@ amcl: # Node name to configure
     min_particles: 500 # Minimum number of particles to use
     recovery_alpha_fast: 0.0 # To randoomly generate new particles in new locations all around the map not just in the area of the robot
     recovery_alpha_slow: 0.0 # To randoomly generate new particles in new locations all around the map not just in the area of the robot
-    update_min_a: 0.2 # Minimum angular movement the robot has to perform to trigger a particle update
-    update_min_d: 0.25 # Minimum linear movement the robot has to perform to trigger a particle update
+    update_min_a: 0.05 # Minimum angular movement the robot has to perform to trigger a particle update
+    update_min_d: 0.05 # Minimum linear movement the robot has to perform to trigger a particle update

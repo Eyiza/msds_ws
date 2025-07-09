@@ -142,9 +142,9 @@ def generate_launch_description():
             laser_filter,
             laser_driver,
             safety_stop,
-            # global_localization,
-            # slam,
-            # navigation
+            global_localization,
+            slam,
+            navigation
         ])
 
     # return LaunchDescription([

@@ -36,6 +36,12 @@ To use bluetooth:
 - bluetoothctl info <device_id> - to get information about the device.
 - bluetoothctl disconnect <device_id> - to disconnect from the device.
 - bluetoothctl remove <device_id> - to remove the device from the trusted list.
+OR:
+- sudo bluetoothctl
+- power on
+- agent on
+- default-agent
+- scan on
 
 To make connection between the raspberry pi and the bluetooth trusted device:
 - sudo nano /etc/bluetooth/main.conf

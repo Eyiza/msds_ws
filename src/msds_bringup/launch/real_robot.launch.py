@@ -144,7 +144,7 @@ def generate_launch_description():
             safety_stop,
             global_localization,
             slam,
-            navigation
+            # navigation
         ])
 
     # return LaunchDescription([

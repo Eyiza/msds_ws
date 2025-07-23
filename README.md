@@ -7,6 +7,8 @@ The robot is designed to navigate through hospital environments, delivering supp
 ### Properties
 - **Robot Type**: Mecanum Wheel Drive
 - **Robot Dimensions**: 300mm x 400mm
+- **Wheel Type**: Mecanum
+- **Wheel Count**: 4
 - **Wheel Diameter**: 97mm
 - **Wheel Width**: 40mm
 - **Wheel RPM**: 178
@@ -28,8 +30,8 @@ The robot is designed to navigate through hospital environments, delivering supp
 - **Mapping**: The system can create a map of the environment using sensor data, allowing for better navigation and obstacle avoidance.
 - **SLAM**: The project implements Simultaneous Localization and Mapping (SLAM) techniques to build a map of the environment while keeping track of the robot's location.
 - **Teleoperation**: The robot can be controlled remotely for manual operation and testing.
-<!-- - **Simulation**: The project includes a simulation environment for testing and validation of the robot's capabilities before deployment in real-world scenarios. -->
 - **Visualization**: The system provides visualization tools for monitoring the robot's status, path, and environment.
+<!-- - **Simulation**: The project includes a simulation environment for testing and validation of the robot's capabilities before deployment in real-world scenarios. -->
 
 ### Installation
 1. **Clone the Repository**: 
@@ -61,8 +63,12 @@ The robot is designed to navigate through hospital environments, delivering supp
    ros2 launch msds_bringup real_robot.launch.py
    ```
 
+### Related Projects
+- [MSDS Web App](https://github.com/Eyiza/MSDS): A web interface for monitoring and controlling the MSDS robot.
+- [MSDS CAD Design](https://a360.co/4b1KEEi): Fusion 360 design for the MSDS robot.
+
 <!-- ### Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your changes. Ensure that your code adheres to the project's coding standards and includes appropriate documentation. -->
 
 ### Contact
-For any questions or issues, please open an issue on the GitHub repository or contact the project maintainers at [eyiza.mich@gmail.com](mailto:eyiza.mich@gmail.com)
+For any questions or issues, please open an issue on the GitHub repository or contact the project maintainer at [eyiza.mich@gmail.com](mailto:eyiza.mich@gmail.com)

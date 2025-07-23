@@ -42,6 +42,18 @@ OR:
 - agent on
 - default-agent
 - scan on
+- pair <device_id>
+- trust <device_id>
+- connect <device_id>
+- info <device_id>
+- exit
+E.G:
+  bluetoothctl pair 98:B6:E9:64:47:9C
+
+  bluetoothctl trust 98:B6:E9:64:47:9C
+  bluetoothctl connect 98:B6:E9:64:47:9C
+  bluetoothctl info 98:B6:E9:64:47:9C
+
 
 To make connection between the raspberry pi and the bluetooth trusted device:
 - sudo nano /etc/bluetooth/main.conf

@@ -105,8 +105,8 @@ class MecanumOdometry(Node):
             
             # Calculate the linear and angular velocities - Mecanum forward kinematics
             v_x = 0.25 * self.wheel_radius * (wheel_velocities[0] + wheel_velocities[1] + wheel_velocities[2] + wheel_velocities[3])
-            v_y = -0.25 * self.wheel_radius * (-wheel_velocities[0] + wheel_velocities[1] + wheel_velocities[2] - wheel_velocities[3])
-            w_z =  0.25 * self.wheel_radius / self.wheel_separation_base * (-wheel_velocities[0] + wheel_velocities[1] - wheel_velocities[2] + wheel_velocities[3])
+            v_y = 0.25 * self.wheel_radius * (-wheel_velocities[0] + wheel_velocities[1] + wheel_velocities[2] - wheel_velocities[3])
+            w_z = 0.25 * self.wheel_radius / self.wheel_separation_base * (-wheel_velocities[0] + wheel_velocities[1] - wheel_velocities[2] + wheel_velocities[3])
 
             # Calculate the change in position
             delta_x = (v_x * math.cos(self.theta) - v_y * math.sin(self.theta)) * dt
@@ -161,24 +161,24 @@ class MecanumOdometry(Node):
 
             # Calculate the linear and angular velocities - Mecanum forward kinematics
             v_x = 0.25 * self.wheel_radius * (rs_fl + rs_fr + rs_rr + rs_rl)
-            v_y = -0.25 * self.wheel_radius * (-rs_fl + rs_fr + rs_rl - rs_rr)
+            v_y = 0.25 * self.wheel_radius * (-rs_fl + rs_fr + rs_rl - rs_rr)
             w_z =  0.25 * self.wheel_radius / self.wheel_separation_base * (-rs_fl + rs_fr - rs_rl + rs_rr)    
 
             # Calculate the position increment 
             delta_x = 0.25 * self.wheel_radius * (delta_fl + delta_fr + delta_rr + delta_rl)
-            delta_y = -0.25 * self.wheel_radius * (-delta_fl + delta_fr - delta_rr + delta_rl)
-            delta_theta =  0.25 * self.wheel_radius / self.wheel_separation_base * (-delta_fl + delta_fr + delta_rr - delta_rl)            
+            delta_y = 0.25 * self.wheel_radius * (-delta_fl + delta_fr - delta_rr + delta_rl)
+            delta_theta = 0.25 * self.wheel_radius / self.wheel_separation_base * (-delta_fl + delta_fr + delta_rr - delta_rl)            
             
             # Update the odometry data
             self.x += (delta_x * math.cos(self.theta)) - (delta_y * math.sin(self.theta))
-            self.y +=  (delta_x * math.sin(self.theta)) - (delta_y * math.cos(self.theta))
+            self.y +=  (delta_x * math.sin(self.theta)) + (delta_y * math.cos(self.theta))
             self.theta += delta_theta
 
             # Normalize the angle
             self.theta = math.atan2(math.sin(self.theta), math.cos(self.theta))
 
         else:
-            self.get_logger().warn("Joint state base is not velocity or position. Defaulting to velocity.")
+            self.get_logger().info("Joint state base is not velocity or position. Defaulting to velocity.")
             return
         
         # Compose and publish the odom message
@@ -198,6 +198,8 @@ class MecanumOdometry(Node):
         self.odom_data.twist.twist.linear.x = v_x
         self.odom_data.twist.twist.linear.y = v_y
         self.odom_data.twist.twist.angular.z = w_z
+
+        # self.get_logger().info(f"Odometry: v_x={v_x}, v_y={v_y}, w_z={w_z}")
 
         # Publish the odometry data
         self.odometry_publisher.publish(self.odom_data)

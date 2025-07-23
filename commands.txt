@@ -52,6 +52,7 @@ twist:
 scp -r src/ eyiza@192.168.1.154:/home/eyiza/msds_ws
 export ROS_DOMAIN_ID=2
 ls -l /dev/ttyUSB*
+ls /dev/input
 colcon build --parallel-workers 2
 
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
@@ -60,7 +61,10 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
 ros2 run key_teleop key_teleop --ros-args -p stamped:=false
 
 ros2 run tf2_tools view_frames
-ros2 run tf2_ros tf2_echo [source_frame] [target_frame]
+ros2 run tf2_ros tf2_echo [source_frame] [target_frame] 
+e.g 
 ros2 run tf2_ros tf2_echo base_footprint imu_link
+ros2 run tf2_ros tf2_echo odom base_footprint
+
 
 

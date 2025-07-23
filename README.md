@@ -4,6 +4,8 @@
 This is a ROS workspace for the MSDS (Medical Supply Delivery System) project. The project aims to develop an autonomous delivery system for medical supplies using a robot equipped with a Mecanum wheel drive system.
 The robot is designed to navigate through hospital environments, delivering supplies to various locations while avoiding obstacles and ensuring safety.
 
+![Product Design](image.png)
+
 ### Properties
 - **Robot Type**: Mecanum Wheel Drive
 - **Robot Dimensions**: 300mm x 400mm
@@ -55,7 +57,7 @@ The robot is designed to navigate through hospital environments, delivering supp
    ```bash
    source install/setup.bash
    ```
-6. **Launch the Simulated or Real Robot**:
+6. **Launch the Simulated or Real Robot**:<br>
    For the simulated robot:
    ```bash
    ros2 launch msds_bringup simulated_robot.launch.py

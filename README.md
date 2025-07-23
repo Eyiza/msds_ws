@@ -56,11 +56,17 @@ The robot is designed to navigate through hospital environments, delivering supp
    source install/setup.bash
    ```
 6. **Launch the Simulated or Real Robot**:
+   For the simulated robot:
    ```bash
    ros2 launch msds_bringup simulated_robot.launch.py
+   ros2 launch msds_bringup simulated_robot.launch.py use_slam:=true 
+   ros2 launch msds_bringup simulated_robot.launch.py world_name:=test
    ```
+   For the real robot:
    ```bash
    ros2 launch msds_bringup real_robot.launch.py
+   ros2 launch msds_bringup real_robot.launch.py use_slam:=true 
+   ros2 launch msds_bringup real_robot.launch.py map_name:=test
    ```
 
 ### Related Projects

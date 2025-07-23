@@ -74,6 +74,7 @@ The robot is designed to navigate through hospital environments, delivering supp
 ### Related Projects
 - [MSDS Web App](https://github.com/Eyiza/MSDS): A web interface for monitoring and controlling the MSDS robot.
 - [MSDS CAD Design](https://a360.co/4b1KEEi): Fusion 360 design for the MSDS robot.
+- [Simplified CAD Design](https://a360.co/46qzOro): Simplified Fusion 360 design with the minimum number of components needed for URDF file.
 
 <!-- ### Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your changes. Ensure that your code adheres to the project's coding standards and includes appropriate documentation. -->

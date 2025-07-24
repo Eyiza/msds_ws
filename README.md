@@ -4,7 +4,10 @@
 This is a ROS workspace for the MSDS (Medical Supply Delivery System) project. The project aims to develop an autonomous delivery system for medical supplies using a robot equipped with a Mecanum wheel drive system.
 The robot is designed to navigate through hospital environments, delivering supplies to various locations while avoiding obstacles and ensuring safety.
 
-![Product Design](image.png)
+<!-- ![Product Design](image.png) -->
+<p align="center">
+<img  alt="Product Design"  src="./image.png"  width="100%" />
+</p>
 
 ### Properties
 - **Robot Type**: Mecanum Wheel Drive
@@ -78,6 +81,9 @@ The robot is designed to navigate through hospital environments, delivering supp
 
 <!-- ### Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your changes. Ensure that your code adheres to the project's coding standards and includes appropriate documentation. -->
+
+### Acknowledgements
+- [Antonio Brandi's Bumperbot](https://github.com/AntoBrandi/Bumper-Bot) 
 
 ### Contact
 For any questions or issues, please open an issue on the GitHub repository or contact the project maintainer at [eyiza.mich@gmail.com](mailto:eyiza.mich@gmail.com)

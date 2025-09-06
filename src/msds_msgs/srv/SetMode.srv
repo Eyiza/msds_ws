@@ -1,0 +1,7 @@
+# To change the mode of the robot (e.g., standby, mapping, manual, delivery)
+# Request
+string mode
+---
+# Response
+bool success
+string message

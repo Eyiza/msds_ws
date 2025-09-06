@@ -27,18 +27,21 @@ def generate_launch_description():
         ]
     )
  
-    # Load the controller managers
-    # The first contoller defined in the yaml file is the joint state broadcaster.
+    # Load the controller managers - These are the plugins managed by the ros2_control_node
+
+    # The first controller defined in the yaml file is the joint state broadcaster.
+    # This lets RViz and other tools see wheel positions/velocities. It doesn't control anything.
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
         arguments=[
-            "joint_state_broadcaster", # Name of the controller you want to spwan
+            "joint_state_broadcaster", # Name of the controller you want to spawn
             "--controller-manager", # Namespace flag
             "/controller_manager", # Namespace
         ],
     )
 
+    # Custom mecanum wheel controller that takes in cmd_vel commands and converts them to individual wheel commands
     wheel_controller = Node(
         package="controller_manager",
         executable="spawner",

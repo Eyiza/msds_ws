@@ -31,12 +31,15 @@ def generate_launch_description():
         value_type=str,
     )
 
+    # Robot State Publisher runs the URDF file and publishes the tf frames and static transforms
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
         parameters=[{"robot_description": robot_description}],
     )
 
+    # Controller manager is like an empty shell that loads the controllers. It waits for controllers(plugins) to be spawned or activated.
+    # It exposes the velocity commands from the controller to the hardware interface
     controller_manager = Node(
         package="controller_manager",
         executable="ros2_control_node",

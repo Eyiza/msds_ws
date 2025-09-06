@@ -14,6 +14,9 @@ Serial Communication:
 Always: conda deactivate
 
 ros2 launch gz_ros2_control_demos mecanum_drive_example.launch.py
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+ros2 launch rosbridge_server main_rosbridge_launch.py
+
 
 ros2 launch msds_description display.launch.py
 ros2 launch msds_description gazebo.launch.py
@@ -66,5 +69,11 @@ e.g
 ros2 run tf2_ros tf2_echo base_footprint imu_link
 ros2 run tf2_ros tf2_echo odom base_footprint
 
+ros2 launch msds_bringup standby.launch.py
+ros2 launch msds_bringup mapping.launch.py
+ros2 launch msds_bringup delivery.launch.py
+ros2 launch msds_bringup manual.launch.py
 
+ros2 topic pub /set_mode std_msgs/String "{data: 'mapping'}"
+ros2 service call /set_mode msds_msgs/SetMode "{mode: 'mapping'}"
 

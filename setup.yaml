@@ -20,6 +20,8 @@ Installations and Commands:
 - sudo apt-get upgrade
 - sudo apt install bluez
 - sudo apt install ros-jazzy-teleop-twist-keyboard
+- sudo apt install ros-jazzy-rosbridge-server
+- sudo apt install ros-jazzy-rosbridge-suite
 
 To provide access to the serial port, add the user to the dialout group so that arduinos and other devices can be accessed:
 - sudo usermod -a -G dialout $USER
@@ -136,7 +138,7 @@ Install packages on your pc first to test properly before moving to your raspber
 
 Copy the packages to the raspberry pi:
   - cd Desktop/msds_ws
-  - scp -r src/ eyiza@192.168.1.154:/home/eyiza/msds_ws
+  - scp -r src/ bash_scripts/ eyiza@192.168.1.154:/home/eyiza/msds_ws
 
 Install missing dependencies:
   - Login to the raspberry pi
@@ -196,3 +198,47 @@ VS Code ssh setup:
   - Open the Command Palette (Ctrl+Shift+P) and type "Remote-SSH: Connect to Host..."
   - Enter the SSH connection details for your Raspberry Pi
   - Once connected, you can open a terminal in VS Code and work with your Raspberry Pi files directly
+
+To Enable automatic launch on boot:
+  - Necessary bash scripts are in the ~/msds_ws/bash_scripts folder:
+    - cd ~/msds_ws/bash_scripts
+    - Make the scripts executable:
+      - sudo chmod +x launch.sh
+      - sudo chmod +x mode_set.sh
+  - Crate a systemd service file:
+    - sudo nano /etc/systemd/system/msds_launch.service
+    - Add the following content to the file:
+      ```
+      [Unit]
+      Description=MSDS Launch Service
+      After=network.target
+
+      [Service]
+      Type=simple
+      ExecStart=/home/eyiza/msds_ws/bash_scripts/launch.sh
+      Restart=on-failure # or 'always' if you want it to restart on any exit
+      User=eyiza
+      ENVIRONMENT=DISPLAY=:0
+      # Restart=always
+      # WorkingDirectory=/home/eyiza/msds_ws
+      # StandardOutput=inherit
+      # StandardError=inherit
+
+      [Install]
+      WantedBy=multi-user.target
+      ```
+    - Save and exit the file (Ctrl + O, Enter, Ctrl + X)
+  - Enable it to run on startup:
+    - sudo systemctl daemon-reexec
+    - sudo systemctl daemon-reload
+    - sudo systemctl enable msds_launch.service
+  - Start the service immediately (optional):
+    - sudo systemctl start msds_launch.service
+  - Reboot the Raspberry Pi to test if the script runs on startup:
+    - sudo reboot
+  - To change modes after booting up, use the mode_set.sh script:
+    - cd ~/msds_ws/bash_scripts
+    - ./mode_set.sh <mode>
+    - e.g ./mode_set.sh mapping
+  - To check the status of the service:
+    - sudo systemctl status msds_launch.service

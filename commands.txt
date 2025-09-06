@@ -76,4 +76,4 @@ ros2 launch msds_bringup manual.launch.py
 
 ros2 topic pub /set_mode std_msgs/String "{data: 'mapping'}"
 ros2 service call /set_mode msds_msgs/SetMode "{mode: 'mapping'}"
-
+./msds_ws/bash_scripts/mode_set.sh

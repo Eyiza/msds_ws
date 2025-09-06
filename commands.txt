@@ -52,7 +52,7 @@ twist:
     y: 0.0
     z: 0.2" 
 
-scp -r src/ eyiza@192.168.1.154:/home/eyiza/msds_ws
+scp -r src/ bash_scripts/ eyiza@192.168.1.154:/home/eyiza/msds_ws
 export ROS_DOMAIN_ID=2
 ls -l /dev/ttyUSB*
 ls /dev/input

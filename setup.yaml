@@ -19,9 +19,6 @@ Installations and Commands:
 - sudo apt-get update
 - sudo apt-get upgrade
 - sudo apt install bluez
-- sudo apt install ros-jazzy-teleop-twist-keyboard
-- sudo apt install ros-jazzy-rosbridge-server
-- sudo apt install ros-jazzy-rosbridge-suite
 
 To provide access to the serial port, add the user to the dialout group so that arduinos and other devices can be accessed:
 - sudo usermod -a -G dialout $USER
@@ -153,6 +150,9 @@ Install missing dependencies:
   - pip install pyserial or sudo apt install python3-serial
   - pip install smbus or sudo apt install python3-smbus
   - sudo apt-get install libserial-dev
+  - sudo apt install ros-jazzy-teleop-twist-keyboard
+  - sudo apt install ros-jazzy-rosbridge-server
+  - sudo apt install ros-jazzy-rosbridge-suite
 
 Build the packages:
   - cd ~/msds_ws

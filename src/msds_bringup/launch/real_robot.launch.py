@@ -6,6 +6,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch.substitutions import LaunchConfiguration
 from launch.conditions import IfCondition, UnlessCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch_xml.launch_description_sources import XMLLaunchDescriptionSource
 from launch.event_handlers import OnProcessExit
 
 
@@ -65,10 +66,10 @@ def generate_launch_description():
         package="msds_utils",
         executable="laser_filter",
         parameters=[{
-            "standoff_angles": [-124.58, -124.08, -53.67, -53.18, -52.68, -52.18, 
-                                3.75, 4.24, 4.74, 5.74, 6.24, 6.74, 7.24, 175.01, 
-                                175.51, 176.01, 176.50, 177.00, 178.00, 178.50, 
-                                179.50, 180.00]
+            "standoff_angles": [3.75, 4.24, 4.74, 5.24, 5.74, 6.24, 
+                                6.74, 7.24, 7.74, 177.00, 177.50, 178.00, 
+                                178.50, 179.50, -179.00, -178.50, -178.00, 176.50, 
+                                180.00, -124.08, -123.58, -52.68, -52.18]
         }],
     )
 
@@ -109,41 +110,41 @@ def generate_launch_description():
         condition=UnlessCondition(use_slam),
     )
 
-    slam = IncludeLaunchDescription(
-        os.path.join(
-            get_package_share_directory("msds_mapping"),
-            "launch",
-            "slam.launch.py"
-        ),
-        launch_arguments={
-                "use_sim_time": "false"
-            }.items(),
-        condition=IfCondition(use_slam)
-    )
+    # slam = IncludeLaunchDescription(
+    #     os.path.join(
+    #         get_package_share_directory("msds_mapping"),
+    #         "launch",
+    #         "slam.launch.py"
+    #     ),
+    #     launch_arguments={
+    #             "use_sim_time": "false"
+    #         }.items(),
+    #     condition=IfCondition(use_slam)
+    # )
 
-    navigation = IncludeLaunchDescription(
-        os.path.join(
-            get_package_share_directory("msds_navigation"),
-            "launch",
-            "navigation.launch.py"
-        ),
-        launch_arguments={
-                "use_sim_time": "false"
-            }.items(),
-    )
+    # navigation = IncludeLaunchDescription(
+    #     os.path.join(
+    #         get_package_share_directory("msds_navigation"),
+    #         "launch",
+    #         "navigation.launch.py"
+    #     ),
+    #     launch_arguments={
+    #             "use_sim_time": "false"
+    #         }.items(),
+    # )
 
-    rosbridge_server = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(
-                get_package_share_directory("rosbridge_server"),
-                "launch",
-                "rosbridge_websocket_launch.xml"
-            )
-        ),
-        launch_arguments={
-            "allowed_origins": "*",
-        }.items()
-    )
+    # rosbridge_server = IncludeLaunchDescription(
+    #     XMLLaunchDescriptionSource(
+    #         os.path.join(
+    #             get_package_share_directory("rosbridge_server"),
+    #             "launch",
+    #             "rosbridge_websocket_launch.xml"
+    #         )
+    #     ),
+    #     launch_arguments={
+    #         "allowed_origins": "*",
+    #     }.items()
+    # )
 
     return LaunchDescription([
             use_slam_arg,
@@ -156,9 +157,9 @@ def generate_launch_description():
             laser_driver,
             safety_stop,
             global_localization,
-            slam,
-            navigation,
-            rosbridge_server
+            # slam,
+            # navigation,
+            # rosbridge_server
         ])
 
     # return LaunchDescription([

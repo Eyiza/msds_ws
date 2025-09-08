@@ -3,7 +3,7 @@ controller_server: # Node for the controller server
     use_sim_time: true # Use simulated time for testing
     controller_frequency: 20.0 # 20 times per second. Frequency at which the control loop executes.A higher frequency allows for more responsive control but may increase CPU usage.
     min_x_velocity_threshold: 0.001 # Minimum x velocity threshold for the robot to consider itself moving
-    min_y_velocity_threshold: 0.001 # Minimum y velocity threshold for the robot to consider itself moving.
+    min_y_velocity_threshold: 0.5 # Minimum y velocity threshold for the robot to consider itself moving. 0.5 if diff drive
     min_theta_velocity_threshold: 0.001 # Minimum rotational velocity threshold for the robot to consider itself moving
     failure_tolerance: 0.3 # Maximum duration in seconds that the robot can be stationary before considering it a failure
     progress_checker_plugin: "progress_checker" # Plugin for checking progress towards the goal
@@ -31,45 +31,45 @@ controller_server: # Node for the controller server
       stateful: True # Indicates whether to check for x y position tolerance after rotating to the goal orientation in case of minor localization errors.
 
     # Option 1 - Rotation Shim Controller and Regulated Pure Pursuit Controller
-    FollowPath:
-      plugin: "nav2_rotation_shim_controller::RotationShimController"
-      primary_controller: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
+    # FollowPath:
+    #   plugin: "nav2_rotation_shim_controller::RotationShimController"
+    #   primary_controller: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
 
-      angular_dist_threshold: 0.785
-      forward_sampling_distance: 0.5
-      angular_disengage_threshold: 0.3925
-      rotate_to_heading_angular_vel: 0.8
-      max_angular_accel: 1.0
-      simulate_ahead_time: 1.0
-      rotate_to_goal_heading: false
+    #   angular_dist_threshold: 0.785
+    #   forward_sampling_distance: 0.5
+    #   angular_disengage_threshold: 0.3925
+    #   rotate_to_heading_angular_vel: 0.8
+    #   max_angular_accel: 1.0
+    #   simulate_ahead_time: 1.0
+    #   rotate_to_goal_heading: false
 
-      # Primary controller parameters
-      desired_linear_vel: 0.35 # Desired linear velocity in m/s
-      lookahead_dist: 0.7
-      min_lookahead_dist: 0.5
-      max_lookahead_dist: 0.7
-      lookahead_time: 1.5
-      rotate_to_heading_angular_vel: 0.4
-      transform_tolerance: 0.2
-      use_velocity_scaled_lookahead_dist: true
-      min_approach_linear_velocity: 0.05
-      approach_velocity_scaling_dist: 0.6 # Distance at which the robot will start slowing down to approach the goal
-      use_collision_detection: true
-      max_allowed_time_to_collision_up_to_carrot: 1.5
-      use_regulated_linear_velocity_scaling: true
-      use_cost_regulated_linear_velocity_scaling: true
-      regulated_linear_scaling_min_radius: 0.85
-      regulated_linear_scaling_min_speed: 0.25
-      use_fixed_curvature_lookahead: false
-      curvature_lookahead_dist: 0.6
-      use_rotate_to_heading: true
-      rotate_to_heading_min_angle: 0.785
-      max_angular_accel: 3.2
-      max_robot_pose_search_dist: 10.0
-      interpolate_curvature_after_goal: false
-      cost_scaling_dist: 0.3
-      cost_scaling_gain: 1.0
-      inflation_cost_scaling_factor: 3.0
+    #   # Primary controller parameters
+    #   desired_linear_vel: 0.35 # Desired linear velocity in m/s
+    #   lookahead_dist: 0.7
+    #   min_lookahead_dist: 0.5
+    #   max_lookahead_dist: 0.7
+    #   lookahead_time: 1.5
+    #   rotate_to_heading_angular_vel: 0.4
+    #   transform_tolerance: 0.2
+    #   use_velocity_scaled_lookahead_dist: true
+    #   min_approach_linear_velocity: 0.05
+    #   approach_velocity_scaling_dist: 0.6 # Distance at which the robot will start slowing down to approach the goal
+    #   use_collision_detection: true
+    #   max_allowed_time_to_collision_up_to_carrot: 1.5
+    #   use_regulated_linear_velocity_scaling: true
+    #   use_cost_regulated_linear_velocity_scaling: true
+    #   regulated_linear_scaling_min_radius: 0.85
+    #   regulated_linear_scaling_min_speed: 0.25
+    #   use_fixed_curvature_lookahead: false
+    #   curvature_lookahead_dist: 0.6
+    #   use_rotate_to_heading: true
+    #   rotate_to_heading_min_angle: 0.785
+    #   max_angular_accel: 3.2
+    #   max_robot_pose_search_dist: 10.0
+    #   interpolate_curvature_after_goal: false
+    #   cost_scaling_dist: 0.3
+    #   cost_scaling_gain: 1.0
+    #   inflation_cost_scaling_factor: 3.0
     
     # Option 2 - DWB Controller
     # FollowPath:
@@ -116,6 +116,36 @@ controller_server: # Node for the controller server
     #   RotateToGoal.slowing_factor: 5.0
     #   RotateToGoal.lookahead_time: -1.0
     #   Twirling.scale: 0.5 
+
+    # Option 3 - Regulated Pure Pursuit Controller Only
+    FollowPath:
+      plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
+      desired_linear_vel: 0.3 # Desired linear velocity in m/s
+      lookahead_dist: 0.6
+      min_lookahead_dist: 0.3
+      max_lookahead_dist: 0.9
+      lookahead_time: 1.5
+      rotate_to_heading_angular_vel: 1.8
+      transform_tolerance: 0.2
+      use_velocity_scaled_lookahead_dist: false
+      min_approach_linear_velocity: 0.05
+      approach_velocity_scaling_dist: 1.0 # Distance at which the robot will start slowing down to approach the goal
+      use_collision_detection: true
+      max_allowed_time_to_collision_up_to_carrot: 1.0
+      use_regulated_linear_velocity_scaling: true
+      use_cost_regulated_linear_velocity_scaling: false
+      regulated_linear_scaling_min_radius: 0.9
+      regulated_linear_scaling_min_speed: 0.25
+      use_fixed_curvature_lookahead: false
+      curvature_lookahead_dist: 1.0
+      use_rotate_to_heading: true
+      rotate_to_heading_min_angle: 0.785
+      max_angular_accel: 3.2
+      max_robot_pose_search_dist: 10.0
+      interpolate_curvature_after_goal: false
+      cost_scaling_dist: 0.3
+      cost_scaling_gain: 1.0
+      inflation_cost_scaling_factor: 3.0
 
 # Local costmap configuration for the robot. This is used for local obstacle avoidance and path following.
 # The costmap.yaml configuration file was copied and modified to create this configuration.

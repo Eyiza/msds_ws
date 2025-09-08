@@ -234,6 +234,8 @@ To Enable automatic launch on boot:
     - sudo systemctl enable msds_launch.service
   - Start the service immediately (optional):
     - sudo systemctl start msds_launch.service
+  - To stop the service:
+    - sudo systemctl stop msds_launch.service
   - Reboot the Raspberry Pi to test if the script runs on startup:
     - sudo reboot
   - To change modes after booting up, use the mode_set.sh script:
@@ -242,3 +244,7 @@ To Enable automatic launch on boot:
     - e.g ./mode_set.sh mapping
   - To check the status of the service:
     - sudo systemctl status msds_launch.service
+  - To disable:
+    - sudo systemctl disable msds_launch.service
+  - To restart the service:
+    - sudo systemctl restart msds_launch.service

@@ -51,7 +51,7 @@ twist:
   angular:
     x: 0.0
     y: 0.0
-    z: 0.2" 
+    z: 0.0" 
 
 scp -r src/ bash_scripts/ eyiza@192.168.1.154:/home/eyiza/msds_ws
 export ROS_DOMAIN_ID=2
